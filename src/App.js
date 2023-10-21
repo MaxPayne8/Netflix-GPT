@@ -3,23 +3,33 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "./components/Login";
 import Browse from "./components/Browse";
 import { Outlet } from "react-router-dom";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="text-red-500 text-center">
+    <Provider store={appStore}>
+      <Header />
       <Outlet />
-    </div>
+    </Provider>
   );
 }
 
 export const route = createBrowserRouter([
   {
     path: "/",
-    element: <Login />,
-  },
-  {
-    path: "/browse",
-    element: <Browse />,
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Login />,
+      },
+      {
+        path: "/browse",
+        element: <Browse />,
+      },
+    ],
   },
 ]);
 
