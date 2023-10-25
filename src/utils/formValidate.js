@@ -4,7 +4,7 @@ const formValidate = (email, password, name) => {
   const isEmailValid = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
   const isPasswordValid =
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(password);
-  const isNameValid = /^[a-z ,.'-]+$/i.test(name);
+  const isNameValid = /^[a-zA-Z ]{4,30}$/.test(name);
 
   if (!isEmailValid) return "Email is not valid";
 

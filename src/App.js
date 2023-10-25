@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Header from "./components/Header";
+import MoreInfo from "./components/MoreInfo";
 
 function App() {
   return (
@@ -29,6 +30,10 @@ export const route = createBrowserRouter([
         path: "/browse",
         element: <Browse />,
       },
+      {
+        path: "/browse/:movId",
+        element: <MoreInfo />,
+      }
     ],
   },
 ]);

@@ -9,6 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { addUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
+import { UserLogo } from "../utils/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -47,8 +48,7 @@ const Login = () => {
 
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg",
+            photoURL: UserLogo,
           })
             .then(() => {
               // Profile updated!
@@ -86,6 +86,7 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -132,7 +133,7 @@ const Login = () => {
           ></input>
           {signedUp ? (
             <h1 className="text-green-700 ml-4 font-bold">
-              Sign Up Complete! Now you can Login.
+              Sign Up Complete! Now you can Login🎉
             </h1>
           ) : null}
           <h1 className="text-red-700 ml-4 font-bold">{errorMsg}</h1>
