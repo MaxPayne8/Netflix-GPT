@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Header from "./components/Header";
 import MoreInfo from "./components/MoreInfo";
+import GptSearchPage from "./components/GptSearchPage";
 
 function App() {
   return (
@@ -33,7 +34,11 @@ export const route = createBrowserRouter([
       {
         path: "/browse/:movId",
         element: <MoreInfo />,
-      }
+      },
+      {
+        path: "/browse/gptsearch",
+        element: <GptSearchPage />,
+      },
     ],
   },
 ]);

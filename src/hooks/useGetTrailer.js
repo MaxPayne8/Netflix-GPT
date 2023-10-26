@@ -22,7 +22,7 @@ const useGetTrailer = (movId) => {
 
     console.log(dataa);
     console.log(trailerVid);
-    const finalTrailer = trailerVid[0].id ? trailerVid[0] : trailerVid[1];
+    const finalTrailer = trailerVid[0]?.id ? trailerVid[0] : trailerVid[1];
     console.log(finalTrailer);
     dispatch(addTrailer(finalTrailer));
   };

@@ -44,8 +44,8 @@ const MoreInfo = () => {
     getSimilarMovies();
   }, []);
 
-  const trailerInfo = useSelector((store) => store.movie.trailerVideo);
-  const info = useSelector((store) => store.movie.moreInfo);
+  const trailerInfo = useSelector((store) => store.movie?.trailerVideo);
+  const info = useSelector((store) => store.movie?.moreInfo);
   const infoSimilarMovies = useSelector((store) => store.movie.similarMovies);
   console.log(info);
   console.log(infoSimilarMovies);
@@ -68,18 +68,28 @@ const MoreInfo = () => {
     vote_average,
   } = info;
   return (
-    <div className="z-10 absolute top-[90px] w-screen  bg-gradient-to-t from-blue-800  p-6 font-semibold">
+    <div className="z-10 absolute top-[90px] w-screen  bg-gradient-to-r from-blue-800  p-6 font-semibold">
+      <Link to="/browse">
+        <button className="bg-violet-700 absolute right-12 z-20 font-semibold hover:bg-violet-600 hover:border-2 hover:border-black text-white  left-[1050px] -top-14 rounded-lg p-2">
+          Goto Netflix-Browse-Page
+        </button>
+      </Link>
+      <Link to="/browse/gptsearch">
+        <button className="bg-violet-700 z-10 font-semibold hover:bg-violet-600 hover:border-2 hover:border-black text-white relative left-[750px] -top-20 rounded-lg p-2">
+          Goto Gpt-Movies-Search
+        </button>
+      </Link>
       <div>
         <ul>
           <div className="flex justify-between">
-            <li className="ml-16 p-1">Official Poster</li>
-            <li className="mr-96 p-1">Official Trailer</li>
+            <li className="ml-[70px] p-1">Official Poster</li>
+            <li className="mr-[350px] p-1">Official Trailer</li>
           </div>
 
           <div className="flex">
             <li>
               <img
-                className="p-2 border-4 border-red-700"
+                className="p-2 ml-2 border-4 border-red-700"
                 src={ImgCDN + poster_path}
                 alt="movie-poster"
               />
@@ -131,8 +141,8 @@ const MoreInfo = () => {
         </ul>
       </div>
 
-      {/* <MovieList movList={infoSimilarMovies} title="Similar Movies" /> */}
-      <div className=" ">
+      <MovieList movList={infoSimilarMovies} title="Similar Movies" />
+      {/* <div className=" ">
         <h1 className="text-white ml-3 text-xl">Similar Movies</h1>
         <div className="flex  overflow-x-scroll no-scrollbar ">
           {infoSimilarMovies?.map((mov) => (
@@ -146,7 +156,7 @@ const MoreInfo = () => {
             </a>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

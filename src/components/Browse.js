@@ -6,6 +6,7 @@ import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import MovieList from "./MovieList";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
+import { Link } from "react-router-dom";
 
 const Browse = () => {
   useNowPlayingMovies();
@@ -27,12 +28,20 @@ const Browse = () => {
         src={user?.photoURL}
         alt="user-logo"
       />
-      <h1 className=" p-2 top-7 right-[325px] z-10 absolute font-semibold text-white ">
-        <span className="text-red-800 font-bold text-xl ">
-          {user?.displayName}
-        </span>
-        , try our all new Movies suggestion AI!!
-      </h1>
+      <div className="flex">
+        <h1 className=" p-2 top-3 right-[325px] z-10 absolute font-semibold text-white ">
+          <span className="text-red-800 font-bold text-xl ">
+            {user?.displayName}
+          </span>
+          , try our all new Movies suggestion AI!!
+        </h1>
+        <Link to="/browse/gptsearch">
+          <button className="bg-violet-700 z-10 font-semibold hover:bg-violet-600 hover:border-2 text-white relative left-[1050px] top-4 rounded-lg p-2">
+            Goto Gpt-Movies-Search
+          </button>
+        </Link>
+      </div>
+
       <button
         className="absolute ml-[1270px]  top-[65px] z-10 text-white font-semibold px-1 bg-red-700 rounded-lg hover:bg-red-500"
         onClick={handleSignout}

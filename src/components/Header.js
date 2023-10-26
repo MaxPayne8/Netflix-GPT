@@ -38,17 +38,17 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
   return stay ? (
-    <Link to="/browse">
-      <div className="absolute  bg-gradient-to-b from-black w-screen z-10 top-0">
+    <div className="absolute bg-gradient-to-b from-black  z-10 top-0">
+      <Link to="/browse">
         <img className="w-56" src={NetflixLogo} alt="netflix-logo" />
-      </div>
-    </Link>
+      </Link>
+    </div>
   ) : (
-    <Link to="/">
-      <div className="absolute  bg-gradient-to-b from-black w-screen z-10 top-0">
+    <div className="  bg-gradient-to-b from-black   absolute z-20 top-0">
+      <Link to="/">
         <img className="w-56" src={NetflixLogo} alt="netflix-logo" />
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

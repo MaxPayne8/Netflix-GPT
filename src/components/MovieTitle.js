@@ -13,7 +13,7 @@ const MovieTitle = ({ title, overview }) => {
         <h1 className="font-bold text-6xl mb-2">{title}</h1>
         <p className="font-semibold w-1/2  text-xl">{overview}</p>
         <Link to={"/browse/" + id}>
-          <button className="bg-blue-700 mt-3 p-2 rounded-lg">
+          <button className="bg-blue-700 mt-3 p-2 rounded-lg hover:bg-blue-500">
             More Info❕
           </button>
         </Link>
