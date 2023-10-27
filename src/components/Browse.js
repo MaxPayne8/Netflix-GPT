@@ -22,7 +22,7 @@ const Browse = () => {
       });
   };
   return (
-    <div className="w-[100%]">
+    <div className="w-screen">
       <img
         className="w-16 h-16 p-2  ml-[1300px] z-10 absolute top-1 right-3  hover:cursor-pointer"
         src={user?.photoURL}
@@ -50,6 +50,18 @@ const Browse = () => {
       </button>
       <MainContainer />
       <SecondaryContainer />
+      <div className="bg-red-800 text-white p-2">
+        <p>
+          Coudnt find anything interesting 😥Get recommendations according to
+          your taste using our movie recommendation system powered by Chat-Gpt
+          3.5 turbo🚀
+          <Link to="/browse/gptsearch">
+            <button className="bg-violet-700 z-10 font-semibold hover:bg-violet-600 hover:border-2 text-white ml-2 top-4 rounded-lg p-2">
+              Goto Gpt-Movies-Search
+            </button>
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };

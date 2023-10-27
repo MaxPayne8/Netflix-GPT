@@ -23,4 +23,4 @@ export const supportedLang = [
 ];
 
 export const API_GPT_KEY =
-  "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";
+  "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";

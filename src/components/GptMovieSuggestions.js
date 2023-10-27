@@ -13,7 +13,7 @@ const GptMovieSuggestions = () => {
   console.log(tmdbMov);
 
   return (
-    <div className="w-[100%] ">
+    <div className="w-screen ">
       <div className="absolute top-[400px]   z-20 flex flex-wrap  bg-black ">
         {/* {gptMov?.map((mov) => (
         <h1>{mov}</h1>
