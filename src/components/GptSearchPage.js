@@ -41,8 +41,9 @@ const GptSearchPage = () => {
     setShowMovies(false);
 
     const finalSearchQuery =
+      "Act as a Movie Recommendation system and suggest some movies for the query : " +
       searchTxt.current.value +
-      " only give me names of 20 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
+      " and give me names of 20 movies that should be comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
     const chatCompletion = await openai.chat.completions.create({
       messages: [{ role: "user", content: finalSearchQuery }],
       model: "gpt-3.5-turbo",

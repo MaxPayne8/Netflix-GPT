@@ -22,5 +22,4 @@ export const supportedLang = [
   { identifier: "spanish", name: "Spanish" },
 ];
 
-export const API_GPT_KEY =
-  "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";
+export const API_GPT_KEY = process.env.REACT_APP_GPT_API_KEY;

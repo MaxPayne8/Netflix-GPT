@@ -12,7 +12,7 @@ const MovieTitle = ({ title, overview }) => {
       <div className="absolute  w-screen aspect-video pt-[20%] pl-8 bg-gradient-to-r from-black text-white ">
         <h1 className="font-bold text-6xl mb-2">{title}</h1>
         <p className="font-semibold w-[60%]  text-xl">{overview}</p>
-        <Link to={"/browse/" + id}>
+        <Link to={"/browse/moreinfo/" + id}>
           <button className="bg-blue-700 mt-3 p-2 rounded-lg hover:bg-blue-500">
             More Info❕
           </button>
