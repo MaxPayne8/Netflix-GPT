@@ -1,7 +1,7 @@
 import React from "react";
 import { ImgCDN } from "../utils/constants";
 
-const MovieCard = ({ posterId, title }) => {
+const MovieCard = ({ posterId }) => {
   if (!posterId) return null;
   return (
     <div className="w-36 hover:border-4 border-red-700">

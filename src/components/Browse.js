@@ -22,7 +22,7 @@ const Browse = () => {
       });
   };
   return (
-    <div className="">
+    <div className="w-[100%]">
       <img
         className="w-16 h-16 p-2  ml-[1300px] z-10 absolute top-1 right-3  hover:cursor-pointer"
         src={user?.photoURL}

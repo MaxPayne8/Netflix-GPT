@@ -68,22 +68,22 @@ const MoreInfo = () => {
     vote_average,
   } = info;
   return (
-    <div className="z-10 absolute top-[90px] w-screen  bg-gradient-to-r from-blue-800  p-6 font-semibold">
+    <div className="z-10 absolute  w-[100%]  bg-gradient-to-r from-blue-800  p-6 font-semibold">
       <Link to="/browse">
-        <button className="bg-violet-700 absolute right-12 z-20 font-semibold hover:bg-violet-600 hover:border-2 hover:border-black text-white  left-[1050px] -top-14 rounded-lg p-2">
+        <button className="bg-violet-700 absolute right-12 z-20 font-semibold hover:bg-violet-600 hover:border-2 hover:border-black text-white  left-[1050px]  rounded-lg p-2">
           Goto Netflix-Browse-Page
         </button>
       </Link>
       <Link to="/browse/gptsearch">
-        <button className="bg-violet-700 z-10 font-semibold hover:bg-violet-600 hover:border-2 hover:border-black text-white relative left-[750px] -top-20 rounded-lg p-2">
+        <button className="bg-violet-700 z-30 font-semibold hover:bg-violet-600 hover:border-2 hover:border-black text-white relative left-[750px]  rounded-lg p-2">
           Goto Gpt-Movies-Search
         </button>
       </Link>
       <div>
         <ul>
           <div className="flex justify-between">
-            <li className="ml-[70px] p-1">Official Poster</li>
-            <li className="mr-[350px] p-1">Official Trailer</li>
+            <li className="ml-[70px] p-1 mt-10">Official Poster</li>
+            <li className="mr-[350px] p-1 mt-10">Official Trailer</li>
           </div>
 
           <div className="flex">
@@ -141,22 +141,23 @@ const MoreInfo = () => {
         </ul>
       </div>
 
-      <MovieList movList={infoSimilarMovies} title="Similar Movies" />
-      {/* <div className=" ">
+      {/* <MovieList movList={infoSimilarMovies} title="Similar Movies" /> */}
+      <div className=" ">
         <h1 className="text-white ml-3 text-xl">Similar Movies</h1>
         <div className="flex  overflow-x-scroll no-scrollbar ">
           {infoSimilarMovies?.map((mov) => (
-            // <Link to={"/browse/" + mov.id}> </Link>
+            // <Link to={"/browse/" + mov.id}>
             <a href={"/browse/" + mov.id}>
               <MovieCard
                 posterId={mov.poster_path}
                 title={mov.title}
                 key={mov.id}
               />
+              {/*  </Link> */}
             </a>
           ))}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

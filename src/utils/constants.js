@@ -21,3 +21,6 @@ export const supportedLang = [
   { identifier: "french", name: "French" },
   { identifier: "spanish", name: "Spanish" },
 ];
+
+export const API_GPT_KEY =
+  "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";

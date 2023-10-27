@@ -38,7 +38,7 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
   return stay ? (
-    <div className="absolute bg-gradient-to-b from-black  z-10 top-0">
+    <div className="absolute bg-gradient-to-b from-black  z-20 top-0">
       <Link to="/browse">
         <img className="w-56" src={NetflixLogo} alt="netflix-logo" />
       </Link>
