@@ -30,7 +30,7 @@ const GptSearchPage = () => {
     );
     const json = await data.json();
     console.log(json);
-    const corectMov = json.results.filter((mov) => mov[0]);
+    const corectMov = await json.results.filter((mov) => mov[0]);
     console.log(corectMov);
     return json.results;
   };
@@ -60,8 +60,8 @@ const GptSearchPage = () => {
     console.log(finalMovArray);
     const promiseArray = finalMovArray.map((mov) => tmdbResults(mov));
     const tmdbMovies = await Promise.all(promiseArray);
-    if (tmdbMovies.length === 20) setShimmer(true);
-    if (tmdbMovies.length === 20) setShowInfo(true);
+    if (!tmdbMovies.length) setShimmer(true);
+    if (tmdbMovies.length) setShowInfo(true);
     if (tmdbMovies.length === 20) setShowMovies(true);
     const mainTmdbMovies = tmdbMovies.map((list) => list[0]);
 
@@ -123,18 +123,18 @@ const GptSearchPage = () => {
         </button>
       </form>
       <div className="  absolute top-[340px] left-[410px] p-2 text-2xl rounded-lg bg-blue-800  text-white">
-        {shimmer ? (
+        {shimmer && (
           <div>
             <h1>🚀🚀🚀 FINDING BEST MOVIES FOR YOU...🚀🚀🚀</h1>
           </div>
-        ) : null}
+        )}
       </div>
       <div className="absolute top-[340px] left-[370px] p-2 text-2xl bg-red-800 rounded-lg text-white">
-        {showInfo ? (
+        {showInfo && (
           <div>
             <h1>Here are some recommended movies according to your query...</h1>
           </div>
-        ) : null}
+        )}
       </div>
       <GptMovieSuggestions />
     </div>

@@ -7,7 +7,7 @@ import MovieList from "./MovieList";
 import MovieCard from "./MovieCard";
 import useGetTrailer from "../hooks/useGetTrailer";
 
-const MoreInfo = () => {
+const MoreInfoTwin = () => {
   const dispatch = useDispatch();
   const { movId } = useParams();
   console.log(movId);
@@ -146,7 +146,7 @@ const MoreInfo = () => {
         <h1 className="text-white ml-3 text-xl">Similar Movies</h1>
         <div className="flex  overflow-x-scroll no-scrollbar ">
           {infoSimilarMovies?.map((mov) => (
-            <Link to={"/browse/moreinfotwin/" + mov.id}>
+            <Link to={"/browse/moreinfo/" + mov.id}>
               {/* <a href={"/browse/" + mov.id}> */}
               <MovieCard
                 posterId={mov.poster_path}
@@ -162,4 +162,4 @@ const MoreInfo = () => {
   );
 };
 
-export default MoreInfo;
+export default MoreInfoTwin;

@@ -9,7 +9,7 @@ const MovieList = ({ movList, title }) => {
       <h1 className="text-white ml-3 text-xl">{title}</h1>
       <div className="flex  overflow-x-scroll no-scrollbar ">
         {movList?.map((mov) => (
-          <Link to={"/browse/" + mov.id}>
+          <Link to={"/browse/moreinfo/" + mov.id}>
             <MovieCard
               posterId={mov.poster_path}
               title={mov.title}

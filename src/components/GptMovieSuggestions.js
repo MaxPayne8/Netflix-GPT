@@ -14,12 +14,12 @@ const GptMovieSuggestions = () => {
 
   return (
     <div className="w-screen ">
-      <div className="absolute top-[400px]   z-20 flex flex-wrap  bg-black ">
+      <div className="absolute top-[400px] pl-6 border-4 py-3 border-red-800  z-20 flex flex-wrap  bg-black ">
         {/* {gptMov?.map((mov) => (
         <h1>{mov}</h1>
       ))} */}
         {tmdbMov?.map((mov) => (
-          <Link to={"/browse/" + mov?.id}>
+          <Link to={"/browse/moreinfo/" + mov?.id}>
             {" "}
             <MovieCard posterId={mov?.poster_path} />
           </Link>

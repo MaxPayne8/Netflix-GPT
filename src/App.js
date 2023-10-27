@@ -8,6 +8,7 @@ import appStore from "./utils/appStore";
 import Header from "./components/Header";
 import MoreInfo from "./components/MoreInfo";
 import GptSearchPage from "./components/GptSearchPage";
+import MoreInfoTwin from "./components/MoreInfoTwin";
 
 function App() {
   return (
@@ -32,12 +33,16 @@ export const route = createBrowserRouter([
         element: <Browse />,
       },
       {
-        path: "/browse/:movId",
+        path: "/browse/moreinfo/:movId",
         element: <MoreInfo />,
       },
       {
         path: "/browse/gptsearch",
         element: <GptSearchPage />,
+      },
+      {
+        path: "/browse/moreinfotwin/:movId",
+        element: <MoreInfoTwin />,
       },
     ],
   },
