@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { API_TMDB_OPTIONS, ImgCDN } from "../utils/constants";
+import { API_TMDB_OPTIONS, ImgCDN, NetflixLogo } from "../utils/constants";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addMoreInfo, addSimilarMovies } from "../utils/moviesSlice";
-import MovieList from "./MovieList";
+
 import MovieCard from "./MovieCard";
 import useGetTrailer from "../hooks/useGetTrailer";
 
@@ -68,28 +68,35 @@ const MoreInfo = () => {
     vote_average,
   } = info;
   return (
-    <div className="z-10 absolute  w-[100%]  bg-gradient-to-r from-blue-800  p-6 font-semibold">
+    <div className="z-10 absolute  w-full  bg-gradient-to-r from-blue-800  p-6 font-semibold">
       <Link to="/browse">
-        <button className="bg-violet-700 absolute right-12 z-20 font-semibold hover:bg-violet-600 hover:border-2 hover:border-black text-white  left-[1050px]  rounded-lg p-2">
+        <div className="absolute left-0 bg-gradient-to-b from-black z-20 top-0 ">
+          <img className="w-56" src={NetflixLogo} alt="netflix-logo" />
+        </div>
+      </Link>
+      <Link to="/browse">
+        <button className="bg-violet-700 absolute  md:mr-0 md:right-12 z-20  font-semibold hover:bg-violet-600 hover:border-2 mt-16 md:mt-0 hover:border-black text-white  md:left-[1050px]  rounded-lg p-2">
           Goto Netflix-Browse-Page
         </button>
       </Link>
       <Link to="/browse/gptsearch">
-        <button className="bg-violet-700 z-30 font-semibold hover:bg-violet-600 hover:border-2 hover:border-black text-white relative left-[750px]  rounded-lg p-2">
+        <button className="bg-violet-700 z-30 font-semibold hover:bg-violet-600 hover:border-2 hover:border-black text-white relative  md:left-[750px] mt-28 md:mt-0 rounded-lg p-2">
           Goto Gpt-Movies-Search
         </button>
       </Link>
       <div>
         <ul>
-          <div className="flex justify-between">
-            <li className="ml-[70px] p-1 mt-10">Official Poster</li>
-            <li className="mr-[350px] p-1 mt-10">Official Trailer</li>
+          <div className=" md:flex justify-between">
+            <li className="md:ml-[70px] p-1  mt-8 md:mt-10">Official Poster</li>
+            <li className="  md:mr-[350px] p-1 mt-96 md:mt-10">
+              Official Trailer
+            </li>
           </div>
 
-          <div className="flex">
+          <div className=" md:flex">
             <li>
               <img
-                className="p-2 ml-2 border-4 border-red-700"
+                className="p-2 top-60  md:top-0 absolute md:relative ml-0 md:ml-2 border-4 border-red-700"
                 src={ImgCDN + poster_path}
                 alt="movie-poster"
               />
@@ -97,7 +104,7 @@ const MoreInfo = () => {
 
             <li>
               <iframe
-                className="ml-[350px] w-[600px] border-4 border-red-700  aspect-video "
+                className=" mt-2 md:mt-0 md:ml-[350px] w-[100%] md:w-[600px] border-4 border-red-700  aspect-video "
                 src={
                   "https://www.youtube.com/embed/" +
                   trailerInfo?.key +
@@ -111,7 +118,7 @@ const MoreInfo = () => {
           </div>
 
           <li className="p-2">Title: {original_title}</li>
-          <li className="p-2">Overview: {overview}</li>
+          <li className="p-2 ">Overview: {overview}</li>
           <li className="p-2">
             Geners: {genres?.map((mov) => mov.name).join(",")}
           </li>

@@ -1,7 +1,11 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import langConst from "../utils/langConst";
-import { API_TMDB_OPTIONS, supportedLang } from "../utils/constants";
+import {
+  API_TMDB_OPTIONS,
+  NetflixLogo,
+  supportedLang,
+} from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLang } from "../utils/langSlice";
 import openai from "../utils/openai";
@@ -30,7 +34,7 @@ const GptSearchPage = () => {
     );
     const json = await data.json();
     console.log(json);
-    const corectMov = await json.results.filter((mov) => mov[0]);
+    const corectMov = await json?.results?.filter((mov) => mov[0]);
     console.log(corectMov);
     return json.results;
   };
@@ -43,7 +47,7 @@ const GptSearchPage = () => {
     const finalSearchQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
       searchTxt.current.value +
-      " and give me names of 20 movies that should be comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
+      " and give me names of appropiate movies that should be comma seperated like the example result given ahead. Example Result: Pulp Fiction , The Godfather , Forrest Gump, GoodFellas, The Matrix";
     const chatCompletion = await openai.chat.completions.create({
       messages: [{ role: "user", content: finalSearchQuery }],
       model: "gpt-3.5-turbo",
@@ -61,10 +65,10 @@ const GptSearchPage = () => {
     console.log(finalMovArray);
     const promiseArray = finalMovArray.map((mov) => tmdbResults(mov));
     const tmdbMovies = await Promise.all(promiseArray);
+    const mainTmdbMovies = tmdbMovies.map((list) => list[0]);
     if (!tmdbMovies.length) setShimmer(true);
     if (tmdbMovies.length) setShowInfo(true);
-    if (tmdbMovies.length === 20) setShowMovies(true);
-    const mainTmdbMovies = tmdbMovies.map((list) => list[0]);
+    if (tmdbMovies.length) setShowMovies(true);
 
     console.log(tmdbMovies);
     console.log(mainTmdbMovies);
@@ -81,19 +85,30 @@ const GptSearchPage = () => {
   console.log(gptMov);
   console.log(tmdbMov);
   return (
-    <div className="w-[100%]">
-      <img
-        className=""
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/a73c4363-1dcd-4719-b3b1-3725418fd91d/fe1147dd-78be-44aa-a0e5-2d2994305a13/IN-en-20231016-popsignuptwoweeks-perspective_alpha_website_medium.jpg"
-        alt="movies-collage"
-      ></img>
+    <div className="">
       <Link to="/browse">
-        <button className="bg-violet-700 absolute right-4 z-20 font-semibold hover:bg-violet-800 hover:border-2 text-white  left-[1050px] top-4 rounded-lg p-2">
+        <div className="absolute left-0 bg-gradient-to-b from-black z-20 top-0 ">
+          <img className="w-56" src={NetflixLogo} alt="netflix-logo" />
+        </div>
+      </Link>
+      <img
+        className="h-[1000px] w-screen md:h-0  md:w-0 "
+        src="https://w0.peakpx.com/wallpaper/57/769/HD-wallpaper-blackgold-black-tech-thumbnail.jpg"
+        alt="gpt-background"
+      ></img>
+      <img
+        className="h-0 md:h-[1050px]"
+        src="https://wallpaperaccess.com/full/2454678.jpg"
+        alt="gpt-background"
+      ></img>
+
+      <Link to="/browse">
+        <button className="bg-violet-700 absolute right-2 z-20 font-semibold hover:bg-violet-800 hover:border-2 text-white left-72 md:left-[1050px] top-4 rounded-lg p-2">
           {langConst[currLang].button}
         </button>
       </Link>
       <select
-        className="absolute z-20 top-4 p-2 bg-violet-700 rounded-lg  hover:bg-violet-800 hover:cursor-pointer hover:border-2 text-white  left-[900px]"
+        className="absolute z-20 top-[80px] md:top-4 p-2 bg-violet-700 rounded-lg  hover:bg-violet-800 hover:cursor-pointer hover:border-2 text-white left-12 md:left-[900px]"
         onChange={getCurrentLang}
       >
         {supportedLang.map((lang) => (
@@ -103,41 +118,40 @@ const GptSearchPage = () => {
         ))}
       </select>
 
-      <div className="absolute z-20 top-36 text-white border-2 border-white bg-violet-800 p-4 rounded-2xl mx-auto ml-0 mr-0">
+      <div className="absolute z-20 top-56 md:top-36 text-white border-2 border-white bg-violet-800 p-4 rounded-2xl mx-auto ml-0 mr-0">
         <p>{langConst[currLang].aboutGpt}</p>
       </div>
 
       <form
-        className="absolute z-20  w-[600px] h-[80px] text-center top-60  ml-[400px] rounded-lg bg-gray-950"
+        className="absolute z-20 w-screen md:w-[600px] h-[80px] text-center top-96 md:top-60 md:ml-2 md:ml-[400px] rounded-lg bg-gray-950"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
-          className="w-[400px] p-2 h-9 mt-6 rounded-lg font-semibold"
+          className=" w-[355px] md:w-[400px] p-2 h-9 mt-6 rounded-lg font-semibold"
           placeholder={langConst[currLang].gptPlaceholder}
           ref={searchTxt}
         ></input>
         <button
-          className="bg-red-700 rounded-lg font-semibold hover:bg-red-600 w-24 p-2 ml-4"
+          className="bg-red-700 rounded-lg font-semibold hover:bg-red-600 w-24 p-2 mt-6 md:ml-4"
           onClick={handleClick}
         >
           {langConst[currLang].search}
         </button>
       </form>
-      <div className="  absolute top-[340px] left-[410px] p-2 text-2xl rounded-lg bg-blue-800  text-white">
-        {shimmer && (
-          <div>
-            <h1>🚀🚀🚀 FINDING BEST MOVIES FOR YOU...🚀🚀🚀</h1>
-          </div>
-        )}
-      </div>
-      <div className="absolute top-[340px] left-[370px] p-2 text-2xl bg-red-800 rounded-lg text-white">
-        {showInfo && (
-          <div>
-            <h1>Here are some recommended movies according to your query...</h1>
-          </div>
-        )}
-      </div>
-      <GptMovieSuggestions />
+
+      {shimmer && (
+        <div className="  absolute top-[550px] md:top-[340px]  md:left-[410px] p-2 text-2xl rounded-lg bg-blue-800  text-white">
+          <h1>🚀🚀🚀 FINDING BEST MOVIES FOR YOU...🚀🚀🚀</h1>
+        </div>
+      )}
+
+      {showInfo && (
+        <div className="absolute top-[550px] md:top-[340px]  md:left-[370px] p-2 text-2xl bg-red-800 rounded-lg text-white">
+          <h1>Here are some recommended movies according to your query...</h1>
+        </div>
+      )}
+
+      {setShowMovies && <GptMovieSuggestions />}
     </div>
   );
 };

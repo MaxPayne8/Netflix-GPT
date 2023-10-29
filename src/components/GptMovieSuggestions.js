@@ -13,18 +13,12 @@ const GptMovieSuggestions = () => {
   console.log(tmdbMov);
 
   return (
-    <div className="w-screen ">
-      <div className="absolute top-[400px] pl-6 border-4 py-3 border-red-800  z-20 flex flex-wrap  bg-black ">
-        {/* {gptMov?.map((mov) => (
-        <h1>{mov}</h1>
-      ))} */}
-        {tmdbMov?.map((mov) => (
-          <Link to={"/browse/moreinfo/" + mov?.id}>
-            {" "}
-            <MovieCard posterId={mov?.poster_path} />
-          </Link>
-        ))}
-      </div>
+    <div className="absolute top-[650px] md:top-[400px] pl-12 md:pl-6  py-3 z-20 flex flex-wrap bg-black ">
+      {tmdbMov?.map((mov) => (
+        <Link to={"/browse/moreinfo/" + mov?.id}>
+          <MovieCard posterId={mov?.poster_path} />
+        </Link>
+      ))}
     </div>
   );
 };

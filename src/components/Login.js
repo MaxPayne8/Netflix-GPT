@@ -6,20 +6,22 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+
 import { addUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
-import { UserLogo } from "../utils/constants";
+import { NetflixLogo, UserLogo } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [newUser, setNewUser] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const [signedUp, setSignedUp] = useState(false);
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
-  const navigate = useNavigate();
+
   const toggleSignInform = () => {
     setNewUser(!newUser);
     setErrorMsg(null);
@@ -100,13 +102,24 @@ const Login = () => {
   };
 
   return (
-    <div className="w-[100%]">
+    <div className="w-full ">
+      <div className="absolute left-0 bg-gradient-to-b from-black z-20 top-0 ">
+        <img className="w-56" src={NetflixLogo} alt="netflix-logo" />
+      </div>
       <img
+        className="h-screen md:w-0 md:h-0"
+        src="https://gumlet.assettype.com/bloombergquint/2023-02/8bb7387f-335f-4338-88de-1be92538cecf/Netflix_Series.jpg"
+        alt="movies-collage"
+      ></img>
+
+      <img
+        className="h-0 w-0 md:w-auto md:h-auto"
         src="https://assets.nflxext.com/ffe/siteui/vlv3/a73c4363-1dcd-4719-b3b1-3725418fd91d/fe1147dd-78be-44aa-a0e5-2d2994305a13/IN-en-20231016-popsignuptwoweeks-perspective_alpha_website_medium.jpg"
         alt="movies-collage"
       ></img>
+
       <form
-        className="absolute bottom-24 right-0 left-0 m-auto w-1/4  bg bg-black  opacity-90 rounded-lg p-4 hover:cursor-pointer"
+        className="absolute bottom-32 md:bottom-24 right-0 left-0 m-auto md:w-1/4  bg bg-black  opacity-90 rounded-lg p-4 hover:cursor-pointer"
         onSubmit={(e) => e.preventDefault()}
       >
         <h1 className=" text-white m-2 p-2 text-2xl">
@@ -138,7 +151,7 @@ const Login = () => {
           ) : null}
           <h1 className="text-red-700 ml-4 font-bold">{errorMsg}</h1>
           <button
-            className="mt-8 text-white bg-red-800 rounded-lg p-2 text-lg w-[270px] ml-3  hover:bg-red-600"
+            className="mt-8 text-white bg-red-800 rounded-lg p-2 text-lg  md:w-auto  md:ml-2  hover:bg-red-600"
             onClick={handleLogIn}
           >
             {newUser ? "Sign Up" : "Sign In"}
