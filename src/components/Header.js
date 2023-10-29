@@ -8,6 +8,7 @@ import { addUser, removeUser } from "../utils/userSlice";
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  //User authentiacation for Login Logout
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
