@@ -35,7 +35,7 @@ const Browse = () => {
       <div className="flex">
         <h1 className=" p-2 top-20 md:top-3 md:right-[325px] z-10 absolute font-semibold text-white ">
           <span className="text-red-800 font-bold text-xl ">
-            {user?.displayName}
+            {user?.displayName.split(" ")[0]}
           </span>
           , try our all new Movies suggestion AI!!
         </h1>
