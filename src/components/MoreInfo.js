@@ -68,7 +68,7 @@ const MoreInfo = () => {
     vote_average,
   } = info;
   return (
-    <div className="z-10 absolute  w-full  bg-gradient-to-r from-blue-800  p-6 font-semibold">
+    <div className="z-10   w-full  bg-gradient-to-r from-blue-800  p-6 font-semibold">
       <Link to="/browse">
         <div className="absolute left-0 bg-gradient-to-b from-black z-20 top-0 ">
           <img className="w-56" src={NetflixLogo} alt="netflix-logo" />
