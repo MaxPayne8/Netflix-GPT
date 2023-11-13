@@ -104,7 +104,7 @@ const MoreInfo = () => {
 
             <li>
               <iframe
-                className=" mt-2 md:mt-0 md:ml-[350px] w-[100%] md:w-[600px] border-4 border-red-700  aspect-video "
+                className=" mt-2  md:mt-0 md:ml-[350px] w-[100%] md:w-[600px] border-4 border-red-700  aspect-video "
                 src={
                   "https://www.youtube.com/embed/" +
                   trailerInfo?.key +

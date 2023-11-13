@@ -23,7 +23,7 @@ const Browse = () => {
       });
   };
   return (
-    <div className="">
+    <div className="w-full bg-black">
       <div className="absolute bg-gradient-to-b from-black z-20 top-0 ">
         <img className="w-56" src={NetflixLogo} alt="netflix-logo" />
       </div>
@@ -40,14 +40,14 @@ const Browse = () => {
           , try our all new Movies suggestion AI!!
         </h1>
         <Link to="/browse/gptsearch">
-          <button className="bg-violet-700 z-10 font-semibold hover:bg-violet-600 hover:border-2 text-white relative md:left-[1050px] top-[120px] ml-48 md:ml-0 md:top-4 rounded-lg p-2">
+          <button className="bg-violet-700 z-10 font-semibold hover:bg-violet-600 hover:border-2 text-white absolute md:right-[100px] top-[120px] ml-2 md:ml-0 md:top-4 rounded-lg p-2">
             Goto Gpt-Movies-Search
           </button>
         </Link>
       </div>
 
       <button
-        className="absolute ml-[230px]   md:ml-[1280px] top-[24px] md:top-[65px] z-10 text-white font-semibold px-1 bg-red-700 rounded-lg hover:bg-red-500"
+        className="absolute right-0 top-[65px] z-10 text-white font-semibold px-1 bg-red-700 rounded-lg hover:bg-red-500"
         onClick={handleSignout}
       >
         Sign Out
