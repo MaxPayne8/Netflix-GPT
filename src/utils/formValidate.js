@@ -9,8 +9,10 @@ const formValidate = (email, password, name) => {
   if (!isEmailValid) return "Email is not valid";
 
   if (!isPasswordValid)
-    return "Password is not valid(should contain an uppercase and special character)";
-  if (!isNameValid) return "Please enter your name correctly!!";
+    return "Password is not valid(should contain an uppercase and atleast have 8 characters)";
+
+  if (!isNameValid)
+    return "Please enter your name correctly!!(Should have atleast 4 characters)";
 
   return null;
 };

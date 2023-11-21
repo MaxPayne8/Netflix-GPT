@@ -23,7 +23,7 @@ const Browse = () => {
       });
   };
   return (
-    <div className="w-full bg-black">
+    <div className="w-screen bg-black">
       <div className="absolute bg-gradient-to-b from-black z-20 top-0 ">
         <img className="w-56" src={NetflixLogo} alt="netflix-logo" />
       </div>

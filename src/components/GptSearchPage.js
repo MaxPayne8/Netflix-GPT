@@ -45,9 +45,9 @@ const GptSearchPage = () => {
     setShowMovies(false);
 
     const finalSearchQuery =
-      "Act as a Movie Recommendation system and suggest some movies for the query : " +
+      "Act as a Movie Recommendation system and suggest 20 movies for the query : " +
       searchTxt.current.value +
-      " and give me names of appropiate movies that should be comma seperated like the example result given ahead. Example Result: Pulp Fiction , The Godfather , Forrest Gump, GoodFellas, The Matrix";
+      " and give me names of appropiate movies that should be comma seperated like the example result given ahead. Example Result: Pulp Fiction , The Godfather , Forrest Gump, GoodFellas, The Matrix etc";
     const chatCompletion = await openai.chat.completions.create({
       messages: [{ role: "user", content: finalSearchQuery }],
       model: "gpt-3.5-turbo",
@@ -97,18 +97,18 @@ const GptSearchPage = () => {
         alt="gpt-background"
       ></img>
       <img
-        className="h-0 md:h-[1050px]"
+        className="h-0  md:w-screen md:h-[1050px]"
         src="https://wallpaperaccess.com/full/2454678.jpg"
         alt="gpt-background"
       ></img>
 
       <Link to="/browse">
-        <button className="bg-violet-700 absolute right-2 z-20 font-semibold hover:bg-violet-800 hover:border-2 text-white left-72 md:left-[1050px] top-4 rounded-lg p-2">
+        <button className="bg-violet-700 absolute  right-2 z-20 font-semibold hover:bg-violet-800 hover:border-2 text-white  md:left-[1050px] md:w-56 w-56 top-20 rounded-lg p-2">
           {langConst[currLang].button}
         </button>
       </Link>
       <select
-        className="absolute z-20 top-[80px] md:top-4 p-2 bg-violet-700 rounded-lg  hover:bg-violet-800 hover:cursor-pointer hover:border-2 text-white left-12 md:left-[900px]"
+        className="absolute z-20 top-[85px] md:top-4 p-2 bg-violet-700 rounded-lg  hover:bg-violet-800 hover:cursor-pointer hover:border-2 text-white left-6 md:left-[1100px]"
         onChange={getCurrentLang}
       >
         {supportedLang.map((lang) => (
@@ -123,7 +123,7 @@ const GptSearchPage = () => {
       </div>
 
       <form
-        className="absolute z-20 w-screen md:w-[600px] h-[80px] text-center top-96 md:top-60 md:ml-2 md:ml-[400px] rounded-lg bg-gray-950"
+        className="absolute z-20 w-screen md:place-content-center md:w-[600px] h-[80px] text-center top-96 md:top-60 md:ml-2 md:ml-[400px] rounded-lg bg-gray-950"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
@@ -140,14 +140,16 @@ const GptSearchPage = () => {
       </form>
 
       {shimmer && (
-        <div className="  absolute top-[550px] md:top-[340px]  md:left-[410px] p-2 text-2xl rounded-lg bg-blue-800  text-white">
-          <h1>🚀🚀🚀 FINDING BEST MOVIES FOR YOU...🚀🚀🚀</h1>
+        <div className="  absolute top-[550px]  md:top-[340px] left-0 right-0 mx-auto p-2 text-2xl rounded-lg bg-blue-800 hover:bg-black  text-white">
+          <h1 className="text-center">🚀🚀🚀 PLEASE WAIT...🚀🚀🚀</h1>
         </div>
       )}
 
       {showInfo && (
-        <div className="absolute top-[550px] md:top-[340px]  md:left-[370px] p-2 text-2xl bg-red-800 rounded-lg text-white">
-          <h1>Here are some recommended movies according to your query...</h1>
+        <div className="absolute top-[550px] md:top-[340px] left-0 right-0 mx-auto p-2 text-2xl bg-red-800 rounded-lg text-white">
+          <h1 className="text-center">
+            Here are some recommended movies according to your query...
+          </h1>
         </div>
       )}
 

@@ -75,7 +75,7 @@ const MoreInfo = () => {
         </div>
       </Link>
       <Link to="/browse">
-        <button className="bg-violet-700 absolute  md:mr-0 md:right-12 z-20  font-semibold hover:bg-violet-600 hover:border-2 mt-16 md:mt-0 hover:border-black text-white  md:left-[1050px]  rounded-lg p-2">
+        <button className="bg-violet-700 absolute  md:w-56 md:right-12 z-20  font-semibold hover:bg-violet-600 hover:border-2 mt-16 md:mt-0 hover:border-black text-white  md:left-[1050px]  rounded-lg p-2">
           Goto Netflix-Browse-Page
         </button>
       </Link>
@@ -88,7 +88,7 @@ const MoreInfo = () => {
         <ul>
           <div className=" md:flex justify-between">
             <li className="md:ml-[70px] p-1  mt-8 md:mt-10">Official Poster</li>
-            <li className="  md:mr-[350px] p-1 mt-96 md:mt-10">
+            <li className="   md:mr-[350px] p-1 mt-96 md:mt-10">
               Official Trailer
             </li>
           </div>
@@ -104,7 +104,7 @@ const MoreInfo = () => {
 
             <li>
               <iframe
-                className=" mt-2  md:mt-0 md:ml-[350px] w-[100%] md:w-[600px] border-4 border-red-700  aspect-video "
+                className=" mt-2   md:mt-0 md:ml-[350px] w-[100%] md:w-[600px] border-4 border-red-700  aspect-video "
                 src={
                   "https://www.youtube.com/embed/" +
                   trailerInfo?.key +
