@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { API_TMDB_OPTIONS, ImgCDN, NetflixLogo } from "../utils/constants";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,6 +43,9 @@ const MoreInfoTwin = () => {
   useEffect(() => {
     getSimilarMovies();
   }, []);
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   const trailerInfo = useSelector((store) => store.movie?.trailerVideo);
   const info = useSelector((store) => store.movie?.moreInfo);
@@ -71,7 +74,7 @@ const MoreInfoTwin = () => {
     <div className="z-10 absolute  w-full  bg-gradient-to-r from-blue-800  p-6 font-semibold">
       <Link to="/browse">
         <div className="absolute left-0 bg-gradient-to-b from-black z-20 top-0 ">
-          <img className="w-56" src={NetflixLogo} alt="netflix-logo" />
+          <img className="w-32 lg:w-56" src={NetflixLogo} alt="netflix-logo" />
         </div>
       </Link>
 

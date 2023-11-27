@@ -21,7 +21,7 @@ const SecondaryContainer = () => {
   console.log(upcoming);
 
   return (
-    <div className="bg-black  ">
+    <div className=" w-full  ">
       <div className="relative mt-[370px]  md:-mt-[200px] ml-5">
         <MovieList movList={nowPlaying} title="Now Playing Movies" />
 

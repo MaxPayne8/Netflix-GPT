@@ -46,6 +46,7 @@ const Login = () => {
           // Signed up
           setSignedUp(true);
           const user = userCredential.user;
+          navigate("/browse");
           console.log(user);
 
           updateProfile(user, {
@@ -53,7 +54,7 @@ const Login = () => {
             photoURL: UserLogo,
           })
             .then(() => {
-              // Profile updated!
+              //Profile updated!
               const { uid, email, displayName, photoURL } = auth.currentUser;
               dispatch(
                 addUser({
@@ -104,7 +105,7 @@ const Login = () => {
   return (
     <div className="w-full ">
       <div className="absolute left-0 bg-gradient-to-b from-black z-20 top-0 ">
-        <img className="w-56" src={NetflixLogo} alt="netflix-logo" />
+        <img className="w-32 lg:w-56" src={NetflixLogo} alt="netflix-logo" />
       </div>
       <img
         className="h-screen w-full md:hidden "
@@ -119,7 +120,7 @@ const Login = () => {
       ></img>
 
       <form
-        className="absolute bottom-20 w-1/2 md:bottom-24 right-0 left-0 m-auto md:w-1/3  bg bg-black  opacity-90 rounded-lg p-4 hover:cursor-pointer"
+        className="absolute bottom-36 w-full md:bottom-24 right-0 left-0 m-auto lg:w-1/3  bg bg-black  opacity-90 rounded-lg p-4 hover:cursor-pointer"
         onSubmit={(e) => e.preventDefault()}
       >
         <h1 className=" text-white m-2 p-2 text-2xl">
@@ -144,11 +145,7 @@ const Login = () => {
             placeholder="Password"
             ref={password}
           ></input>
-          {signedUp ? (
-            <h1 className="text-green-700 ml-4 font-bold">
-              Sign Up Complete! Now you can Login🎉
-            </h1>
-          ) : null}
+
           <h1 className="text-red-700 ml-4 font-bold">{errorMsg}</h1>
           <button
             className="mt-8 text-white bg-red-800 rounded-lg p-2 text-lg  md:w-auto  md:ml-2  hover:bg-red-600"

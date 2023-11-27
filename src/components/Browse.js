@@ -23,9 +23,9 @@ const Browse = () => {
       });
   };
   return (
-    <div className="w-screen bg-black">
+    <div className="bg-black w-full ">
       <div className="absolute bg-gradient-to-b from-black z-20 top-0 ">
-        <img className="w-56" src={NetflixLogo} alt="netflix-logo" />
+        <img className="w-32 lg:w-56" src={NetflixLogo} alt="netflix-logo" />
       </div>
       <img
         className="w-16 h-16 p-2  ml-[1300px] z-10 absolute top-1 right-0  hover:cursor-pointer"
@@ -33,14 +33,14 @@ const Browse = () => {
         alt="user-logo"
       />
       <div className="flex">
-        <h1 className=" p-2 top-20 md:top-3 md:right-[325px] z-10 absolute font-semibold text-white ">
-          <span className="text-red-800 font-bold text-xl ">
-            {user?.displayName.split(" ")[0]}
+        <h1 className=" p-2 top-48 md:top-3 md:right-[325px] z-10  bg-gradient-to-b from-black  absolute font-semibold text-white ">
+          <span className="text-red-800 font-bold text-xl bg:gradient-black from r">
+            {user?.displayName?.split(" ")[0]}
           </span>
           , try our all new Movies suggestion AI!!
         </h1>
         <Link to="/browse/gptsearch">
-          <button className="bg-violet-700 z-10 font-semibold hover:bg-violet-600 hover:border-2 text-white absolute md:right-[100px] top-[120px] ml-2 md:ml-0 md:top-4 rounded-lg p-2">
+          <button className="bg-violet-700 z-10 font-semibold hover:bg-violet-600 hover:border-2 text-white absolute md:right-[100px] top-[255px] right-0 md:ml-0 md:top-4 rounded-lg p-2">
             Goto Gpt-Movies-Search
           </button>
         </Link>

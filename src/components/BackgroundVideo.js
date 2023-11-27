@@ -12,7 +12,7 @@ const BackgroundVideo = ({ id }) => {
   return (
     <div className=" ">
       <iframe
-        className=" aspect-video -mt-16 md:-mt-40 w-screen pointer-events-none  "
+        className=" aspect-video -mt-18 md:-mt-40 w-full pointer-events-none  "
         src={
           "https://www.youtube.com/embed/" +
           TrailerVideo?.key +
