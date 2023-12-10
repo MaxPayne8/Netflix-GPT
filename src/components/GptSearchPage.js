@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import langConst from "../utils/langConst";
 import {
@@ -20,6 +20,9 @@ const GptSearchPage = () => {
   const getCurrentLang = (e) => {
     dispatch(changeLang(e.target.value));
   };
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
   const currLang = useSelector((store) => store.language.lang);
   console.log(currLang);
 
@@ -85,7 +88,7 @@ const GptSearchPage = () => {
   console.log(gptMov);
   console.log(tmdbMov);
   return (
-    <div className="">
+    <div className="relative">
       <Link to="/browse">
         <div className="absolute left-0 bg-gradient-to-b from-black z-20 top-0 ">
           <img className="w-32 lg:w-56" src={NetflixLogo} alt="netflix-logo" />
@@ -93,12 +96,12 @@ const GptSearchPage = () => {
       </Link>
       <img
         className="h-[1000px] w-screen md:h-0  md:w-0 "
-        src="https://w0.peakpx.com/wallpaper/57/769/HD-wallpaper-blackgold-black-tech-thumbnail.jpg"
+        src="https://cdn.wallpapersafari.com/38/56/l4yXvN.jpg"
         alt="gpt-background"
       ></img>
       <img
         className="h-0  md:w-screen md:h-[1050px]"
-        src="https://wallpaperaccess.com/full/2454678.jpg"
+        src="https://xmple.com/wallpaper/black-sunburst-burst-shadow-red-rays-3840x2160-c2-000000-ff0000-k2-50-50-l3-26-0-18-a2-6-225-f-23.svg"
         alt="gpt-background"
       ></img>
 
@@ -123,7 +126,7 @@ const GptSearchPage = () => {
       </div>
 
       <form
-        className="absolute z-20 w-screen   md:w-[600px] h-[80px] text-center top-96 md:top-60 md:mx-96  rounded-lg bg-gray-950"
+        className="absolute z-20    md:w-[600px] h-[80px] text-center top-96 md:top-60 mx-auto left-0 right-0 rounded-lg bg-gray-950"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
@@ -140,13 +143,13 @@ const GptSearchPage = () => {
       </form>
 
       {shimmer && (
-        <div className="  absolute top-[550px]  md:top-[340px] left-0 right-0 mx-auto p-2 text-sm md:text-2xl rounded-lg bg-blue-800 hover:bg-black  text-white">
+        <div className="  absolute top-[550px]  md:top-[340px] left-0 right-0 mx-auto p-2 text-sm md:text-2xl rounded-lg bg-blue-900 text-white   ">
           <h1 className="text-center">🚀🚀🚀 PLEASE WAIT...🚀🚀🚀</h1>
         </div>
       )}
 
       {showInfo && (
-        <div className="absolute top-[550px] md:top-[340px] left-0 right-0 mx-auto p-2 text-sm md:text-2xl bg-red-800 rounded-lg text-white">
+        <div className="absolute top-[550px] md:top-[340px] left-0 right-0 mx-auto p-2 text-sm md:text-2xl bg-red-700 text-white rounded-lg ">
           <h1 className="text-center">
             Here are some recommended movies according to your query...
           </h1>

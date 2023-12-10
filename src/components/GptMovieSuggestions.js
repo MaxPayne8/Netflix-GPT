@@ -13,7 +13,7 @@ const GptMovieSuggestions = () => {
   console.log(tmdbMov);
 
   return (
-    <div className="absolute top-[650px] md:top-[400px] pl-12 md:pl-6  py-3 z-20 flex flex-wrap bg-black ">
+    <div className="absolute top-[650px] md:top-[400px] px-6 justify-between flex flex-wrap bg-black ">
       {tmdbMov?.map((mov) => (
         <Link to={"/browse/moreinfo/" + mov?.id}>
           <MovieCard posterId={mov?.poster_path} />

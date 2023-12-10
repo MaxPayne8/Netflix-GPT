@@ -9,7 +9,7 @@ const MovieTitle = ({ title, overview }) => {
   const newOverView = overview.substring(0, 280);
   console.log(finalMov);
   return (
-    <div className="absolute top-[320px] text-sm sm:top-[200px] md:-mt-[400px] sm:text-xl   w-screen md:w-auto   aspect-video md:pt-[25%] pl-4 md:pl-8 bg-gradient-to-b from-black  text-white ">
+    <div className="absolute top-[320px] text-sm  md:-mt-[530px] sm:text-xl   w-screen md:w-auto   aspect-video md:pt-[25%] pl-4 md:pl-8 bg-gradient-to-b from-black  text-white ">
       <h1 className="font-bold text-xl text-red-800 mt-1 md:mt-0 md:text-6xl mb-2">
         {title}
       </h1>
