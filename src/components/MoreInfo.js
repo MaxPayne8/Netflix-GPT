@@ -9,6 +9,8 @@ import {
   addSimilarMovies,
 } from "../utils/moviesSlice";
 
+//checkingGitPushTo
+
 import MovieCard from "./MovieCard";
 import useGetTrailer from "../hooks/useGetTrailer";
 
@@ -241,12 +243,26 @@ const MoreInfo = () => {
 
       <h1 className="text-red-600 ml-3 mt-4 text-2xl">Cast</h1>
       <div className="flex  overflow-x-scroll no-scrollbar ">
-        {actors?.map((actor) => (
-          <div className="m-2 p-2  ">
-            <MovieCard posterId={actor?.profile_path} />
-            <h1 className="text-white text-center">{actor.name}</h1>;
-          </div>
-        ))}
+        {actors?.map(
+          (actor) =>
+            actor.profile_path &&
+            actor.character.length && (
+              <div className="m-2    ">
+                <MovieCard posterId={actor.profile_path} />
+                {/* <img
+                  className="w-32"
+                  src={ImgCDN + actor.profile_path}
+                  alt="actor-profile"
+                /> */}
+                <h1 className="text-white  text-center">{actor.name}</h1>
+
+                <h1 className="text-white text-center">As</h1>
+                <h1 className="text-red-700 text-center">
+                  "{actor.character}"
+                </h1>
+              </div>
+            )
+        )}
       </div>
 
       {/* <MovieList movList={infoSimilarMovies} title="Similar Movies" /> */}
