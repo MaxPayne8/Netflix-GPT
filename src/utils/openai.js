@@ -1,8 +1,8 @@
 import OpenAI from "openai";
-import { API_GPT_KEY } from "./constants";
+import { GPT_API_KEY } from "./constants";
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: GPT_API_KEY,
   dangerouslyAllowBrowser: true, // defaults to process.env["OPENAI_API_KEY"]
 });
 
