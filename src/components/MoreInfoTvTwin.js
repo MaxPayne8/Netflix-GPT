@@ -9,17 +9,31 @@ import {
   addSimilarMovies,
 } from "../utils/moviesSlice";
 
-import MovieCard from "./MovieCard";
-import useGetTrailer from "../hooks/useGetTrailer";
 
-const MoreInfo = () => {
+
+import MovieCard from "./MovieCard";
+import useGetTrailer from "../hooks/useTvTrailer";
+
+const MoreInfoTvTwin = () => {
   const dispatch = useDispatch();
   const { movId } = useParams();
   console.log(movId);
   useGetTrailer(movId);
+
+  const getActors = async () => {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/tv/" + movId + "/credits?language=en-US",
+      API_TMDB_OPTIONS
+    );
+    const json = await data?.json();
+    console.log(json);
+
+    dispatch(addActors(json?.cast));
+  };
+
   const getRev = async () => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/movie/" +
+      "https://api.themoviedb.org/3/tv/" +
         movId +
         "/reviews?language=en-US&page=1",
       API_TMDB_OPTIONS
@@ -29,23 +43,10 @@ const MoreInfo = () => {
     const result = await json?.results;
     dispatch(addReview(result));
   };
-  const review = useSelector((store) => store.movie?.review);
-
-  const getActors = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/" + movId + "/credits?language=en-US",
-      API_TMDB_OPTIONS
-    );
-    const json = await data.json();
-    console.log(json);
-
-    dispatch(addActors(json.cast));
-  };
-  const actors = useSelector((store) => store.movie?.actors);
 
   const getMovieInfo = async () => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/movie/" + movId + "?language=en-US",
+      "https://api.themoviedb.org/3/tv/" + movId + "?language=en-US",
       API_TMDB_OPTIONS
     );
 
@@ -54,15 +55,10 @@ const MoreInfo = () => {
 
     console.log(json);
   };
-  useEffect(() => {
-    getMovieInfo();
-    getRev();
-    getActors();
-  }, []);
 
   const getSimilarMovies = async () => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/movie/" +
+      "https://api.themoviedb.org/3/tv/" +
         movId +
         "/similar?language=en-US&page=1",
       API_TMDB_OPTIONS
@@ -73,7 +69,12 @@ const MoreInfo = () => {
     dispatch(addSimilarMovies(similarMov));
   };
   useEffect(() => {
+    getMovieInfo();
     getSimilarMovies();
+  }, []);
+  useEffect(() => {
+    getRev();
+    getActors();
   }, []);
 
   useLayoutEffect(() => {
@@ -82,28 +83,42 @@ const MoreInfo = () => {
 
   const trailerInfo = useSelector((store) => store.movie?.trailerVideo);
   const info = useSelector((store) => store.movie?.moreInfo);
-  const infoSimilarMovies = useSelector((store) => store.movie.similarMovies);
+  const infoSimilarMovies = useSelector((store) => store.movie?.similarMovies);
+  const review = useSelector((store) => store.movie?.review);
+  const actors = useSelector((store) => store.movie?.actors);
+  console.log(review);
   console.log(info);
   console.log(infoSimilarMovies);
   console.log(trailerInfo);
   console.log(actors);
+
+  const actorsName = actors?.map((actor) => actor?.name).join(",");
+
+  const actorImages = actors?.map((actor) => actor?.profile_path);
+  console.log(actorsName);
+  console.log(actorImages);
   if (!info) return;
+  // if (!review) return null;
+
   const {
     poster_path,
-    budget,
+    number_of_episodes,
+    number_of_seasons,
     genres,
     homepage,
-    original_title,
+    name,
     overview,
-    production_companies,
+    networks,
     production_countries,
-    release_date,
-    revenue,
+    first_air_date,
+    episode_run_time,
+
     runtime,
     spoken_languages,
     tagline,
     vote_average,
   } = info;
+
   //
   return (
     <div className="z-10   w-full bg-black  p-6 ">
@@ -132,7 +147,6 @@ const MoreInfo = () => {
               Official Trailer
             </li>
           </div>
-
           <div className=" md:flex">
             <li>
               <img
@@ -156,60 +170,66 @@ const MoreInfo = () => {
               ></iframe>
             </li>
           </div>
-
-          <li className="p-2">
+          <li className="p-2 ">
             <span className="text-red-600">Title: </span>
-            {original_title}
+            {name}
           </li>
           <li className="p-2 ">
             <span className="text-red-600">Overview:</span> {overview}
+          </li>
+          <li className="p-2 ">
+            <span className="text-red-600">Total Seasons:</span>{" "}
+            {number_of_seasons}
+          </li>
+          <li className="p-2 ">
+            <span className="text-red-600">Total Episodes:</span>{" "}
+            {number_of_episodes}
+          </li>
+          <li className="p-2">
+            <span className="text-red-600">Episode Runtime:</span>{" "}
+            {episode_run_time[0]} minutes
           </li>
           <li className="p-2">
             <span className="text-red-600">Geners:</span>{" "}
             {genres?.map((mov) => mov.name).join(",")}
           </li>
-          <li className="p-2">
-            <span className="text-red-600">Budget:</span> {budget / 1000000}{" "}
-            Million Dollars
-          </li>
-
-          <li className="p-2">
-            <span className="text-red-600">MovieSite:</span>{" "}
-            <a href={homepage}>{homepage}</a>
-          </li>
-
+          {homepage && (
+            <li className="p-2">
+              <span className="text-red-600">Tv Show Site:</span>{" "}
+              <a href={homepage}>{homepage}</a>
+            </li>
+          )}
           <li className="p-2">
             <span className="text-red-600">Production Companies: </span>
-            {production_companies?.map((e) => e.name).join(",")}
+            {networks?.map((e) => e.name).join(",")}
           </li>
-          <li className="p-2">
-            <span className="text-red-600">Production Countries: </span>
-            {production_countries?.map((e) => e.name).join(",")}
-          </li>
+          {production_countries && (
+            <li className="p-2">
+              <span className="text-red-600">Production Countries: </span>
+              {production_countries?.map((e) => e.name).join(",")}
+            </li>
+          )}
           <li className="p-2">
             <span className="text-red-600">Release Date: </span>
-            {release_date}
+            {first_air_date}
           </li>
-          <li className="p-2">
-            <span className="text-red-600">Revenue:</span> {revenue / 1000000}{" "}
-            Million Dollars
-          </li>
-          <li className="p-2">
-            <span className="text-red-600">Runtime:</span> {runtime} minutes
-          </li>
+
           <li className="p-2">
             <span className="text-red-600">Spoken Languages: </span>
             {spoken_languages?.map((e) => e.english_name).join(",")}
           </li>
-          <li className="p-2">
-            <span className="text-red-600">Tagline: </span>
-            {tagline}
-          </li>
+          {tagline && (
+            <li className="p-2">
+              <span className="text-red-600">Tagline: </span>
+              {tagline}
+            </li>
+          )}
           <li className="p-2">
             <span className="text-red-600">Rating:</span> {vote_average}⭐ out
             of 10
           </li>
-          {review.map((review) => (
+
+          {review?.map((review) => (
             <div>
               <li className="p-2">
                 {" "}
@@ -240,7 +260,7 @@ const MoreInfo = () => {
           (actor) =>
             actor.profile_path &&
             actor.character.length && (
-              <div className="m-2   ">
+              <div className="m-2    ">
                 <MovieCard posterId={actor.profile_path} />
                 {/* <img
                   className="w-32"
@@ -250,7 +270,7 @@ const MoreInfo = () => {
                 <h1 className="text-white  text-center">{actor.name}</h1>
 
                 <h1 className="text-white text-center">As</h1>
-                <h1 className="text-red-700  text-center">
+                <h1 className="text-red-700 text-center">
                   "{actor.character}"
                 </h1>
               </div>
@@ -260,10 +280,10 @@ const MoreInfo = () => {
 
       {/* <MovieList movList={infoSimilarMovies} title="Similar Movies" /> */}
       <div className=" ">
-        <h1 className="text-red-600 ml-3 mt-4 text-2xl">Similar Movies</h1>
+        <h1 className="text-red-600 ml-3 mt-4 text-2xl">Similar Tv Shows</h1>
         <div className="flex  overflow-x-scroll no-scrollbar ">
           {infoSimilarMovies?.map((mov) => (
-            <Link to={"/browse/moreinfo/" + mov.id}>
+            <Link to={"/browse/moreinfotv/" + mov.id}>
               {/* <a href={"/browse/" + mov.id}> */}
               <MovieCard
                 posterId={mov.poster_path}
@@ -291,4 +311,4 @@ const MoreInfo = () => {
   );
 };
 
-export default MoreInfo;
+export default MoreInfoTvTwin;

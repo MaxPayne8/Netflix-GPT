@@ -12,12 +12,12 @@ const useGetTrailer = (movId) => {
   const dispatch = useDispatch();
   const getTrailer = async () => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/movie/" + movId + "/videos?language=en-US",
+      "https://api.themoviedb.org/3/tv/" + movId + "/videos?language=en-US",
 
       API_TMDB_OPTIONS
     );
     const json = await data.json();
-    const dataa = await json?.results;
+    const dataa = json.results;
     const trailerVid = dataa?.filter((vid) => vid?.type === "Trailer");
 
     console.log(dataa);

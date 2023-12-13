@@ -9,6 +9,8 @@ import Header from "./components/Header";
 import MoreInfo from "./components/MoreInfo";
 import GptSearchPage from "./components/GptSearchPage";
 import MoreInfoTwin from "./components/MoreInfoTwin";
+import MoreInfoTv from "./components/MoreInfoTv";
+import MoreInfoTvTwin from "./components/MoreInfoTvTwin";
 
 function App() {
   return (
@@ -43,6 +45,14 @@ export const route = createBrowserRouter([
       {
         path: "/browse/moreinfotwin/:movId",
         element: <MoreInfoTwin />,
+      },
+      {
+        path: "/browse/moreinfotv/:movId",
+        element: <MoreInfoTv />,
+      },
+      {
+        path: "/browse/moreinfotvtwin/:movId",
+        element: <MoreInfoTvTwin />,
       },
     ],
   },

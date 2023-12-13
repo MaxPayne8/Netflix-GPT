@@ -30,7 +30,7 @@ const GptSearchPage = () => {
 
   const tmdbResults = async (movie) => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/search/movie?query=" +
+      "https://api.themoviedb.org/3/search/multi?query=" +
         movie +
         "&include_adult=false&language=en-US&page=1",
       API_TMDB_OPTIONS
@@ -48,9 +48,9 @@ const GptSearchPage = () => {
     setShowMovies(false);
 
     const finalSearchQuery =
-      "Act as a Movie Recommendation system and suggest 10 movies for the query : " +
+      "Act as a Movie and tvshow Recommendation system and give 10 movies or tv shows for the query : " +
       searchTxt.current.value +
-      " and give me names of appropiate movies that should be comma seperated like the example result given ahead. Example Result: Pulp Fiction , The Godfather , Forrest Gump, GoodFellas, The Matrix etc";
+      "and give me only the names and nothing else of movies or tv shows that should be comma seperated like the example result given ahead. Example Result: Pulp Fiction , The Godfather , Forrest Gump, GoodFellas, The Matrix etc";
     const chatCompletion = await openai.chat.completions.create({
       messages: [{ role: "user", content: finalSearchQuery }],
       model: "gpt-3.5-turbo",
@@ -65,10 +65,13 @@ const GptSearchPage = () => {
     console.log(gptResults);
     const finalMov = gptResults?.[0]?.message?.content;
     const finalMovArray = finalMov.split(",");
+    console.log(finalMov);
     console.log(finalMovArray);
-    const promiseArray = finalMovArray.map((mov) => tmdbResults(mov));
+    const promiseArray = finalMovArray?.map((mov) => tmdbResults(mov));
     const tmdbMovies = await Promise.all(promiseArray);
-    const mainTmdbMovies = tmdbMovies.map((list) => list[0]);
+    // const mainTmdbMovies = tmdbMovies.map((list) => list[0]);
+    const mainTmdbMovies = tmdbMovies;
+
     if (!tmdbMovies.length) setShimmer(true);
     if (tmdbMovies.length) setShowInfo(true);
     if (tmdbMovies.length) setShowMovies(true);

@@ -40,7 +40,7 @@ const MoreInfo = () => {
     );
     const json = await data.json();
     console.log(json);
-    const result = await json?.results[0];
+    const result = await json?.results;
     dispatch(addReview(result));
   };
 
@@ -71,8 +71,6 @@ const MoreInfo = () => {
   useEffect(() => {
     getMovieInfo();
     getSimilarMovies();
-  }, []);
-  useEffect(() => {
     getRev();
     getActors();
   }, []);
@@ -220,24 +218,28 @@ const MoreInfo = () => {
             <span className="text-red-600">Rating:</span> {vote_average}⭐ out
             of 10
           </li>
-          <li className="p-2">
-            {" "}
-            {review?.author ? (
-              <h1 className="text-white">
-                <span className="text-red-600">Review-Author: </span>{" "}
-                {review?.author}
-              </h1>
-            ) : null}
-          </li>
-          <li className="p-2">
-            {" "}
-            {review?.content ? (
-              <h1 className="text-white">
-                <span className="text-red-600">Review: </span>
-                {review?.content}
-              </h1>
-            ) : null}
-          </li>
+          {review?.map((review) => (
+            <div>
+              <li className="p-2">
+                {" "}
+                {review?.author ? (
+                  <h1 className="text-white">
+                    <span className="text-red-600">Review-Author: </span>{" "}
+                    {review?.author}
+                  </h1>
+                ) : null}
+              </li>
+              <li className="p-2">
+                {" "}
+                {review?.content ? (
+                  <h1 className="text-white">
+                    <span className="text-red-600">Review: </span>
+                    {review?.content}
+                  </h1>
+                ) : null}
+              </li>
+            </div>
+          ))}
         </ul>
       </div>
 
