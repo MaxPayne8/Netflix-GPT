@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const MovieList = ({ movList, title }) => {
   return (
     <div className=" my-4 ">
-      <h1 className="text-white ml-3 text-3xl">{title}</h1>
+      <h1 className="text-white  ml-3 text-3xl">{title}</h1>
       <div className="flex  overflow-x-scroll no-scrollbar ">
         {movList?.map((mov) =>
           mov?.media_type === "movie" ? (

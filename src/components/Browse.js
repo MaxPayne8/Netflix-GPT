@@ -41,7 +41,7 @@ const Browse = () => {
         </h1>
         <Link to="/browse/gptsearch">
           <button className="bg-violet-700 z-10 font-semibold hover:bg-violet-600 hover:border-2 text-white absolute md:right-[100px] top-[255px] right-0 md:ml-0 md:top-4 rounded-lg p-2">
-            Goto Gpt-Search
+            Go to Gpt-Search
           </button>
         </Link>
       </div>

@@ -4,10 +4,11 @@ import { ImgCDN } from "../utils/constants";
 const MovieCard = ({ posterId }) => {
   if (!posterId) return null;
   return (
-    <div className="w-36 hover:border-4 hover:w-48 border-red-700">
-      <img className="p-2 " src={ImgCDN + posterId} alt="movie-poster" />
+    <div className="w-36 hover:border-4  border-red-700 ">
+      <img className="p-2   " src={ImgCDN + posterId} alt="movie-poster" />
     </div>
   );
 };
 
 export default MovieCard;
+//hover:w-48
