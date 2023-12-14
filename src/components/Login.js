@@ -46,7 +46,7 @@ const Login = () => {
           // Signed up
           setSignedUp(true);
           const user = userCredential.user;
-          navigate("/browse");
+
           console.log(user);
 
           updateProfile(user, {
@@ -89,7 +89,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
