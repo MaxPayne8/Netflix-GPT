@@ -134,7 +134,7 @@ const MoreInfo = () => {
         </button>
       </Link>
       <div>
-        <ul className="text-gray-300">
+        <ul className="text-gray-300 ">
           <div className=" md:flex justify-between">
             <li className="md:ml-[70px] p-1 text-red-600  mt-8 md:mt-10">
               Official Poster
@@ -173,6 +173,10 @@ const MoreInfo = () => {
           </li>
           <li className="p-2 ">
             <span className="text-red-600">Overview:</span> {overview}
+          </li>
+          <li className="p-2 ">
+            <span className="text-red-600">Cast: </span>
+            {actorsName}
           </li>
 
           <li className="p-2">
