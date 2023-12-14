@@ -98,12 +98,12 @@ const GptSearchPage = () => {
         </div>
       </Link>
       <img
-        className="h-[1000px] w-screen md:h-0  md:w-0 "
+        className="h-[1000px] w-screen lg:h-0  lg:w-0 "
         src="https://cdn.wallpapersafari.com/38/56/l4yXvN.jpg"
         alt="gpt-background"
       ></img>
       <img
-        className="h-0  md:w-screen md:h-[1050px]"
+        className="h-0  lg:w-screen lg:h-[1050px]"
         src="https://xmple.com/wallpaper/black-sunburst-burst-shadow-red-rays-3840x2160-c2-000000-ff0000-k2-50-50-l3-26-0-18-a2-6-225-f-23.svg"
         alt="gpt-background"
       ></img>

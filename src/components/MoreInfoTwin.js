@@ -12,7 +12,7 @@ import {
 import MovieCard from "./MovieCard";
 import useGetTrailer from "../hooks/useGetTrailer";
 
-const MoreInfo = () => {
+const MoreInfoTwin = () => {
   const dispatch = useDispatch();
   const { movId } = useParams();
   console.log(movId);
@@ -296,4 +296,4 @@ const MoreInfo = () => {
   );
 };
 
-export default MoreInfo;
+export default MoreInfoTwin;

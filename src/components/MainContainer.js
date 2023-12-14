@@ -11,7 +11,7 @@ const MainContainer = () => {
   const { id, title, overview } = trailermovie;
 
   return (
-    <div className="">
+    <div>
       <MovieTitle title={title} overview={overview} />
       <BackgroundVideo id={id} />
     </div>
