@@ -9,6 +9,8 @@ import {
   addSimilarMovies,
 } from "../utils/moviesSlice";
 
+//checkingGitPushTo
+
 import MovieCard from "./MovieCard";
 import useGetTrailer from "../hooks/useGetTrailer";
 
@@ -17,6 +19,18 @@ const MoreInfoTwin = () => {
   const { movId } = useParams();
   console.log(movId);
   useGetTrailer(movId);
+
+  const getActors = async () => {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/movie/" + movId + "/credits?language=en-US",
+      API_TMDB_OPTIONS
+    );
+    const json = await data.json();
+    console.log(json);
+
+    dispatch(addActors(json.cast));
+  };
+
   const getRev = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/movie/" +
@@ -29,20 +43,6 @@ const MoreInfoTwin = () => {
     const result = await json?.results;
     dispatch(addReview(result));
   };
-  const review = useSelector((store) => store.movie?.review);
-
-  const getActors = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/" + movId + "/credits?language=en-US",
-      API_TMDB_OPTIONS
-    );
-    const json = await data.json();
-    console.log(json);
-
-    dispatch(addActors(json.cast));
-  };
-  const actors = useSelector((store) => store.movie?.actors);
-  const actorsName = actors?.map((actor) => actor?.name).join(",");
 
   const getMovieInfo = async () => {
     const data = await fetch(
@@ -55,11 +55,6 @@ const MoreInfoTwin = () => {
 
     console.log(json);
   };
-  useEffect(() => {
-    getMovieInfo();
-    getRev();
-    getActors();
-  }, []);
 
   const getSimilarMovies = async () => {
     const data = await fetch(
@@ -74,7 +69,10 @@ const MoreInfoTwin = () => {
     dispatch(addSimilarMovies(similarMov));
   };
   useEffect(() => {
+    getMovieInfo();
     getSimilarMovies();
+    getRev();
+    getActors();
   }, []);
 
   useLayoutEffect(() => {
@@ -84,11 +82,22 @@ const MoreInfoTwin = () => {
   const trailerInfo = useSelector((store) => store.movie?.trailerVideo);
   const info = useSelector((store) => store.movie?.moreInfo);
   const infoSimilarMovies = useSelector((store) => store.movie.similarMovies);
+  const review = useSelector((store) => store.movie?.review);
+  const actors = useSelector((store) => store.movie?.actors);
+  console.log(review);
   console.log(info);
   console.log(infoSimilarMovies);
   console.log(trailerInfo);
   console.log(actors);
+
+  const actorsName = actors?.map((actor) => actor?.name).join(",");
+
+  const actorImages = actors?.map((actor) => actor?.profile_path);
+  console.log(actorsName);
+  console.log(actorImages);
   if (!info) return;
+  // if (!review) return null;
+
   const {
     poster_path,
     budget,
@@ -105,6 +114,7 @@ const MoreInfoTwin = () => {
     tagline,
     vote_average,
   } = info;
+
   //
   return (
     <div className="z-10   w-full bg-black  p-6 ">
@@ -124,7 +134,7 @@ const MoreInfoTwin = () => {
         </button>
       </Link>
       <div>
-        <ul className="text-gray-300">
+        <ul className="text-gray-300 ">
           <div className=" md:flex justify-between">
             <li className="md:ml-[70px] p-1 text-red-600  mt-8 md:mt-10">
               Official Poster
@@ -133,7 +143,6 @@ const MoreInfoTwin = () => {
               Official Trailer
             </li>
           </div>
-
           <div className=" md:flex">
             <li>
               <img
@@ -158,7 +167,7 @@ const MoreInfoTwin = () => {
             </li>
           </div>
 
-          <li className="p-2">
+          <li className="p-2 ">
             <span className="text-red-600">Title: </span>
             {original_title}
           </li>
@@ -169,6 +178,7 @@ const MoreInfoTwin = () => {
             <span className="text-red-600">Cast: </span>
             {actorsName}
           </li>
+
           <li className="p-2">
             <span className="text-red-600">Geners:</span>{" "}
             {genres?.map((mov) => mov.name).join(",")}
@@ -177,12 +187,10 @@ const MoreInfoTwin = () => {
             <span className="text-red-600">Budget:</span> {budget / 1000000}{" "}
             Million Dollars
           </li>
-
           <li className="p-2">
             <span className="text-red-600">MovieSite:</span>{" "}
             <a href={homepage}>{homepage}</a>
           </li>
-
           <li className="p-2">
             <span className="text-red-600">Production Companies: </span>
             {production_companies?.map((e) => e.name).join(",")}
@@ -214,7 +222,7 @@ const MoreInfoTwin = () => {
             <span className="text-red-600">Rating:</span> {vote_average}⭐ out
             of 10
           </li>
-          {review.map((review) => (
+          {review?.map((review) => (
             <div>
               <li className="p-2">
                 {" "}
@@ -245,7 +253,7 @@ const MoreInfoTwin = () => {
           (actor) =>
             actor.profile_path &&
             actor.character.length && (
-              <div className="m-2   ">
+              <div className="m-2    ">
                 <MovieCard posterId={actor.profile_path} />
                 {/* <img
                   className="w-32"
@@ -255,7 +263,7 @@ const MoreInfoTwin = () => {
                 <h1 className="text-white  text-center">{actor.name}</h1>
 
                 <h1 className="text-white text-center">As</h1>
-                <h1 className="text-red-700  text-center">
+                <h1 className="text-red-700 text-center">
                   "{actor.character}"
                 </h1>
               </div>
