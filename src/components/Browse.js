@@ -37,11 +37,11 @@ const Browse = () => {
           <span className="text-red-800 font-bold text-xl bg:gradient-black from r">
             {user?.displayName?.split(" ")[0]}
           </span>
-          , try our all new Movies suggestion AI!!
+          , try our all new Movies and TvShows suggestion AI!!
         </h1>
         <Link to="/browse/gptsearch">
           <button className="bg-violet-700 z-10 font-semibold hover:bg-violet-600 hover:border-2 text-white absolute md:right-[100px] top-[255px] right-0 md:ml-0 md:top-4 rounded-lg p-2">
-            Goto Gpt-Movies-Search
+            Goto Gpt-Search
           </button>
         </Link>
       </div>
@@ -57,8 +57,8 @@ const Browse = () => {
       <div className="bg-red-800 text-white p-2">
         <p className="text-center">
           ⬇Coudnt find anything interesting 😥Get recommendations according to
-          your taste using our movie recommendation system powered by Chat-Gpt
-          3.5 turbo🚀⬇
+          your taste using our AI recommendation system powered by Chat-Gpt 3.5
+          turbo🚀⬇
           <Link to="/browse/gptsearch">
             <button className="bg-violet-700 mt-1 text-center px-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 hover:border-2 block text-white  rounded-lg ">
               Goto Gpt-Movies-Search

@@ -154,7 +154,7 @@ const GptSearchPage = () => {
       {showInfo && (
         <div className="absolute top-[550px] md:top-[340px] left-0 right-0 mx-auto p-2 text-sm md:text-2xl bg-red-700 text-white rounded-lg ">
           <h1 className="text-center">
-            Here are some recommended movies according to your query...
+            Here are some recommended results according to your query...
           </h1>
         </div>
       )}

@@ -9,8 +9,6 @@ import {
   addSimilarMovies,
 } from "../utils/moviesSlice";
 
-
-
 import MovieCard from "./MovieCard";
 import useGetTrailer from "../hooks/useTvTrailer";
 
@@ -134,7 +132,7 @@ const MoreInfoTvTwin = () => {
       </Link>
       <Link to="/browse/gptsearch">
         <button className="bg-violet-700 z-30 font-semibold hover:bg-violet-600 hover:border-2 hover:border-black text-white relative  md:left-[750px] mt-28 md:mt-0 rounded-lg p-2">
-          Goto Gpt-Movies-Search
+          Goto Gpt-Search
         </button>
       </Link>
       <div>
