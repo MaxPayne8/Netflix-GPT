@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { addTrailer } from "../utils/moviesSlice";
 import { API_TMDB_OPTIONS } from "../utils/constants";
 
-const useGetTrailer = (movId) => {
+const useTvTrailer = (movId) => {
   //   const movies = useSelector((store) => store.movie?.nowPlayingMovies);
   //   if (!movies) return;
   //   const trailermovie = movies[0];
@@ -22,7 +22,7 @@ const useGetTrailer = (movId) => {
 
     console.log(dataa);
     console.log(trailerVid);
-    const finalTrailer = trailerVid[0] || trailerVid[1] || trailerVid[2];
+    const finalTrailer = trailerVid[0] || trailerVid[1];
     console.log(finalTrailer);
     dispatch(addTrailer(finalTrailer));
   };
@@ -31,4 +31,4 @@ const useGetTrailer = (movId) => {
   }, []);
 };
 
-export default useGetTrailer;
+export default useTvTrailer;

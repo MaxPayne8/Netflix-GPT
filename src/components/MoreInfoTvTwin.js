@@ -10,13 +10,14 @@ import {
 } from "../utils/moviesSlice";
 
 import MovieCard from "./MovieCard";
-import useGetTrailer from "../hooks/useTvTrailer";
+
+import useTvTrailer from "../hooks/useTvTrailer";
 
 const MoreInfoTvTwin = () => {
   const dispatch = useDispatch();
   const { movId } = useParams();
   console.log(movId);
-  useGetTrailer(movId);
+  useTvTrailer(movId);
 
   const getActors = async () => {
     const data = await fetch(
@@ -198,7 +199,9 @@ const MoreInfoTvTwin = () => {
           {homepage && (
             <li className="p-2">
               <span className="text-red-600">Tv Show Site:</span>{" "}
-              <a href={homepage}>{homepage}</a>
+              <Link to={homepage} className="p-1 rounded-lg bg-red-700">
+                Go to original site
+              </Link>
             </li>
           )}
           <li className="p-2">
@@ -256,7 +259,9 @@ const MoreInfoTvTwin = () => {
         </ul>
       </div>
 
-      <h1 className="text-red-600 ml-3 mt-4 text-2xl">Cast</h1>
+      {actors?.length && (
+        <h1 className="text-red-600 ml-3 mt-4 text-2xl">Cast</h1>
+      )}
       <div className="flex  overflow-x-scroll no-scrollbar ">
         {actors?.map(
           (actor) =>
@@ -281,22 +286,24 @@ const MoreInfoTvTwin = () => {
       </div>
 
       {/* <MovieList movList={infoSimilarMovies} title="Similar Movies" /> */}
-      <div className=" ">
-        <h1 className="text-red-600 ml-3 mt-4 text-2xl">Similar Tv Shows</h1>
-        <div className="flex  overflow-x-scroll no-scrollbar ">
-          {infoSimilarMovies?.map((mov) => (
-            <Link to={"/browse/moreinfotv/" + mov.id}>
-              {/* <a href={"/browse/" + mov.id}> */}
-              <MovieCard
-                posterId={mov.poster_path}
-                title={mov.title}
-                key={mov.id}
-              />
-            </Link>
-            // </a>
-          ))}
+      {infoSimilarMovies?.length && (
+        <div className=" ">
+          <h1 className="text-red-600 ml-3 mt-4 text-2xl">Similar Tv Shows</h1>
+          <div className="flex  overflow-x-scroll no-scrollbar ">
+            {infoSimilarMovies?.map((mov) => (
+              <Link to={"/browse/moreinfotv/" + mov.id}>
+                {/* <a href={"/browse/" + mov.id}> */}
+                <MovieCard
+                  posterId={mov.poster_path}
+                  title={mov.title}
+                  key={mov.id}
+                />
+              </Link>
+              // </a>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <div className="bg-red-800 text-white p-2 rounded-lg">
         <p className="text-center">
           ⬇Coudnt find anything interesting 😥Get recommendations according to

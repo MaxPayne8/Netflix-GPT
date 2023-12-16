@@ -187,10 +187,14 @@ const MoreInfoTwin = () => {
             <span className="text-red-600">Budget:</span> {budget / 1000000}{" "}
             Million Dollars
           </li>
-          <li className="p-2">
-            <span className="text-red-600">MovieSite:</span>{" "}
-            <a href={homepage}>{homepage}</a>
-          </li>
+          {homepage && (
+            <li className="p-2">
+              <span className="text-red-600">Movie Site:</span>{" "}
+              <Link to={homepage} className="p-1 rounded-lg bg-red-700">
+                Go to original site
+              </Link>
+            </li>
+          )}
           <li className="p-2">
             <span className="text-red-600">Production Companies: </span>
             {production_companies?.map((e) => e.name).join(",")}
@@ -247,7 +251,9 @@ const MoreInfoTwin = () => {
         </ul>
       </div>
 
-      <h1 className="text-red-600 ml-3 mt-4 text-2xl">Cast</h1>
+      {actors?.length && (
+        <h1 className="text-red-600 ml-3 mt-4 text-2xl">Cast</h1>
+      )}
       <div className="flex  overflow-x-scroll no-scrollbar ">
         {actors?.map(
           (actor) =>
@@ -272,22 +278,24 @@ const MoreInfoTwin = () => {
       </div>
 
       {/* <MovieList movList={infoSimilarMovies} title="Similar Movies" /> */}
-      <div className=" ">
-        <h1 className="text-red-600 ml-3 mt-4 text-2xl">Similar Movies</h1>
-        <div className="flex  overflow-x-scroll no-scrollbar ">
-          {infoSimilarMovies?.map((mov) => (
-            <Link to={"/browse/moreinfo/" + mov.id}>
-              {/* <a href={"/browse/" + mov.id}> */}
-              <MovieCard
-                posterId={mov.poster_path}
-                title={mov.title}
-                key={mov.id}
-              />
-            </Link>
-            // </a>
-          ))}
+      {infoSimilarMovies?.length && (
+        <div className=" ">
+          <h1 className="text-red-600 ml-3 mt-4 text-2xl">Similar Movies</h1>
+          <div className="flex  overflow-x-scroll no-scrollbar ">
+            {infoSimilarMovies?.map((mov) => (
+              <Link to={"/browse/moreinfo/" + mov.id}>
+                {/* <a href={"/browse/" + mov.id}> */}
+                <MovieCard
+                  posterId={mov.poster_path}
+                  title={mov.title}
+                  key={mov.id}
+                />
+              </Link>
+              // </a>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <div className="bg-red-800 text-white p-2 rounded-lg">
         <p className="text-center">
           ⬇Coudnt find anything interesting 😥Get recommendations according to
