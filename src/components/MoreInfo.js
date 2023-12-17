@@ -285,7 +285,7 @@ const MoreInfo = () => {
           <h1 className="text-red-600 ml-3 mt-4 text-2xl">Similar Movies</h1>
           <div className="flex  overflow-x-scroll no-scrollbar ">
             {infoSimilarMovies?.map((mov) => (
-              <Link to={"/browse/moreinfo/" + mov.id}>
+              <Link to={"/browse/moreinfotwin/" + mov.id}>
                 {/* <a href={"/browse/" + mov.id}> */}
                 <MovieCard
                   posterId={mov.poster_path}
