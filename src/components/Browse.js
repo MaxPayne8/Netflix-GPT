@@ -80,7 +80,6 @@ const Browse = () => {
           </button>
         </Link>
       </div>
-
       <button
         className="absolute right-0 top-[65px] z-10 text-white font-semibold px-1 bg-red-700 rounded-lg hover:bg-red-500"
         onClick={handleSignout}
@@ -103,7 +102,7 @@ const Browse = () => {
       {showSecCont ? (
         <SecondaryContainer />
       ) : (
-        <div className="absolute w-full flex flex-wrap top-[650px] md:top-[400px] px-6  bg-black ">
+        <div className=" w-full flex flex-wrap relative mt-[370px]  md:-mt-[200px] ml-5 ">
           {data?.map((movie) => (
             <MovieCard1
               posterId={movie.poster_path}
@@ -113,21 +112,20 @@ const Browse = () => {
           ))}
         </div>
       )}
-
-      {showSecCont && (
-        <div className="bg-red-800 text-white p-2">
-          <p className="text-center">
-            ⬇Coudnt find anything interesting 😥Get recommendations according to
-            your taste using our AI recommendation system powered by Chat-Gpt
-            3.5 turbo🚀⬇
-            <Link to="/browse/gptsearch">
-              <button className="bg-violet-700 mt-1 text-center px-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 hover:border-2 block text-white  rounded-lg ">
-                Goto Gpt-Movies-Search
-              </button>
-            </Link>
-          </p>
-        </div>
-      )}
+      (
+      <div className="bg-red-800 z-20 relative text-white p-2">
+        <p className="text-center">
+          ⬇Coudnt find anything interesting 😥Get recommendations according to
+          your taste using our AI recommendation system powered by Chat-Gpt 3.5
+          turbo🚀⬇
+          <Link to="/browse/gptsearch">
+            <button className="bg-violet-700 mt-1 text-center px-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 hover:border-2 block text-white  rounded-lg ">
+              Goto Gpt-Movies-Search
+            </button>
+          </Link>
+        </p>
+      </div>
+      )
     </div>
   );
 };
