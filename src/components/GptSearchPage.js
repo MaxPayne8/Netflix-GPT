@@ -37,8 +37,7 @@ const GptSearchPage = () => {
     );
     const json = await data.json();
     console.log(json);
-    const corectMov = await json?.results?.filter((mov) => mov[0]);
-    console.log(corectMov);
+
     return json.results;
   };
 

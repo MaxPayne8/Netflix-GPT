@@ -6,7 +6,7 @@ const MovieTitle = ({ title, overview }) => {
   const getMov = useSelector((store) => store.movie.nowPlayingMovies);
   const finalMov = getMov[0];
   const { id } = finalMov;
-  const newOverView = overview.substring(0, 280);
+  const newOverView = overview.substring(0, 155);
   console.log(finalMov);
   return (
     <div className="absolute top-[320px] text-sm  md:-mt-[530px] sm:text-xl   w-screen md:w-full   aspect-video md:pt-[25%] pl-4 md:pl-8 bg-gradient-to-b from-black  text-white ">

@@ -1,15 +1,19 @@
 import { signOut } from "firebase/auth";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { auth } from "../utils/firebase";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import MovieList from "./MovieList";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import { Link } from "react-router-dom";
-import { NetflixLogo } from "../utils/constants";
+import { API_TMDB_OPTIONS, NetflixLogo } from "../utils/constants";
+import { addMovie } from "../utils/moviesSlice";
+import MovieCard from "./MovieCard";
+import MovieCard1 from "./MovieCard1";
 
 const Browse = () => {
+  const dispatch = useDispatch();
   useNowPlayingMovies();
   const user = useSelector((store) => store.user);
 
@@ -22,9 +26,40 @@ const Browse = () => {
         // An error happened.
       });
   };
+  const [showSecCont, setShowSecCont] = useState(true);
+
+  const searchTxt = useRef(null);
+
+  const tmdbResults = async (movie) => {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/search/multi?query=" +
+        movie +
+        "&include_adult=false&language=en-US&page=1",
+      API_TMDB_OPTIONS
+    );
+    const json = await data.json();
+    const json1 = json.results;
+    console.log(json1);
+
+    dispatch(addMovie(json1));
+  };
+
+  const data = useSelector((store) => store.movie.movies);
+  console.log(data);
+
+  const handleSubmit = (e) => {
+    tmdbResults(searchTxt.current.value);
+    e.preventDefault();
+    setShowSecCont(false);
+    searchTxt.current.value = "";
+  };
+
   return (
-    <div className="bg-black w-full ">
-      <div className="absolute bg-gradient-to-b from-black z-20 top-0 ">
+    <div className="bg-black w-full  ">
+      <div
+        onClick={() => setShowSecCont(true)}
+        className="absolute bg-gradient-to-b from-black z-20 top-0 hover:cursor-pointer "
+      >
         <img className="w-32 lg:w-56" src={NetflixLogo} alt="netflix-logo" />
       </div>
       <img
@@ -52,20 +87,47 @@ const Browse = () => {
       >
         Sign Out
       </button>
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+        className="bg-gray-700 rounded-lg p-2 absolute z-20   md:right-20 top-[500px] sm:top-[550px]  md:top-56"
+      >
+        <input
+          ref={searchTxt}
+          className="border-2 p-2 mx-2 rounded-lg border-black w-56"
+        ></input>
+        {/* <Link to="/browse/results"> */}
+        <button className="bg-black text-white p-2 rounded-lg ">Search</button>
+        {/* </Link> */}
+      </form>
       <MainContainer />
-      <SecondaryContainer />
-      <div className="bg-red-800 text-white p-2">
-        <p className="text-center">
-          ⬇Coudnt find anything interesting 😥Get recommendations according to
-          your taste using our AI recommendation system powered by Chat-Gpt 3.5
-          turbo🚀⬇
-          <Link to="/browse/gptsearch">
-            <button className="bg-violet-700 mt-1 text-center px-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 hover:border-2 block text-white  rounded-lg ">
-              Goto Gpt-Movies-Search
-            </button>
-          </Link>
-        </p>
-      </div>
+      {showSecCont ? (
+        <SecondaryContainer />
+      ) : (
+        <div className="absolute w-full flex flex-wrap top-[650px] md:top-[400px] px-6  bg-black ">
+          {data?.map((movie) => (
+            <MovieCard1
+              posterId={movie.poster_path}
+              id={movie.id}
+              media={movie.media_type}
+            />
+          ))}
+        </div>
+      )}
+
+      {showSecCont && (
+        <div className="bg-red-800 text-white p-2">
+          <p className="text-center">
+            ⬇Coudnt find anything interesting 😥Get recommendations according to
+            your taste using our AI recommendation system powered by Chat-Gpt
+            3.5 turbo🚀⬇
+            <Link to="/browse/gptsearch">
+              <button className="bg-violet-700 mt-1 text-center px-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 hover:border-2 block text-white  rounded-lg ">
+                Goto Gpt-Movies-Search
+              </button>
+            </Link>
+          </p>
+        </div>
+      )}
     </div>
   );
 };
