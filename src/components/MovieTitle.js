@@ -2,10 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const MovieTitle = ({ title, overview }) => {
+const MovieTitle = ({ title, overview, id }) => {
   const getMov = useSelector((store) => store.movie.nowPlayingMovies);
-  const finalMov = getMov[0];
-  const { id } = finalMov;
+
+  const finalMov = getMov[id];
+
   const newOverView = overview.substring(0, 155);
   console.log(finalMov);
   return (

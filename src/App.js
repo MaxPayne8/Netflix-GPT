@@ -8,9 +8,9 @@ import appStore from "./utils/appStore";
 import Header from "./components/Header";
 import MoreInfo from "./components/MoreInfo";
 import GptSearchPage from "./components/GptSearchPage";
-import MoreInfoTwin from "./components/MoreInfoTwin";
+
 import MoreInfoTv from "./components/MoreInfoTv";
-import MoreInfoTvTwin from "./components/MoreInfoTvTwin";
+
 import Results from "./components/Results";
 import ActorDetails from "./components/ActorDetails";
 
@@ -44,18 +44,12 @@ export const route = createBrowserRouter([
         path: "/browse/gptsearch",
         element: <GptSearchPage />,
       },
-      {
-        path: "/browse/moreinfotwin/:movId",
-        element: <MoreInfoTwin />,
-      },
+
       {
         path: "/browse/moreinfotv/:movId",
         element: <MoreInfoTv />,
       },
-      {
-        path: "/browse/moreinfotvtwin/:movId",
-        element: <MoreInfoTvTwin />,
-      },
+
       {
         path: "/browse/results",
         element: <Results />,

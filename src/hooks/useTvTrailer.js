@@ -28,7 +28,7 @@ const useTvTrailer = (movId) => {
   };
   useEffect(() => {
     getTrailer();
-  }, []);
+  }, [movId]);
 };
 
 export default useTvTrailer;

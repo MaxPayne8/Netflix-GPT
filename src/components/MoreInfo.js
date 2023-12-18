@@ -70,12 +70,13 @@ const MoreInfo = () => {
     const similarMov = json.results;
     dispatch(addSimilarMovies(similarMov));
   };
+
   useEffect(() => {
     getMovieInfo();
     getSimilarMovies();
     getRev();
     getActors();
-  }, []);
+  }, [movId]);
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -287,7 +288,7 @@ const MoreInfo = () => {
           <h1 className="text-red-600 ml-3 mt-4 text-2xl">Similar Movies</h1>
           <div className="flex  overflow-x-scroll no-scrollbar ">
             {infoSimilarMovies?.map((mov) => (
-              <Link to={"/browse/moreinfotwin/" + mov.id}>
+              <Link to={"/browse/moreinfo/" + mov.id}>
                 {/* <a href={"/browse/" + mov.id}> */}
                 <MovieCard
                   posterId={mov.poster_path}

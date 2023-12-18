@@ -72,7 +72,7 @@ const MoreInfoTv = () => {
     getSimilarMovies();
     getRev();
     getActors();
-  }, []);
+  }, [movId]);
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -293,7 +293,7 @@ const MoreInfoTv = () => {
           <h1 className="text-red-600 ml-3 mt-4 text-2xl">Similar Tv Shows</h1>
           <div className="flex  overflow-x-scroll no-scrollbar ">
             {infoSimilarMovies?.map((mov) => (
-              <Link to={"/browse/moreinfotvtwin/" + mov.id}>
+              <Link to={"/browse/moreinfotv/" + mov.id}>
                 {/* <a href={"/browse/" + mov.id}> */}
                 <MovieCard
                   posterId={mov.poster_path}

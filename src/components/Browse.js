@@ -21,7 +21,7 @@ const Browse = () => {
   }
   useEffect(() => {
     disableBackButton();
-  });
+  }, []);
 
   const dispatch = useDispatch();
   useNowPlayingMovies();
@@ -130,22 +130,14 @@ const Browse = () => {
       {showSecCont ? (
         <SecondaryContainer />
       ) : (
-        <div className=" w-full flex flex-wrap justify-evenly relative mt-[370px]  md:-mt-[200px]  ">
-          {data?.length ? (
-            data?.map((movie) => (
-              <MovieCard1
-                posterId={movie.poster_path}
-                id={movie.id}
-                media={movie.media_type}
-              />
-            ))
-          ) : (
-            <div>
-              <h1 className="bg-red-700 w-80 bottom-2 p-3 rounded-lg text-center text-white  ">
-                No Results😭
-              </h1>
-            </div>
-          )}
+        <div className=" w-full flex flex-wrap justify-evenly relative mt-[370px]  md:-mt-[300px]  ">
+          {data?.map((movie) => (
+            <MovieCard1
+              posterId={movie.poster_path}
+              id={movie.id}
+              media={movie.media_type}
+            />
+          ))}
         </div>
       )}
       (

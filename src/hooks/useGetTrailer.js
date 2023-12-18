@@ -28,7 +28,7 @@ const useGetTrailer = (movId) => {
   };
   useEffect(() => {
     getTrailer();
-  }, []);
+  }, [movId]);
 };
 
 export default useGetTrailer;
