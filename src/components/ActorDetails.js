@@ -49,6 +49,9 @@ const ActorDetails = () => {
   return (
     <div className="z-10   w-full bg-black  p-6 ">
       <ul className="text-gray-300 ">
+        <li className="p-2 bg-violet-700 rounded-lg w-20 mx-auto font-semibold hover:bg-violet-500">
+          <button onClick={() => navigate(-1)}>Go back</button>
+        </li>
         <li className="p-2 text-red-600 text-center text-5xl">{name}</li>
         <li className="p-2 flex justify-center">
           <img src={ImgCDN + profile_path} alt="profile-img" />
@@ -95,9 +98,6 @@ const ActorDetails = () => {
         <li className="p-2 ">
           <span className="text-red-600">Popularity: </span>
           {popularity}
-        </li>
-        <li className="p-2 bg-violet-700 rounded-lg w-20 mx-auto font-semibold hover:bg-violet-500">
-          <button onClick={() => navigate(-1)}>Go back</button>
         </li>
       </ul>
     </div>

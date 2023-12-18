@@ -1,5 +1,5 @@
 import { signOut } from "firebase/auth";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { auth } from "../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
@@ -13,6 +13,16 @@ import MovieCard from "./MovieCard";
 import MovieCard1 from "./MovieCard1";
 
 const Browse = () => {
+  function disableBackButton() {
+    window.history.pushState(null, "", window.location.href);
+    window.onpopstate = function () {
+      window.history.pushState(null, "", window.location.href);
+    };
+  }
+  useEffect(() => {
+    disableBackButton();
+  });
+
   const dispatch = useDispatch();
   useNowPlayingMovies();
   const user = useSelector((store) => store.user);
@@ -54,6 +64,11 @@ const Browse = () => {
     searchTxt.current.value = "";
   };
 
+  const handleClick = () => {
+    setShowSecCont(true);
+    document.documentElement.scrollTop = 0;
+  };
+
   return (
     <div className="bg-black w-full  ">
       <div
@@ -62,6 +77,16 @@ const Browse = () => {
       >
         <img className="w-32 lg:w-56" src={NetflixLogo} alt="netflix-logo" />
       </div>
+      {!showSecCont && (
+        <button
+          className="relative ml-36 md:ml-80 z-20 mt-4  bg-violet-600 hover:bg-red-600 text-white p-2 rounded-lg "
+          onClick={() => {
+            handleClick();
+          }}
+        >
+          Back to Browse
+        </button>
+      )}
       <img
         className="w-16 h-16 p-2  ml-[1300px] z-10 absolute top-1 right-0  hover:cursor-pointer"
         src={user?.photoURL}
@@ -117,12 +142,22 @@ const Browse = () => {
       )}
       (
       <div className="bg-red-800 z-20 relative text-white p-2">
+        {!showSecCont && (
+          <button
+            className="bg-violet-700 mt-1 text-center p-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 block text-white  rounded-lg "
+            onClick={() => {
+              handleClick();
+            }}
+          >
+            Back to Browse
+          </button>
+        )}
         <p className="text-center">
           ⬇Coudnt find anything interesting 😥Get recommendations according to
           your taste using our AI recommendation system powered by Chat-Gpt 3.5
           turbo🚀⬇
           <Link to="/browse/gptsearch">
-            <button className="bg-violet-700 mt-1 text-center px-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 hover:border-2 block text-white  rounded-lg ">
+            <button className="bg-violet-700 mt-1 text-center p-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 block text-white  rounded-lg w-56 ">
               Goto Gpt-Movies-Search
             </button>
           </Link>
