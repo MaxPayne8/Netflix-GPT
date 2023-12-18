@@ -77,16 +77,6 @@ const Browse = () => {
       >
         <img className="w-32 lg:w-56" src={NetflixLogo} alt="netflix-logo" />
       </div>
-      {!showSecCont && (
-        <button
-          className="relative ml-36 md:ml-80 z-20 mt-4  bg-violet-600 hover:bg-red-600 text-white p-2 rounded-lg "
-          onClick={() => {
-            handleClick();
-          }}
-        >
-          Back to Browse
-        </button>
-      )}
       <img
         className="w-16 h-16 p-2  ml-[1300px] z-10 absolute top-1 right-0  hover:cursor-pointer"
         src={user?.photoURL}
