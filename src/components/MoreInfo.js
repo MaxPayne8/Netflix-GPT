@@ -92,7 +92,7 @@ const MoreInfo = () => {
   console.log(trailerInfo);
   console.log(actors);
 
-  const actorsName = actors?.map((actor) => actor?.name).join(",");
+  const actorsName = actors?.map((actor) => actor?.name).join(" , ");
 
   const actorImages = actors?.map((actor) => actor?.profile_path);
   console.log(actorsName);
@@ -183,7 +183,7 @@ const MoreInfo = () => {
 
           <li className="p-2">
             <span className="text-red-600">Geners:</span>{" "}
-            {genres?.map((mov) => mov.name).join(",")}
+            {genres?.map((mov) => mov.name).join(" , ")}
           </li>
           <li className="p-2">
             <span className="text-red-600">Budget:</span> {budget / 1000000}{" "}
@@ -199,11 +199,11 @@ const MoreInfo = () => {
           )}
           <li className="p-2">
             <span className="text-red-600">Production Companies: </span>
-            {production_companies?.map((e) => e.name).join(",")}
+            {production_companies?.map((e) => e.name).join(" , ")}
           </li>
           <li className="p-2">
             <span className="text-red-600">Production Countries: </span>
-            {production_countries?.map((e) => e.name).join(",")}
+            {production_countries?.map((e) => e.name).join(" , ")}
           </li>
           <li className="p-2">
             <span className="text-red-600">Release Date: </span>
@@ -218,7 +218,7 @@ const MoreInfo = () => {
           </li>
           <li className="p-2">
             <span className="text-red-600">Spoken Languages: </span>
-            {spoken_languages?.map((e) => e.english_name).join(",")}
+            {spoken_languages?.map((e) => e.english_name).join(" , ")}
           </li>
           <li className="p-2">
             <span className="text-red-600">Tagline: </span>
@@ -261,20 +261,22 @@ const MoreInfo = () => {
           (actor) =>
             actor.profile_path &&
             actor.character.length && (
-              <div className="m-2    ">
-                <MovieCard posterId={actor.profile_path} />
-                {/* <img
+              <Link to={"/browse/actor/" + actor.id}>
+                <div className="m-2    ">
+                  <MovieCard posterId={actor.profile_path} />
+                  {/* <img
                   className="w-32"
                   src={ImgCDN + actor.profile_path}
                   alt="actor-profile"
                 /> */}
-                <h1 className="text-white  text-center">{actor.name}</h1>
+                  <h1 className="text-white  text-center">{actor.name}</h1>
 
-                <h1 className="text-white text-center">As</h1>
-                <h1 className="text-red-700 text-center">
-                  "{actor.character}"
-                </h1>
-              </div>
+                  <h1 className="text-white text-center">As</h1>
+                  <h1 className="text-red-700 text-center">
+                    "{actor.character}"
+                  </h1>
+                </div>
+              </Link>
             )
         )}
       </div>

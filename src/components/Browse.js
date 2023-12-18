@@ -88,14 +88,17 @@ const Browse = () => {
       </button>
       <form
         onSubmit={(e) => handleSubmit(e)}
-        className="bg-gray-700 rounded-lg p-2 absolute z-20   md:right-20 top-[500px] sm:top-[550px]  md:top-56"
+        className=" rounded-lg p-2 absolute z-20   md:right-20 top-[500px] sm:top-[550px]  md:top-56"
       >
         <input
           ref={searchTxt}
+          placeholder="Search Database.."
           className="border-2 p-2 mx-2 rounded-lg border-black w-56"
         ></input>
         {/* <Link to="/browse/results"> */}
-        <button className="bg-black text-white p-2 rounded-lg ">Search</button>
+        <button className="bg-black hover:bg-red-600 text-white p-2 rounded-lg ">
+          Search
+        </button>
         {/* </Link> */}
       </form>
       <MainContainer />

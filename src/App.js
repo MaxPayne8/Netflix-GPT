@@ -12,6 +12,7 @@ import MoreInfoTwin from "./components/MoreInfoTwin";
 import MoreInfoTv from "./components/MoreInfoTv";
 import MoreInfoTvTwin from "./components/MoreInfoTvTwin";
 import Results from "./components/Results";
+import ActorDetails from "./components/ActorDetails";
 
 function App() {
   return (
@@ -58,6 +59,10 @@ export const route = createBrowserRouter([
       {
         path: "/browse/results",
         element: <Results />,
+      },
+      {
+        path: "/browse/actor/:actorId",
+        element: <ActorDetails />,
       },
     ],
   },
