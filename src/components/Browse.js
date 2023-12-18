@@ -130,19 +130,27 @@ const Browse = () => {
       {showSecCont ? (
         <SecondaryContainer />
       ) : (
-        <div className=" w-full flex flex-wrap relative mt-[370px]  md:-mt-[200px] ml-5 ">
-          {data?.map((movie) => (
-            <MovieCard1
-              posterId={movie.poster_path}
-              id={movie.id}
-              media={movie.media_type}
-            />
-          ))}
+        <div className=" w-full flex flex-wrap justify-evenly relative mt-[370px]  md:-mt-[200px]  ">
+          {data?.length ? (
+            data?.map((movie) => (
+              <MovieCard1
+                posterId={movie.poster_path}
+                id={movie.id}
+                media={movie.media_type}
+              />
+            ))
+          ) : (
+            <div>
+              <h1 className="bg-red-700 w-80 bottom-2 p-3 rounded-lg text-center text-white  ">
+                No Results😭
+              </h1>
+            </div>
+          )}
         </div>
       )}
       (
       <div className="bg-red-800 z-20 relative text-white p-2">
-        {!showSecCont && (
+        {
           <button
             className="bg-violet-700 mt-1 text-center p-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 block text-white  rounded-lg "
             onClick={() => {
@@ -151,14 +159,14 @@ const Browse = () => {
           >
             Back to Browse
           </button>
-        )}
+        }
         <p className="text-center">
           ⬇Coudnt find anything interesting 😥Get recommendations according to
           your taste using our AI recommendation system powered by Chat-Gpt 3.5
           turbo🚀⬇
           <Link to="/browse/gptsearch">
             <button className="bg-violet-700 mt-1 text-center p-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 block text-white  rounded-lg w-56 ">
-              Goto Gpt-Movies-Search
+              Goto Gpt-Search
             </button>
           </Link>
         </p>
