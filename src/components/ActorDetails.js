@@ -1,9 +1,17 @@
 import React, { useEffect, useLayoutEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { API_TMDB_OPTIONS, ImgCDN } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addActorDetails } from "../utils/moviesSlice";
+import {
+  addActorDetails,
+  addActorMovies,
+  addActorTv,
+} from "../utils/moviesSlice";
 import { useNavigate } from "react-router-dom";
+import MovieList from "./MovieList";
+import MovieCard from "./MovieCard";
+import PureTvList from "./PureTvList";
+import PureMovieList from "./PureMovieList";
 
 const ActorDetails = () => {
   //   const history = unstable_HistoryRouter();
@@ -21,16 +29,48 @@ const ActorDetails = () => {
 
     dispatch(addActorDetails(json));
   };
+  const getActorMovies = async () => {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/person/" +
+        actorId +
+        "/movie_credits?language=en-US",
+      API_TMDB_OPTIONS
+    );
+    const json = await data?.json();
+    console.log(json);
+
+    dispatch(addActorMovies(json.cast));
+  };
+  const getActorTv = async () => {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/person/" +
+        actorId +
+        "/tv_credits?language=en-US",
+      API_TMDB_OPTIONS
+    );
+    const json = await data?.json();
+    console.log(json);
+
+    dispatch(addActorTv(json.cast));
+  };
 
   const details = useSelector((store) => store.movie?.actorDetails);
+  const actorMov = useSelector((store) => store.movie?.actorMovies);
+  const actorTv = useSelector((store) => store.movie?.actorTv);
   console.log(details);
+  console.log(actorMov);
+  console.log(actorTv);
   useEffect(() => {
     getActor();
+    getActorMovies();
+    getActorTv();
   }, []);
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   });
   if (!details) return;
+  if (!actorMov) return;
+  if (!actorTv) return;
 
   const {
     also_known_as,
@@ -52,9 +92,19 @@ const ActorDetails = () => {
         <li className="p-2 bg-violet-700 rounded-lg w-20 mx-auto font-semibold hover:bg-violet-500">
           <button onClick={() => navigate(-1)}>Go back</button>
         </li>
+        <Link to="/browse">
+          <li className="p-2 bg-violet-700 rounded-lg w-40 mt-2 text-center mx-auto font-semibold hover:bg-violet-500 ">
+            <button>Back to Browse</button>
+          </li>
+        </Link>
+
         <li className="p-2 text-red-600 text-center text-5xl">{name}</li>
-        <li className="p-2 flex justify-center">
-          <img src={ImgCDN + profile_path} alt="profile-img" />
+        <li className="p-2 flex justify-center ">
+          <img
+            className="border-4 border-white"
+            src={ImgCDN + profile_path}
+            alt="profile-img"
+          />
         </li>
         {!also_known_as.length ? null : (
           <li className="p-2">
@@ -100,6 +150,13 @@ const ActorDetails = () => {
           {popularity}
         </li>
       </ul>
+
+      {actorMov?.length ? (
+        <PureMovieList movList={actorMov} title="Movies" />
+      ) : null}
+      {actorTv?.length ? (
+        <PureTvList movList={actorTv} title="Tv Shows" />
+      ) : null}
     </div>
   );
 };

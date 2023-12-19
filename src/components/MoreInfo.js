@@ -13,6 +13,7 @@ import {
 
 import MovieCard from "./MovieCard";
 import useGetTrailer from "../hooks/useGetTrailer";
+import PureMovieList from "./PureMovieList";
 
 const MoreInfo = () => {
   const dispatch = useDispatch();
@@ -254,9 +255,9 @@ const MoreInfo = () => {
         </ul>
       </div>
 
-      {actors?.length && (
+      {actors?.length ? (
         <h1 className="text-red-600 ml-3 mt-4 text-2xl">Cast</h1>
-      )}
+      ) : null}
       <div className="flex  overflow-x-scroll no-scrollbar ">
         {actors?.map(
           (actor) =>
@@ -282,25 +283,10 @@ const MoreInfo = () => {
         )}
       </div>
 
-      {/* <MovieList movList={infoSimilarMovies} title="Similar Movies" /> */}
-      {infoSimilarMovies?.length && (
-        <div className=" ">
-          <h1 className="text-red-600 ml-3 mt-4 text-2xl">Similar Movies</h1>
-          <div className="flex  overflow-x-scroll no-scrollbar ">
-            {infoSimilarMovies?.map((mov) => (
-              <Link to={"/browse/moreinfo/" + mov.id}>
-                {/* <a href={"/browse/" + mov.id}> */}
-                <MovieCard
-                  posterId={mov.poster_path}
-                  title={mov.title}
-                  key={mov.id}
-                />
-              </Link>
-              // </a>
-            ))}
-          </div>
-        </div>
-      )}
+      {infoSimilarMovies?.length ? (
+        <PureMovieList movList={infoSimilarMovies} title="Similar Movies" />
+      ) : null}
+
       <div className="bg-red-800 text-white p-2 rounded-lg">
         <p className="text-center">
           ⬇Coudnt find anything interesting 😥Get recommendations according to

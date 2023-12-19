@@ -12,6 +12,7 @@ import {
 import MovieCard from "./MovieCard";
 import useGetTrailer from "../hooks/useTvTrailer";
 import useTvTrailer from "../hooks/useTvTrailer";
+import PureTvList from "./PureTvList";
 
 const MoreInfoTv = () => {
   const dispatch = useDispatch();
@@ -259,9 +260,9 @@ const MoreInfoTv = () => {
         </ul>
       </div>
 
-      {actors?.length && (
+      {actors?.length ? (
         <h1 className="text-red-600 ml-3 mt-4 text-2xl">Cast</h1>
-      )}
+      ) : null}
       <div className="flex  overflow-x-scroll no-scrollbar ">
         {actors?.map(
           (actor) =>
@@ -287,25 +288,10 @@ const MoreInfoTv = () => {
         )}
       </div>
 
-      {/* <MovieList movList={infoSimilarMovies} title="Similar Movies" /> */}
-      {infoSimilarMovies?.length && (
-        <div className=" ">
-          <h1 className="text-red-600 ml-3 mt-4 text-2xl">Similar Tv Shows</h1>
-          <div className="flex  overflow-x-scroll no-scrollbar ">
-            {infoSimilarMovies?.map((mov) => (
-              <Link to={"/browse/moreinfotv/" + mov.id}>
-                {/* <a href={"/browse/" + mov.id}> */}
-                <MovieCard
-                  posterId={mov.poster_path}
-                  title={mov.title}
-                  key={mov.id}
-                />
-              </Link>
-              // </a>
-            ))}
-          </div>
-        </div>
-      )}
+      {infoSimilarMovies?.length ? (
+        <PureTvList movList={infoSimilarMovies} title="Similar Tv Shows" />
+      ) : null}
+
       <div className="bg-red-800 text-white p-2 rounded-lg">
         <p className="text-center">
           ⬇Coudnt find anything interesting 😥Get recommendations according to

@@ -123,9 +123,10 @@ const Browse = () => {
         <div className=" w-full flex flex-wrap justify-evenly relative mt-[370px]  md:-mt-[300px]  ">
           {data?.map((movie) => (
             <MovieCard1
-              posterId={movie.poster_path}
+              posterId={movie.poster_path || movie.profile_path}
               id={movie.id}
               media={movie.media_type}
+              // profilePic={movie.profile_path}
             />
           ))}
         </div>
@@ -143,9 +144,9 @@ const Browse = () => {
           </button>
         }
         <p className="text-center">
-          ⬇Coudnt find anything interesting 😥Get recommendations according to
-          your taste using our AI recommendation system powered by Chat-Gpt 3.5
-          turbo🚀⬇
+          👇👇👇👇⬇Coudnt find anything interesting 😥Get recommendations
+          according to your taste using our AI recommendation system powered by
+          Chat-Gpt 3.5 turbo🚀⬇👇👇👇👇
           <Link to="/browse/gptsearch">
             <button className="bg-violet-700 mt-1 text-center p-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 block text-white  rounded-lg w-56 ">
               Goto Gpt-Search
