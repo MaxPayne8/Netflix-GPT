@@ -81,7 +81,7 @@ const MoreInfo = () => {
     getActors();
     setTimeout(() => {
       setSpinner(false);
-    }, 500);
+    }, 300);
   }, [movId]);
 
   useLayoutEffect(() => {
@@ -126,11 +126,11 @@ const MoreInfo = () => {
 
   //
   return (
-    <div className="z-10   w-full bg-black  p-6 ">
+    <div className="bg-black">
       {spinner ? (
         <Spinner />
       ) : (
-        <div>
+        <div className="z-10   w-full bg-black  p-6 ">
           <Link to="/browse">
             <div className="absolute left-0 bg-gradient-to-b from-black z-20 top-0 ">
               <img
@@ -281,10 +281,10 @@ const MoreInfo = () => {
                     <div className="m-2    ">
                       <MovieCard posterId={actor.profile_path} />
                       {/* <img
-                  className="w-32"
-                  src={ImgCDN + actor.profile_path}
-                  alt="actor-profile"
-                /> */}
+              className="w-32"
+              src={ImgCDN + actor.profile_path}
+              alt="actor-profile"
+            /> */}
                       <h1 className="text-white  text-center">{actor.name}</h1>
 
                       <h1 className="text-white text-center">As</h1>
