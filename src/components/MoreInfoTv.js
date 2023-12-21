@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { API_TMDB_OPTIONS, ImgCDN, NetflixLogo } from "../utils/constants";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,7 @@ import MovieCard from "./MovieCard";
 import useGetTrailer from "../hooks/useTvTrailer";
 import useTvTrailer from "../hooks/useTvTrailer";
 import PureTvList from "./PureTvList";
+import Spinner from "./Spinner";
 
 const MoreInfoTv = () => {
   const dispatch = useDispatch();
@@ -73,6 +74,9 @@ const MoreInfoTv = () => {
     getSimilarMovies();
     getRev();
     getActors();
+    setTimeout(() => {
+      setSpinner(false);
+    }, 500);
   }, [movId]);
 
   useLayoutEffect(() => {
@@ -89,6 +93,8 @@ const MoreInfoTv = () => {
   console.log(infoSimilarMovies);
   console.log(trailerInfo);
   console.log(actors);
+
+  const [spinner, setSpinner] = useState(true);
 
   const actorsName = actors?.map((actor) => actor?.name).join(" , ");
 
@@ -135,130 +141,134 @@ const MoreInfoTv = () => {
           Go to Gpt-Search
         </button>
       </Link>
-      <div>
-        <ul className="text-gray-300">
-          <div className=" md:flex justify-between">
-            <li className="md:ml-[70px] p-1 text-red-600  mt-8 md:mt-10">
-              Official Poster
+      {spinner ? (
+        <Spinner />
+      ) : (
+        <div>
+          <ul className="text-gray-300">
+            <div className=" md:flex justify-between">
+              <li className="md:ml-[70px] p-1 text-red-600  mt-8 md:mt-10">
+                Official Poster
+              </li>
+              <li className="   md:mr-[350px] text-red-600 p-1 mt-96 md:mt-10">
+                Official Trailer
+              </li>
+            </div>
+            <div className=" md:flex">
+              <li>
+                <img
+                  className="p-2 top-60  md:top-0 absolute md:relative ml-0 md:ml-2 border-4 border-red-700"
+                  src={ImgCDN + poster_path}
+                  alt="movie-poster"
+                />
+              </li>
+
+              <li>
+                <iframe
+                  className=" mt-2   md:mt-0 md:ml-[350px] w-[100%] md:w-[600px] border-4 border-red-700  aspect-video "
+                  src={
+                    "https://www.youtube.com/embed/" +
+                    trailerInfo?.key +
+                    "?autoplay=1&mute=1"
+                  }
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </li>
+            </div>
+            <li className="p-2 ">
+              <span className="text-red-600">Title: </span>
+              {name}
             </li>
-            <li className="   md:mr-[350px] text-red-600 p-1 mt-96 md:mt-10">
-              Official Trailer
+            <li className="p-2 ">
+              <span className="text-red-600">Overview:</span> {overview}
             </li>
-          </div>
-          <div className=" md:flex">
-            <li>
-              <img
-                className="p-2 top-60  md:top-0 absolute md:relative ml-0 md:ml-2 border-4 border-red-700"
-                src={ImgCDN + poster_path}
-                alt="movie-poster"
-              />
+            <li className="p-2 ">
+              <span className="text-red-600">Cast: </span>
+              {actorsName}
+            </li>
+            <li className="p-2 ">
+              <span className="text-red-600">Total Seasons:</span>{" "}
+              {number_of_seasons}
+            </li>
+            <li className="p-2 ">
+              <span className="text-red-600">Total Episodes:</span>{" "}
+              {number_of_episodes}
             </li>
 
-            <li>
-              <iframe
-                className=" mt-2   md:mt-0 md:ml-[350px] w-[100%] md:w-[600px] border-4 border-red-700  aspect-video "
-                src={
-                  "https://www.youtube.com/embed/" +
-                  trailerInfo?.key +
-                  "?autoplay=1&mute=1"
-                }
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
+            <li className="p-2">
+              <span className="text-red-600">Episode Runtime:</span>{" "}
+              {episode_run_time?.map((e) => e)} minutes
             </li>
-          </div>
-          <li className="p-2 ">
-            <span className="text-red-600">Title: </span>
-            {name}
-          </li>
-          <li className="p-2 ">
-            <span className="text-red-600">Overview:</span> {overview}
-          </li>
-          <li className="p-2 ">
-            <span className="text-red-600">Cast: </span>
-            {actorsName}
-          </li>
-          <li className="p-2 ">
-            <span className="text-red-600">Total Seasons:</span>{" "}
-            {number_of_seasons}
-          </li>
-          <li className="p-2 ">
-            <span className="text-red-600">Total Episodes:</span>{" "}
-            {number_of_episodes}
-          </li>
 
-          <li className="p-2">
-            <span className="text-red-600">Episode Runtime:</span>{" "}
-            {episode_run_time?.map((e) => e)} minutes
-          </li>
-
-          <li className="p-2">
-            <span className="text-red-600">Geners:</span>{" "}
-            {genres?.map((mov) => mov.name).join(" , ")}
-          </li>
-          {homepage && (
             <li className="p-2">
-              <span className="text-red-600">Tv Show Site:</span>{" "}
-              <Link to={homepage} className="p-1 rounded-lg bg-red-700">
-                Go to original site
-              </Link>
+              <span className="text-red-600">Geners:</span>{" "}
+              {genres?.map((mov) => mov.name).join(" , ")}
             </li>
-          )}
-          <li className="p-2">
-            <span className="text-red-600">Production Companies: </span>
-            {networks?.map((e) => e.name).join(" , ")}
-          </li>
-          {production_countries && (
+            {homepage && (
+              <li className="p-2">
+                <span className="text-red-600">Tv Show Site:</span>{" "}
+                <Link to={homepage} className="p-1 rounded-lg bg-red-700">
+                  Go to original site
+                </Link>
+              </li>
+            )}
             <li className="p-2">
-              <span className="text-red-600">Production Countries: </span>
-              {production_countries?.map((e) => e.name).join(" , ")}
+              <span className="text-red-600">Production Companies: </span>
+              {networks?.map((e) => e.name).join(" , ")}
             </li>
-          )}
-          <li className="p-2">
-            <span className="text-red-600">Release Date: </span>
-            {first_air_date}
-          </li>
-          <li className="p-2">
-            <span className="text-red-600">Spoken Languages: </span>
-            {spoken_languages?.map((e) => e.english_name).join(" , ")}
-          </li>
-          {tagline && (
+            {production_countries && (
+              <li className="p-2">
+                <span className="text-red-600">Production Countries: </span>
+                {production_countries?.map((e) => e.name).join(" , ")}
+              </li>
+            )}
             <li className="p-2">
-              <span className="text-red-600">Tagline: </span>
-              {tagline}
+              <span className="text-red-600">Release Date: </span>
+              {first_air_date}
             </li>
-          )}
-          <li className="p-2">
-            <span className="text-red-600">Rating:</span> {vote_average}⭐ out
-            of 10
-          </li>
-          {review?.length
-            ? review?.map((review) => (
-                <div>
-                  <li className="p-2">
-                    {" "}
-                    {review?.author ? (
-                      <h1 className="text-white">
-                        <span className="text-red-600">Review-Author: </span>{" "}
-                        {review?.author}
-                      </h1>
-                    ) : null}
-                  </li>
-                  <li className="p-2">
-                    {" "}
-                    {review?.content ? (
-                      <h1 className="text-white">
-                        <span className="text-red-600">Review: </span>
-                        {review?.content}
-                      </h1>
-                    ) : null}
-                  </li>
-                </div>
-              ))
-            : null}
-        </ul>
-      </div>
+            <li className="p-2">
+              <span className="text-red-600">Spoken Languages: </span>
+              {spoken_languages?.map((e) => e.english_name).join(" , ")}
+            </li>
+            {tagline && (
+              <li className="p-2">
+                <span className="text-red-600">Tagline: </span>
+                {tagline}
+              </li>
+            )}
+            <li className="p-2">
+              <span className="text-red-600">Rating:</span> {vote_average}⭐ out
+              of 10
+            </li>
+            {review?.length
+              ? review?.map((review) => (
+                  <div>
+                    <li className="p-2">
+                      {" "}
+                      {review?.author ? (
+                        <h1 className="text-white">
+                          <span className="text-red-600">Review-Author: </span>{" "}
+                          {review?.author}
+                        </h1>
+                      ) : null}
+                    </li>
+                    <li className="p-2">
+                      {" "}
+                      {review?.content ? (
+                        <h1 className="text-white">
+                          <span className="text-red-600">Review: </span>
+                          {review?.content}
+                        </h1>
+                      ) : null}
+                    </li>
+                  </div>
+                ))
+              : null}
+          </ul>
+        </div>
+      )}
 
       {actors?.length ? (
         <h1 className="text-red-600 ml-3 mt-4 text-2xl">Cast</h1>
