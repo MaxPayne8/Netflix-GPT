@@ -13,15 +13,15 @@ import MovieCard from "./MovieCard";
 import MovieCard1 from "./MovieCard1";
 
 const Browse = () => {
-  function disableBackButton() {
-    window.history.pushState(null, "", window.location.href);
-    window.onpopstate = function () {
-      window.history.pushState(null, "", window.location.href);
-    };
-  }
-  useEffect(() => {
-    disableBackButton();
-  }, []);
+  // function disableBackButton() {
+  //   window.history.pushState(null, "", window.location.href);
+  //   window.onpopstate = function () {
+  //     window.history.pushState(null, "", window.location.href);
+  //   };
+  // }
+  // useEffect(() => {
+  //   disableBackButton();
+  // }, []);
 
   const dispatch = useDispatch();
   useNowPlayingMovies();

@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const [newUser, setNewUser] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const [signedUp, setSignedUp] = useState(false);
@@ -64,7 +64,6 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              user && navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
@@ -90,7 +89,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          user && navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
