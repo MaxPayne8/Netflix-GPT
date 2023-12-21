@@ -74,7 +74,7 @@ const ActorDetails = () => {
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   });
-  
+
   if (!details) return;
   if (!actorMov) return;
   if (!actorTv) return;
@@ -98,76 +98,78 @@ const ActorDetails = () => {
       {spinner ? (
         <Spinner />
       ) : (
-        <ul className="text-gray-300 ">
-          <li className="p-2 bg-violet-700 rounded-lg w-20 mx-auto font-semibold hover:bg-violet-500">
-            <button onClick={() => navigate(-1)}>Go back</button>
-          </li>
-          <Link to="/browse">
-            <li className="p-2 bg-violet-700 rounded-lg w-40 mt-2 text-center mx-auto font-semibold hover:bg-violet-500 ">
-              <button>Back to Browse</button>
+        <div>
+          <ul className="text-gray-300 ">
+            <li className="p-2 bg-violet-700 rounded-lg w-20 mx-auto font-semibold hover:bg-violet-500">
+              <button onClick={() => navigate(-1)}>Go back</button>
             </li>
-          </Link>
+            <Link to="/browse">
+              <li className="p-2 bg-violet-700 rounded-lg w-40 mt-2 text-center mx-auto font-semibold hover:bg-violet-500 ">
+                <button>Back to Browse</button>
+              </li>
+            </Link>
 
-          <li className="p-2 text-red-600 text-center text-5xl">{name}</li>
-          <li className="p-2 flex justify-center ">
-            <img
-              className="border-4 border-white"
-              src={ImgCDN + profile_path}
-              alt="profile-img"
-            />
-          </li>
-          {!also_known_as.length ? null : (
-            <li className="p-2">
-              <span className="text-red-600">Also known as:</span>{" "}
-              {also_known_as?.map((mov) => mov).join(" , ")}
+            <li className="p-2 text-red-600 text-center text-5xl">{name}</li>
+            <li className="p-2 flex justify-center ">
+              <img
+                className="border-4 border-white"
+                src={ImgCDN + profile_path}
+                alt="profile-img"
+              />
             </li>
-          )}
-          <li className="p-2 ">
-            <span className="text-red-600">BirthDay: </span>
-            {birthday}
-          </li>
-          <li className="p-2 ">
-            <span className="text-red-600">Place of Birth: </span>
-            {place_of_birth}
-          </li>
-          <li className="p-2 ">
-            <span className="text-red-600">Biography: </span>
-            {biography}
-          </li>
-          <li className="p-2 ">
-            <span className="text-red-600">Known for: </span>
-            {known_for_department}
-          </li>
-          {deathday && (
+            {!also_known_as.length ? null : (
+              <li className="p-2">
+                <span className="text-red-600">Also known as:</span>{" "}
+                {also_known_as?.map((mov) => mov).join(" , ")}
+              </li>
+            )}
             <li className="p-2 ">
-              <span className="text-red-600">Death Anniversary: </span>
-              {deathday}
+              <span className="text-red-600">BirthDay: </span>
+              {birthday}
             </li>
-          )}
-          <li className="p-2 ">
-            <span className="text-red-600">IMDB-ID: </span>
-            {imdb_id}
-          </li>
-          {homepage && (
             <li className="p-2 ">
-              <span className="text-red-600">Homepage: </span>
-              {homepage}
+              <span className="text-red-600">Place of Birth: </span>
+              {place_of_birth}
             </li>
-          )}
+            <li className="p-2 ">
+              <span className="text-red-600">Biography: </span>
+              {biography}
+            </li>
+            <li className="p-2 ">
+              <span className="text-red-600">Known for: </span>
+              {known_for_department}
+            </li>
+            {deathday && (
+              <li className="p-2 ">
+                <span className="text-red-600">Death Anniversary: </span>
+                {deathday}
+              </li>
+            )}
+            <li className="p-2 ">
+              <span className="text-red-600">IMDB-ID: </span>
+              {imdb_id}
+            </li>
+            {homepage && (
+              <li className="p-2 ">
+                <span className="text-red-600">Homepage: </span>
+                {homepage}
+              </li>
+            )}
 
-          <li className="p-2 ">
-            <span className="text-red-600">Popularity: </span>
-            {popularity}
-          </li>
-        </ul>
+            <li className="p-2 ">
+              <span className="text-red-600">Popularity: </span>
+              {popularity}
+            </li>
+          </ul>
+
+          {actorMov?.length ? (
+            <PureMovieList movList={actorMov} title="Movies" />
+          ) : null}
+          {actorTv?.length ? (
+            <PureTvList movList={actorTv} title="Tv Shows" />
+          ) : null}
+        </div>
       )}
-
-      {actorMov?.length ? (
-        <PureMovieList movList={actorMov} title="Movies" />
-      ) : null}
-      {actorTv?.length ? (
-        <PureTvList movList={actorTv} title="Tv Shows" />
-      ) : null}
     </div>
   );
 };
