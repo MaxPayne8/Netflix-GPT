@@ -125,7 +125,7 @@ const MoreInfoTv = () => {
 
   //
   return (
-    <div>
+    <div className="bg-black">
       {spinner ? (
         <Spinner />
       ) : (
