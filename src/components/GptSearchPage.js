@@ -140,16 +140,16 @@ const GptSearchPage = () => {
             ))}
           </select>
 
-          <div className="absolute z-20  top-56 md:top-36 text-white border-2 border-white bg-violet-800 p-4 rounded-2xl mx-auto ml-0 mr-0">
+          <div className="absolute z-20  top-52 md:top-36 text-white text-sm md:text-base border-2 border-white bg-violet-800 p-4 rounded-2xl mx-auto ml-0 mr-0">
             <p>{langConst[currLang].aboutGpt}</p>
           </div>
 
           <form
-            className="absolute z-20    md:w-[600px] h-[80px] text-center top-96 md:top-60 mx-auto left-0 right-0 rounded-lg bg-gray-950"
+            className="absolute z-20    md:w-[600px] h-[80px] text-center top-[400px] md:top-60 mx-auto left-0 right-0 rounded-lg bg-gray-950"
             onSubmit={(e) => e.preventDefault()}
           >
             <input
-              className=" w-[355px] md:w-[400px] p-2 h-9 mt-6 rounded-lg font-semibold"
+              className=" w-[355px] md:w-[400px] p-2 h-9 mt-6 text-sm md:text-base rounded-lg font-semibold"
               placeholder={langConst[currLang].gptPlaceholder}
               ref={searchTxt}
             ></input>
