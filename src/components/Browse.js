@@ -63,15 +63,15 @@ const Browse = () => {
   const data = useSelector((store) => store.movie.movies);
   console.log(data);
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
     tmdbResults(searchTxt.current.value);
-    e.preventDefault();
+    // e.preventDefault();
     setShowSecCont(false);
-    searchTxt.current.value = "";
   };
 
   const handleClick = () => {
     setShowSecCont(true);
+    searchTxt.current.value = "";
     document.documentElement.scrollTop = 0;
   };
 
@@ -83,7 +83,7 @@ const Browse = () => {
         <div className="bg-black w-full  ">
           <Header />
           <div
-            onClick={() => setShowSecCont(true)}
+            onClick={() => handleClick()}
             className="absolute bg-gradient-to-b from-black z-20 top-0 hover:cursor-pointer "
           >
             <img
@@ -117,7 +117,8 @@ const Browse = () => {
             Sign Out
           </button>
           <form
-            onSubmit={(e) => handleSubmit(e)}
+            onSubmit={(e) => e.preventDefault()}
+            onChange={() => handleChange()}
             className=" rounded-lg p-2 absolute z-20   md:right-20 top-[500px] sm:top-[550px]  md:top-56"
           >
             <input

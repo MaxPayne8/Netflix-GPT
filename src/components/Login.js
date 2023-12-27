@@ -11,6 +11,8 @@ import { addUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
 import { NetflixLogo, UserLogo } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -21,6 +23,13 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
+
+  const showToastMessage = () => {
+    toast.success("Please try again with right credentials and format !", {
+      position: toast.POSITION.TOP_RIGHT,
+      style: { fontSize: "14px", zIndex: "5000" },
+    });
+  };
 
   const toggleSignInform = () => {
     setNewUser(!newUser);
@@ -68,6 +77,7 @@ const Login = () => {
             .catch((error) => {
               // An error occurred
               // ...
+
               setErrorMsg(error.message);
             });
         })
@@ -79,6 +89,7 @@ const Login = () => {
             setErrorMsg("Account already registered with this email!!");
           }
           setSignedUp(false);
+          showToastMessage();
           // setErrorMsg(errorMessage);
         });
     } else {
@@ -91,7 +102,10 @@ const Login = () => {
           const user = userCredential.user;
         })
         .catch((error) => {
+          showToastMessage();
+
           const errorCode = error.code;
+          console.log(errorCode);
 
           if (errorCode === "auth/invalid-login-credentials")
             setErrorMsg(
@@ -103,6 +117,8 @@ const Login = () => {
 
   return (
     <div className="w-full ">
+      <ToastContainer />
+
       <div className="absolute left-0 bg-gradient-to-b from-black z-20 top-0 ">
         <img className="w-32 lg:w-56" src={NetflixLogo} alt="netflix-logo" />
       </div>

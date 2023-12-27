@@ -3,7 +3,7 @@ const langConst = {
     search: "Search",
     gptPlaceholder: "Hello, What would you like to watch today...😎",
     aboutGpt:
-      "-->Hello👻, I can help you find Movies or Tv shows according to genres , actor names , languages...etc (Example: Hindi retro funny movies)  // Powered by Chat-Gpt 3.5 turbo🚀",
+      "-->Hello👻, I can help you find Movies or Tv shows according to genres , actor names , languages...etc (Examples: Hindi retro funny movies, top IMDB TV Shows, movies shot in newyork, actors with movie generes, movies that make you cry , movies to watch with family etc)  // Powered by Chat-Gpt 3.5 turbo🚀",
     button: "Goto Netflix-Browse-page",
   },
 
