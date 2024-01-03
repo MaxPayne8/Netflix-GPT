@@ -14,12 +14,45 @@ import MovieCard from "./MovieCard";
 import useTvTrailer from "../hooks/useTvTrailer";
 import PureTvList from "./PureTvList";
 import Spinner from "./Spinner";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const MoreInfoTv = () => {
   const dispatch = useDispatch();
   const { movId } = useParams();
   console.log(movId);
   useTvTrailer(movId);
+  useEffect(() => {
+    Aos.init();
+  });
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 3,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   const getActors = async () => {
     const data = await fetch(
@@ -125,7 +158,11 @@ const MoreInfoTv = () => {
 
   //
   return (
-    <div className="bg-black">
+    <div
+      className="bg-black overflow-x-hidden"
+      data-aos="zoom-in"
+      data-aos-delay="100"
+    >
       {spinner ? (
         <Spinner />
       ) : (
@@ -146,33 +183,45 @@ const MoreInfoTv = () => {
               </button>
             </Link>
             <Link to="/browse/gptsearch">
-              <button className="bg-violet-700 z-30 font-semibold hover:bg-violet-600 hover:border-2 hover:border-black text-white relative  md:left-[750px] mt-28 md:mt-0 rounded-lg p-2">
+              <button className="bg-violet-700 z-30 font-semibold hover:bg-violet-600 hover:border-2 hover:border-black text-white relative  md:left-[750px] mt-28 md:mt-0 rounded-lg p-2 animate-bounce">
                 Go to Gpt-Search
               </button>
             </Link>
 
             <div>
               <ul className="text-gray-300">
-                <div className=" md:flex justify-between">
+                <div
+                  className=" md:flex justify-between"
+                  data-aos="zoom-in"
+                  data-aos-delay="100"
+                >
                   <li className="md:ml-[70px] p-1 text-red-600  mt-8 md:mt-10">
                     Official Poster
                   </li>
-                  <li className="   md:mr-[350px] text-red-600 p-1 mt-96 md:mt-10">
+                  <li
+                    className="   md:mr-[350px] text-red-600 p-1 mt-96 md:mt-10"
+                    data-aos="zoom-in"
+                    data-aos-delay="100"
+                  >
                     Official Trailer
                   </li>
                 </div>
                 <div className=" md:flex">
                   <li>
                     <img
-                      className="p-2 top-60  md:top-0 absolute md:relative ml-0 md:ml-2 border-4 border-red-700"
+                      className="p-2 top-60   md:top-0 absolute md:relative ml-0 md:ml-2 border-4 border-red-700"
                       src={ImgCDN + poster_path}
                       alt="movie-poster"
+                      data-aos="zoom-in"
+                      data-aos-delay="100"
                     />
                   </li>
 
                   <li>
                     <iframe
                       className=" mt-2   md:mt-0 md:ml-[350px] w-[100%] md:w-[600px] border-4 border-red-700  aspect-video "
+                      data-aos="zoom-in"
+                      data-aos-delay="100"
                       src={
                         "https://www.youtube.com/embed/" +
                         trailerInfo?.key +
@@ -184,75 +233,79 @@ const MoreInfoTv = () => {
                     ></iframe>
                   </li>
                 </div>
-                <li className="p-2 ">
+                <li className="p-2 " data-aos="fade-down" data-aos-delay="100">
                   <span className="text-red-600">Title: </span>
                   {name}
                 </li>
-                <li className="p-2 ">
+                <li className="p-2 " data-aos="fade-down" data-aos-delay="100">
                   <span className="text-red-600">Overview:</span> {overview}
                 </li>
-                <li className="p-2 ">
+                <li className="p-2 " data-aos="fade-down" data-aos-delay="100">
                   <span className="text-red-600">Cast: </span>
                   {actorsName}
                 </li>
-                <li className="p-2 ">
+                <li className="p-2 " data-aos="fade-down" data-aos-delay="100">
                   <span className="text-red-600">Total Seasons:</span>{" "}
                   {number_of_seasons}
                 </li>
-                <li className="p-2 ">
+                <li className="p-2 " data-aos="fade-down" data-aos-delay="100">
                   <span className="text-red-600">Total Episodes:</span>{" "}
                   {number_of_episodes}
                 </li>
 
-                <li className="p-2">
+                <li className="p-2" data-aos="fade-down" data-aos-delay="100">
                   <span className="text-red-600">Episode Runtime:</span>{" "}
                   {episode_run_time?.map((e) => e)} minutes
                 </li>
 
-                <li className="p-2">
+                <li className="p-2" data-aos="fade-down" data-aos-delay="100">
                   <span className="text-red-600">Geners:</span>{" "}
                   {genres?.map((mov) => mov.name).join(" , ")}
                 </li>
                 {homepage && (
-                  <li className="p-2">
+                  <li className="p-2" data-aos="fade-down" data-aos-delay="100">
                     <span className="text-red-600">Tv Show Site:</span>{" "}
                     <Link to={homepage} className="p-1 rounded-lg bg-red-700">
                       Go to original site
                     </Link>
                   </li>
                 )}
-                <li className="p-2">
+                <li className="p-2" data-aos="fade-down" data-aos-delay="100">
                   <span className="text-red-600">Production Companies: </span>
                   {networks?.map((e) => e.name).join(" , ")}
                 </li>
                 {production_countries && (
-                  <li className="p-2">
+                  <li className="p-2" data-aos="fade-down" data-aos-delay="100">
                     <span className="text-red-600">Production Countries: </span>
                     {production_countries?.map((e) => e.name).join(" , ")}
                   </li>
                 )}
-                <li className="p-2">
+                <li className="p-2" data-aos="fade-down" data-aos-delay="100">
                   <span className="text-red-600">Release Date: </span>
                   {first_air_date}
                 </li>
-                <li className="p-2">
+                <li className="p-2" data-aos="fade-down" data-aos-delay="100">
                   <span className="text-red-600">Spoken Languages: </span>
                   {spoken_languages?.map((e) => e.english_name).join(" , ")}
                 </li>
                 {tagline && (
-                  <li className="p-2">
+                  <li className="p-2" data-aos="fade-down" data-aos-delay="100">
                     <span className="text-red-600">Tagline: </span>
                     {tagline}
                   </li>
                 )}
-                <li className="p-2">
+                <li className="p-2" data-aos="fade-down" data-aos-delay="100">
                   <span className="text-red-600">Rating:</span> {vote_average}⭐
                   out of 10
                 </li>
                 {review?.length
                   ? review?.map((review) => (
                       <div>
-                        <li className="p-2">
+                        <li
+                          className="p-2"
+                          data-aos="fade-down"
+                          data-aos-delay="100"
+                        >
                           {" "}
                           {review?.author ? (
                             <h1 className="text-white">
@@ -263,7 +316,11 @@ const MoreInfoTv = () => {
                             </h1>
                           ) : null}
                         </li>
-                        <li className="p-2">
+                        <li
+                          className="p-2"
+                          data-aos="fade-down"
+                          data-aos-delay="100"
+                        >
                           {" "}
                           {review?.content ? (
                             <h1 className="text-white">
@@ -279,9 +336,20 @@ const MoreInfoTv = () => {
             </div>
 
             {actors?.length ? (
-              <h1 className="text-red-600 ml-3 mt-4 text-2xl">Cast</h1>
+              <h1
+                className="text-red-600 ml-3 mt-4 text-2xl text-center"
+                data-aos="fade-down"
+                data-aos-delay="100"
+              >
+                Cast
+              </h1>
             ) : null}
-            <div className="flex  overflow-x-scroll no-scrollbar ">
+            <Slider
+              {...settings}
+              className="w-[85%] md:w-[90%] mx-auto"
+              data-aos="fade-down"
+              data-aos-delay="100"
+            >
               {actors?.map(
                 (actor) =>
                   actor.profile_path &&
@@ -289,11 +357,7 @@ const MoreInfoTv = () => {
                     <Link to={"/browse/actor/" + actor.id}>
                       <div className="m-2    ">
                         <MovieCard posterId={actor.profile_path} />
-                        {/* <img
-              className="w-32"
-              src={ImgCDN + actor.profile_path}
-              alt="actor-profile"
-            /> */}
+
                         <h1 className="text-white  text-center">
                           {actor.name}
                         </h1>
@@ -306,7 +370,7 @@ const MoreInfoTv = () => {
                     </Link>
                   )
               )}
-            </div>
+            </Slider>
 
             {infoSimilarMovies?.length ? (
               <PureTvList

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import formValidate from "../utils/formValidate";
 import { auth } from "../utils/firebase";
 import {
@@ -6,12 +6,12 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
 import { addUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
 import { NetflixLogo, UserLogo } from "../utils/constants";
-import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
@@ -23,13 +23,9 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
-
-  const showToastMessage = () => {
-    toast.success("Please try again with right credentials and format !", {
-      position: toast.POSITION.TOP_RIGHT,
-      style: { fontSize: "14px", zIndex: "5000" },
-    });
-  };
+  useEffect(() => {
+    Aos.init();
+  });
 
   const toggleSignInform = () => {
     setNewUser(!newUser);
@@ -89,7 +85,7 @@ const Login = () => {
             setErrorMsg("Account already registered with this email!!");
           }
           setSignedUp(false);
-          showToastMessage();
+
           // setErrorMsg(errorMessage);
         });
     } else {
@@ -102,8 +98,6 @@ const Login = () => {
           const user = userCredential.user;
         })
         .catch((error) => {
-          showToastMessage();
-
           const errorCode = error.code;
           console.log(errorCode);
 
@@ -117,10 +111,12 @@ const Login = () => {
 
   return (
     <div className="w-full ">
-      <ToastContainer />
-
       <div className="absolute left-0 bg-gradient-to-b from-black z-20 top-0 ">
-        <img className="w-32 lg:w-56" src={NetflixLogo} alt="netflix-logo" />
+        <img
+          className="w-32 lg:w-48 animate-bounce"
+          src={NetflixLogo}
+          alt="netflix-logo"
+        />
       </div>
       <img
         className="h-screen w-full md:hidden "
@@ -137,6 +133,8 @@ const Login = () => {
       <form
         className="absolute bottom-36 w-full md:bottom-24 right-0 left-0 m-auto lg:w-1/3  bg bg-black  opacity-90 rounded-lg p-4 hover:cursor-pointer"
         onSubmit={(e) => e.preventDefault()}
+        data-aos="zoom-in"
+        data-aos-delay="100"
       >
         <h1 className=" text-white m-2 p-2 text-2xl">
           {newUser ? "Sign Up" : "Sign In"}

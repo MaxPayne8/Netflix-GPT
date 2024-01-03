@@ -2,13 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-// import Aos from "aos";
-// import "aos/dist/aos.css";
-// import { useEffect } from "react";
-// useEffect(() => {
-//     Aos.init();
-//   }, []);
-// data-aos="fade-down"
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
@@ -27,14 +20,15 @@ const MovieTitle = ({ title, overview, id }) => {
   console.log(finalMov);
   return (
     <div
-      data-aos="zoom-out"
+      data-aos="zoom-in"
+      data-aos-delay="100"
       className="absolute top-[320px] text-sm  md:-mt-[530px]   w-screen md:w-full   aspect-video md:pt-[25%] pl-4 md:pl-8 bg-gradient-to-b from-black  text-white "
     >
       <h1 className="font-bold overflow-hidden text-xl text-red-800 mt-1 md:mt-0 md:text-5xl mb-2">
         {title}
       </h1>
 
-      <p className="font-semibold md:w-[60%]   md:h-auto md:text-base">
+      <p className="font-semibold md:w-[60%] w-[90%]  md:h-auto md:text-base">
         {newOverview}..
       </p>
       <Link to={"/browse/moreinfo/" + id}>

@@ -1,15 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
-import MovieCard from "./MovieCard";
-import { Link } from "react-router-dom";
 import MovieList from "./MovieList";
 
 const GptMovieSuggestions = () => {
-  // const [showResults, setShowResults] = useState(false);
   const gptMov = useSelector((store) => store.gptMovies?.gMovies);
   const tmdbMov = useSelector((store) => store.gptMovies?.tmdbMov);
-  // if (tmdbMov?.length === 20) setShowResults(true);
+
   console.log(gptMov);
   console.log(tmdbMov);
 

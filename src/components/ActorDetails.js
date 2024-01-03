@@ -8,11 +8,12 @@ import {
   addActorTv,
 } from "../utils/moviesSlice";
 import { useNavigate } from "react-router-dom";
-import MovieList from "./MovieList";
-import MovieCard from "./MovieCard";
+
 import PureTvList from "./PureTvList";
 import PureMovieList from "./PureMovieList";
 import Spinner from "./Spinner";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const ActorDetails = () => {
   //   const history = unstable_HistoryRouter();
@@ -94,7 +95,7 @@ const ActorDetails = () => {
   } = details;
 
   return (
-    <div className="bg-black">
+    <div className="bg-black " data-aos="zoom-in" data-aos-delay="100">
       {spinner ? (
         <Spinner />
       ) : (

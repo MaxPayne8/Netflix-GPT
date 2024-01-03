@@ -11,10 +11,14 @@ import { changeLang } from "../utils/langSlice";
 import openai from "../utils/openai";
 import { addGptMovies } from "../utils/gptSlice";
 import GptMovieSuggestions from "./GptMovieSuggestions";
-import Spinner from "./Spinner";
+
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const GptSearchPage = () => {
-  const [spinner, setSpinner] = useState(true);
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   const [shimmer, setShimmer] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
@@ -24,11 +28,6 @@ const GptSearchPage = () => {
     dispatch(changeLang(e.target.value));
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setSpinner(false);
-    }, 200);
-  });
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -99,85 +98,81 @@ const GptSearchPage = () => {
   console.log(gptMov);
   console.log(tmdbMov);
   return (
-    <div className="bg-black">
-      {spinner ? (
-        <Spinner />
-      ) : (
-        <div className="relative">
-          <Link to="/browse">
-            <div className="absolute left-0 bg-gradient-to-b from-black z-20 top-0 ">
-              <img
-                className="w-32 lg:w-56"
-                src={NetflixLogo}
-                alt="netflix-logo"
-              />
-            </div>
-          </Link>
-          <img
-            className="h-[1000px] w-screen lg:h-0  lg:w-0 "
-            src="https://cdn.wallpapersafari.com/38/56/l4yXvN.jpg"
-            alt="gpt-background"
-          ></img>
-          <img
-            className="h-0  lg:w-screen lg:h-[1050px]"
-            src="https://xmple.com/wallpaper/black-sunburst-burst-shadow-red-rays-3840x2160-c2-000000-ff0000-k2-50-50-l3-26-0-18-a2-6-225-f-23.svg"
-            alt="gpt-background"
-          ></img>
-
-          <Link to="/browse">
-            <button className="bg-violet-700 absolute  right-1 z-20 font-semibold hover:bg-violet-800 hover:border-2 text-white  md:left-[1050px] md:w-56 w-56 top-[82px] rounded-lg p-2">
-              {langConst[currLang].button}
-            </button>
-          </Link>
-          <select
-            className="absolute z-20 top-[85px] md:top-4 p-2  bg-violet-700 rounded-lg  hover:bg-violet-800 hover:cursor-pointer hover:border-2 text-white left-6 md:left-[1100px]"
-            onChange={getCurrentLang}
-          >
-            {supportedLang.map((lang) => (
-              <option key={lang.identifier} value={lang.identifier}>
-                {lang.name}
-              </option>
-            ))}
-          </select>
-
-          <div className="absolute z-20  top-52 md:top-36 text-white text-sm md:text-base border-2 border-white bg-violet-800 p-4 rounded-2xl mx-auto ml-0 mr-0">
-            <p>{langConst[currLang].aboutGpt}</p>
+    <div className="bg-black" data-aos="zoom-out" data-aos-delay="100">
+      <div className="relative">
+        <Link to="/browse">
+          <div className="absolute left-0 bg-gradient-to-b from-black z-20 top-0 ">
+            <img
+              className="w-32 lg:w-56"
+              src={NetflixLogo}
+              alt="netflix-logo"
+            />
           </div>
+        </Link>
+        <img
+          className="h-[1000px] w-screen lg:h-0  lg:w-0 "
+          src="https://cdn.wallpapersafari.com/38/56/l4yXvN.jpg"
+          alt="gpt-background"
+        ></img>
+        <img
+          className="h-0  lg:w-screen lg:h-[1050px]"
+          src="https://xmple.com/wallpaper/black-sunburst-burst-shadow-red-rays-3840x2160-c2-000000-ff0000-k2-50-50-l3-26-0-18-a2-6-225-f-23.svg"
+          alt="gpt-background"
+        ></img>
 
-          <form
-            className="absolute z-20    md:w-[600px] h-[80px] text-center top-[400px] md:top-60 mx-auto left-0 right-0 rounded-lg bg-gray-950"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              className=" w-[355px] md:w-[400px] p-2 h-9 mt-6 text-sm md:text-base rounded-lg font-semibold"
-              placeholder={langConst[currLang].gptPlaceholder}
-              ref={searchTxt}
-            ></input>
-            <button
-              className="bg-red-700 rounded-lg font-semibold hover:bg-red-600 w-24 p-2 mt-6 md:ml-4"
-              onClick={handleClick}
-            >
-              {langConst[currLang].search}
-            </button>
-          </form>
+        <Link to="/browse">
+          <button className="bg-violet-700 absolute  right-1 z-20 font-semibold hover:bg-violet-800 hover:border-2 text-white  md:left-[1050px] md:w-56 w-56 top-[82px] rounded-lg p-2">
+            {langConst[currLang].button}
+          </button>
+        </Link>
+        <select
+          className="absolute z-20 top-[85px] md:top-4 p-2  bg-violet-700 rounded-lg  hover:bg-violet-800 hover:cursor-pointer hover:border-2 text-white left-6 md:left-[1100px]"
+          onChange={getCurrentLang}
+        >
+          {supportedLang.map((lang) => (
+            <option key={lang.identifier} value={lang.identifier}>
+              {lang.name}
+            </option>
+          ))}
+        </select>
 
-          {shimmer && (
-            <div className="  absolute top-[550px]  md:top-[340px] left-0 right-0 mx-auto p-2 text-sm md:text-2xl rounded-lg bg-blue-900 text-white   ">
-              <h1 className="text-center">🚀🚀🚀 PLEASE WAIT...🚀🚀🚀</h1>
-            </div>
-          )}
-
-          {showInfo && (
-            <div className="absolute top-[550px] md:top-[340px] left-0 right-0 mx-auto p-2 text-sm md:text-2xl bg-red-700 text-white rounded-lg ">
-              <h1 className="text-center">
-                Here are some recommended results according to your query...
-              </h1>
-            </div>
-          )}
-
-          {setShowMovies && <GptMovieSuggestions />}
+        <div className="absolute z-20  top-52 md:top-36 text-white text-sm md:text-base border-2 border-white bg-violet-800 p-4 rounded-2xl mx-auto ml-0 mr-0">
+          <p>{langConst[currLang].aboutGpt}</p>
         </div>
-      )}
+
+        <form
+          className="absolute z-20    md:w-[600px] h-[80px] text-center top-[400px] md:top-60 mx-auto left-0 right-0 rounded-lg bg-gray-950"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <input
+            className=" w-[355px] md:w-[400px] p-2 h-9 mt-6 text-sm md:text-base rounded-lg font-semibold"
+            placeholder={langConst[currLang].gptPlaceholder}
+            ref={searchTxt}
+          ></input>
+          <button
+            className="bg-red-700 rounded-lg font-semibold hover:bg-red-600 w-24 p-2 mt-6 md:ml-4"
+            onClick={handleClick}
+          >
+            {langConst[currLang].search}
+          </button>
+        </form>
+
+        {shimmer && (
+          <div className="  absolute top-[550px]  md:top-[340px] left-0 right-0 mx-auto p-2 text-sm md:text-2xl rounded-lg bg-blue-900 text-white   ">
+            <h1 className="text-center">🚀🚀🚀 PLEASE WAIT...🚀🚀🚀</h1>
+          </div>
+        )}
+
+        {showInfo && (
+          <div className="absolute top-[550px] md:top-[340px] left-0 right-0 mx-auto p-2 text-sm md:text-2xl bg-red-700 text-white rounded-lg ">
+            <h1 className="text-center">
+              Here are some recommended results according to your query...
+            </h1>
+          </div>
+        )}
+
+        {setShowMovies && <GptMovieSuggestions />}
+      </div>
     </div>
   );
 };

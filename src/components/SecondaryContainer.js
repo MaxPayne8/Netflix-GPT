@@ -44,7 +44,7 @@ const SecondaryContainer = () => {
 
   return (
     <div className=" w-full " data-aos="fade-down">
-      <div className="relative mt-[370px]  md:-mt-[200px] ml-5">
+      <div className="relative mt-[370px]  md:-mt-[200px] ">
         <MovieList movList={trending} title="Trending Movies and TV Shows" />
         <PureMovieList movList={nowPlaying} title="Now Playing Movies" />
         <PureTvList movList={nowPlayingTv} title="Now Playing Tv Shows" />

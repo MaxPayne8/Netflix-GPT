@@ -3,18 +3,22 @@ import React, { useEffect, useRef, useState } from "react";
 import { auth } from "../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
-import MovieList from "./MovieList";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import { Link } from "react-router-dom";
 import { API_TMDB_OPTIONS, NetflixLogo } from "../utils/constants";
 import { addMovie } from "../utils/moviesSlice";
-import MovieCard from "./MovieCard";
 import MovieCard1 from "./MovieCard1";
 import Header from "./Header";
 import Spinner from "./Spinner";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Browse = () => {
+  useEffect(() => {
+    Aos.init();
+  });
+
   function disableBackButton() {
     window.history.pushState(null, "", window.location.href);
     window.onpopstate = function () {
@@ -25,7 +29,7 @@ const Browse = () => {
     disableBackButton();
     setTimeout(() => {
       setSpinner(false);
-    }, 500);
+    }, 100);
   }, []);
 
   const dispatch = useDispatch();
@@ -149,7 +153,11 @@ const Browse = () => {
           )}
 
           {
-            <div className="bg-red-800 z-20 relative text-white p-2">
+            <div
+              className="bg-red-800 z-20 relative text-white p-2"
+              data-aos="zoom-in"
+              data-aos-delay="100"
+            >
               <button
                 className="bg-violet-700 mt-1 text-center p-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 block text-white  rounded-lg "
                 onClick={() => {
