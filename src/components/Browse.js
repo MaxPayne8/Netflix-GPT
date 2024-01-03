@@ -76,7 +76,7 @@ const Browse = () => {
   };
 
   return (
-    <div className="bg-black">
+    <div className="bg-black ">
       {spinner ? (
         <Spinner />
       ) : (
@@ -105,7 +105,7 @@ const Browse = () => {
               , try our all new Movies and TvShows suggestion AI!!
             </h1>
             <Link to="/browse/gptsearch">
-              <button className="bg-violet-700 z-10 font-semibold hover:bg-violet-600 hover:border-2 text-white absolute md:right-[100px] top-[255px] right-0 md:ml-0 md:top-4 rounded-lg p-2">
+              <button className="bg-violet-700 z-10 font-semibold hover:bg-violet-600 hover:border-2 text-white absolute md:right-[100px] top-[255px] right-0 md:ml-0 md:top-4 rounded-lg p-2 animate-bounce">
                 Go to Gpt-Search
               </button>
             </Link>
