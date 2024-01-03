@@ -17,7 +17,7 @@ import "aos/dist/aos.css";
 const Browse = () => {
   useEffect(() => {
     Aos.init();
-  });
+  }, []);
 
   function disableBackButton() {
     window.history.pushState(null, "", window.location.href);
@@ -156,7 +156,6 @@ const Browse = () => {
             <div
               className="bg-red-800 z-20 relative text-white p-2"
               data-aos="zoom-in"
-              data-aos-delay="100"
             >
               <button
                 className="bg-violet-700 mt-1 text-center p-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 block text-white  rounded-lg "

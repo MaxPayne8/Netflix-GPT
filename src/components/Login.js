@@ -25,7 +25,7 @@ const Login = () => {
   const name = useRef(null);
   useEffect(() => {
     Aos.init();
-  });
+  }, []);
 
   const toggleSignInform = () => {
     setNewUser(!newUser);

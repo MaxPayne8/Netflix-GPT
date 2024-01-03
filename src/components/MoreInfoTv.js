@@ -27,7 +27,7 @@ const MoreInfoTv = () => {
   useTvTrailer(movId);
   useEffect(() => {
     Aos.init();
-  });
+  }, []);
   var settings = {
     dots: true,
     infinite: true,
@@ -158,11 +158,7 @@ const MoreInfoTv = () => {
 
   //
   return (
-    <div
-      className="bg-black overflow-x-hidden"
-      data-aos="zoom-in"
-      data-aos-delay="100"
-    >
+    <div className="bg-black overflow-x-hidden" data-aos="zoom-in">
       {spinner ? (
         <Spinner />
       ) : (
@@ -190,18 +186,13 @@ const MoreInfoTv = () => {
 
             <div>
               <ul className="text-gray-300">
-                <div
-                  className=" md:flex justify-between"
-                  data-aos="zoom-in"
-                  data-aos-delay="100"
-                >
+                <div className=" md:flex justify-between" data-aos="zoom-in">
                   <li className="md:ml-[70px] p-1 text-red-600  mt-8 md:mt-10">
                     Official Poster
                   </li>
                   <li
                     className="   md:mr-[350px] text-red-600 p-1 mt-96 md:mt-10"
                     data-aos="zoom-in"
-                    data-aos-delay="100"
                   >
                     Official Trailer
                   </li>
@@ -213,7 +204,6 @@ const MoreInfoTv = () => {
                       src={ImgCDN + poster_path}
                       alt="movie-poster"
                       data-aos="zoom-in"
-                      data-aos-delay="100"
                     />
                   </li>
 
@@ -221,7 +211,6 @@ const MoreInfoTv = () => {
                     <iframe
                       className=" mt-2   md:mt-0 md:ml-[350px] w-[100%] md:w-[600px] border-4 border-red-700  aspect-video "
                       data-aos="zoom-in"
-                      data-aos-delay="100"
                       src={
                         "https://www.youtube.com/embed/" +
                         trailerInfo?.key +
@@ -233,79 +222,75 @@ const MoreInfoTv = () => {
                     ></iframe>
                   </li>
                 </div>
-                <li className="p-2 " data-aos="fade-down" data-aos-delay="100">
+                <li className="p-2 " data-aos="fade-down">
                   <span className="text-red-600">Title: </span>
                   {name}
                 </li>
-                <li className="p-2 " data-aos="fade-down" data-aos-delay="100">
+                <li className="p-2 " data-aos="fade-down">
                   <span className="text-red-600">Overview:</span> {overview}
                 </li>
-                <li className="p-2 " data-aos="fade-down" data-aos-delay="100">
+                <li className="p-2 " data-aos="fade-down">
                   <span className="text-red-600">Cast: </span>
                   {actorsName}
                 </li>
-                <li className="p-2 " data-aos="fade-down" data-aos-delay="100">
+                <li className="p-2 " data-aos="fade-down">
                   <span className="text-red-600">Total Seasons:</span>{" "}
                   {number_of_seasons}
                 </li>
-                <li className="p-2 " data-aos="fade-down" data-aos-delay="100">
+                <li className="p-2 " data-aos="fade-down">
                   <span className="text-red-600">Total Episodes:</span>{" "}
                   {number_of_episodes}
                 </li>
 
-                <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+                <li className="p-2" data-aos="fade-down">
                   <span className="text-red-600">Episode Runtime:</span>{" "}
                   {episode_run_time?.map((e) => e)} minutes
                 </li>
 
-                <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+                <li className="p-2" data-aos="fade-down">
                   <span className="text-red-600">Geners:</span>{" "}
                   {genres?.map((mov) => mov.name).join(" , ")}
                 </li>
                 {homepage && (
-                  <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+                  <li className="p-2" data-aos="fade-down">
                     <span className="text-red-600">Tv Show Site:</span>{" "}
                     <Link to={homepage} className="p-1 rounded-lg bg-red-700">
                       Go to original site
                     </Link>
                   </li>
                 )}
-                <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+                <li className="p-2" data-aos="fade-down">
                   <span className="text-red-600">Production Companies: </span>
                   {networks?.map((e) => e.name).join(" , ")}
                 </li>
                 {production_countries && (
-                  <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+                  <li className="p-2" data-aos="fade-down">
                     <span className="text-red-600">Production Countries: </span>
                     {production_countries?.map((e) => e.name).join(" , ")}
                   </li>
                 )}
-                <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+                <li className="p-2" data-aos="fade-down">
                   <span className="text-red-600">Release Date: </span>
                   {first_air_date}
                 </li>
-                <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+                <li className="p-2" data-aos="fade-down">
                   <span className="text-red-600">Spoken Languages: </span>
                   {spoken_languages?.map((e) => e.english_name).join(" , ")}
                 </li>
                 {tagline && (
-                  <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+                  <li className="p-2" data-aos="fade-down">
                     <span className="text-red-600">Tagline: </span>
                     {tagline}
                   </li>
                 )}
-                <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+                <li className="p-2" data-aos="fade-down">
                   <span className="text-red-600">Rating:</span> {vote_average}⭐
                   out of 10
                 </li>
                 {review?.length
                   ? review?.map((review) => (
                       <div>
-                        <li
-                          className="p-2"
-                          data-aos="fade-down"
-                          data-aos-delay="100"
-                        >
+                        <li className="p-2" data-aos="fade-down">
                           {" "}
                           {review?.author ? (
                             <h1 className="text-white">
@@ -316,11 +301,7 @@ const MoreInfoTv = () => {
                             </h1>
                           ) : null}
                         </li>
-                        <li
-                          className="p-2"
-                          data-aos="fade-down"
-                          data-aos-delay="100"
-                        >
+                        <li className="p-2" data-aos="fade-down">
                           {" "}
                           {review?.content ? (
                             <h1 className="text-white">
@@ -339,38 +320,34 @@ const MoreInfoTv = () => {
               <h1
                 className="text-red-600 ml-3 mt-4 text-2xl text-center"
                 data-aos="fade-down"
-                data-aos-delay="100"
               >
                 Cast
               </h1>
             ) : null}
-            <Slider
-              {...settings}
-              className="w-[85%] md:w-[90%] mx-auto"
-              data-aos="fade-down"
-              data-aos-delay="100"
-            >
-              {actors?.map(
-                (actor) =>
-                  actor.profile_path &&
-                  actor.character.length && (
-                    <Link to={"/browse/actor/" + actor.id}>
-                      <div className="m-2    ">
-                        <MovieCard posterId={actor.profile_path} />
+            <div className="w-[85%] md:w-[90%] mx-auto" data-aos="fade-down">
+              <Slider {...settings}>
+                {actors?.map(
+                  (actor) =>
+                    actor.profile_path &&
+                    actor.character.length && (
+                      <Link to={"/browse/actor/" + actor.id}>
+                        <div className="m-2    ">
+                          <MovieCard posterId={actor.profile_path} />
 
-                        <h1 className="text-white  text-center">
-                          {actor.name}
-                        </h1>
+                          <h1 className="text-white  text-center">
+                            {actor.name}
+                          </h1>
 
-                        <h1 className="text-white text-center">As</h1>
-                        <h1 className="text-red-700 text-center">
-                          "{actor.character}"
-                        </h1>
-                      </div>
-                    </Link>
-                  )
-              )}
-            </Slider>
+                          <h1 className="text-white text-center">As</h1>
+                          <h1 className="text-red-700 text-center">
+                            "{actor.character}"
+                          </h1>
+                        </div>
+                      </Link>
+                    )
+                )}
+              </Slider>
+            </div>
 
             {infoSimilarMovies?.length ? (
               <PureTvList

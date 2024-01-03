@@ -9,7 +9,7 @@ import { useEffect } from "react";
 const MovieTitle = ({ title, overview, id }) => {
   useEffect(() => {
     Aos.init();
-  });
+  }, []);
 
   const getMov = useSelector((store) => store.movie.nowPlayingMovies);
 
@@ -21,7 +21,6 @@ const MovieTitle = ({ title, overview, id }) => {
   return (
     <div
       data-aos="zoom-in"
-      data-aos-delay="100"
       className="absolute top-[320px] text-sm  md:-mt-[530px]   w-screen md:w-full   aspect-video md:pt-[25%] pl-4 md:pl-8 bg-gradient-to-b from-black  text-white "
     >
       <h1 className="font-bold overflow-hidden text-xl text-red-800 mt-1 md:mt-0 md:text-5xl mb-2">

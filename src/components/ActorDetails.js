@@ -16,8 +16,10 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 
 const ActorDetails = () => {
-  //   const history = unstable_HistoryRouter();
   const [spinner, setSpinner] = useState(true);
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   let navigate = useNavigate();
   const dispatch = useDispatch();
@@ -95,7 +97,7 @@ const ActorDetails = () => {
   } = details;
 
   return (
-    <div className="bg-black " data-aos="zoom-in" data-aos-delay="100">
+    <div className="bg-black " data-aos="zoom-in">
       {spinner ? (
         <Spinner />
       ) : (

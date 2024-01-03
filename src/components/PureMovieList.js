@@ -10,7 +10,7 @@ import Slider from "react-slick";
 const PureMovieList = ({ movList, title }) => {
   useEffect(() => {
     Aos.init();
-  });
+  }, []);
 
   var settings = {
     dots: true,
@@ -39,7 +39,7 @@ const PureMovieList = ({ movList, title }) => {
   };
 
   return (
-    <div className="my-4" data-aos="fade-down" data-aos-delay="100">
+    <div className="my-4" data-aos="fade-down">
       <h1 className="text-white text-center text-base md:text-3xl">{title}</h1>
       <Slider {...settings} className="w-[85%] sm:w-[90%] mx-auto">
         {movList?.map((mov) => (

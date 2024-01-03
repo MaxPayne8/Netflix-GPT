@@ -22,7 +22,7 @@ import Slider from "react-slick";
 const MoreInfo = () => {
   useEffect(() => {
     Aos.init();
-  });
+  }, []);
 
   var settings = {
     dots: true,
@@ -159,11 +159,7 @@ const MoreInfo = () => {
 
   //
   return (
-    <div
-      className="bg-black overflow-x-hidden"
-      data-aos="zoom-in"
-      data-aos-delay="100"
-    >
+    <div className="bg-black overflow-x-hidden" data-aos="zoom-in">
       {spinner ? (
         <Spinner />
       ) : (
@@ -194,14 +190,12 @@ const MoreInfo = () => {
                 <li
                   className="md:ml-[70px] p-1 text-red-600  mt-8 md:mt-10"
                   data-aos="zoom-in"
-                  data-aos-delay="100"
                 >
                   Official Poster
                 </li>
                 <li
                   className="   md:mr-[350px] text-red-600 p-1 mt-96 md:mt-10"
                   data-aos="zoom-in"
-                  data-aos-delay="100"
                 >
                   Official Trailer
                 </li>
@@ -211,7 +205,6 @@ const MoreInfo = () => {
                   <img
                     className="p-2 top-60  md:top-0 absolute md:relative ml-0 md:ml-2 border-4 border-red-700"
                     data-aos="zoom-in"
-                    data-aos-delay="100"
                     src={ImgCDN + poster_path}
                     alt="movie-poster"
                   />
@@ -221,7 +214,6 @@ const MoreInfo = () => {
                   <iframe
                     className=" mt-2   md:mt-0 md:ml-[350px] w-[100%] md:w-[600px] border-4 border-red-700  aspect-video "
                     data-aos="zoom-in"
-                    data-aos-delay="100"
                     src={
                       "https://www.youtube.com/embed/" +
                       trailerInfo?.key +
@@ -234,68 +226,68 @@ const MoreInfo = () => {
                 </li>
               </div>
 
-              <li className="p-2 " data-aos="fade-down" data-aos-delay="100">
+              <li className="p-2 " data-aos="fade-down">
                 <span className="text-red-600">Title: </span>
                 {original_title}
               </li>
-              <li className="p-2 " data-aos="fade-down" data-aos-delay="100">
+              <li className="p-2 " data-aos="fade-down">
                 <span className="text-red-600">Overview:</span> {overview}
               </li>
-              <li className="p-2 " data-aos="fade-down" data-aos-delay="100">
+              <li className="p-2 " data-aos="fade-down">
                 <span className="text-red-600">Cast: </span>
                 {actorsName}
               </li>
 
-              <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+              <li className="p-2" data-aos="fade-down">
                 <span className="text-red-600">Geners:</span>{" "}
                 {genres?.map((mov) => mov.name).join(" , ")}
               </li>
-              <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+              <li className="p-2" data-aos="fade-down">
                 <span className="text-red-600">Budget:</span> {budget / 1000000}{" "}
                 Million Dollars
               </li>
               {homepage && (
-                <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+                <li className="p-2" data-aos="fade-down">
                   <span className="text-red-600">Movie Site:</span>{" "}
                   <Link to={homepage} className="p-1 rounded-lg bg-red-700">
                     Go to original site
                   </Link>
                 </li>
               )}
-              <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+              <li className="p-2" data-aos="fade-down">
                 <span className="text-red-600">Production Companies: </span>
                 {production_companies?.map((e) => e.name).join(" , ")}
               </li>
-              <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+              <li className="p-2" data-aos="fade-down">
                 <span className="text-red-600">Production Countries: </span>
                 {production_countries?.map((e) => e.name).join(" , ")}
               </li>
-              <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+              <li className="p-2" data-aos="fade-down">
                 <span className="text-red-600">Release Date: </span>
                 {release_date}
               </li>
-              <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+              <li className="p-2" data-aos="fade-down">
                 <span className="text-red-600">Revenue:</span>{" "}
                 {revenue / 1000000} Million Dollars
               </li>
-              <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+              <li className="p-2" data-aos="fade-down">
                 <span className="text-red-600">Runtime:</span> {runtime} minutes
               </li>
-              <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+              <li className="p-2" data-aos="fade-down">
                 <span className="text-red-600">Spoken Languages: </span>
                 {spoken_languages?.map((e) => e.english_name).join(" , ")}
               </li>
-              <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+              <li className="p-2" data-aos="fade-down">
                 <span className="text-red-600">Tagline: </span>
                 {tagline}
               </li>
-              <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+              <li className="p-2" data-aos="fade-down">
                 <span className="text-red-600">Rating:</span> {vote_average}⭐
                 out of 10
               </li>
               {review?.map((review) => (
                 <div>
-                  <li className="p-2" data-aos="fade-down" data-aos-delay="100">
+                  <li className="p-2" data-aos="fade-down">
                     {" "}
                     {review?.author ? (
                       <h1 className="text-white">
@@ -304,11 +296,7 @@ const MoreInfo = () => {
                       </h1>
                     ) : null}
                   </li>
-                  <li
-                    className="p-2 break-words"
-                    data-aos="fade-down"
-                    data-aos-delay="100"
-                  >
+                  <li className="p-2 break-words" data-aos="fade-down">
                     {" "}
                     {review?.content ? (
                       <h1 className="text-white break-words">
@@ -326,36 +314,34 @@ const MoreInfo = () => {
             <h1
               className="text-red-600 ml-3 mt-4 text-2xl text-center"
               data-aos="fade-down"
-              data-aos-delay="100"
             >
               Cast
             </h1>
           ) : null}
-          <Slider
-            {...settings}
-            data-aos="fade-down"
-            data-aos-delay="100"
-            className="w-[85%] md:w-[90%] mx-auto"
-          >
-            {actors?.map(
-              (actor) =>
-                actor.profile_path &&
-                actor.character.length && (
-                  <Link to={"/browse/actor/" + actor.id}>
-                    <div className="m-2    ">
-                      <MovieCard posterId={actor.profile_path} />
+          <div className="w-[85%] md:w-[90%] mx-auto" data-aos="fade-down">
+            <Slider {...settings}>
+              {actors?.map(
+                (actor) =>
+                  actor.profile_path &&
+                  actor.character.length && (
+                    <Link to={"/browse/actor/" + actor.id}>
+                      <div className="m-2    ">
+                        <MovieCard posterId={actor.profile_path} />
 
-                      <h1 className="text-white  text-center">{actor.name}</h1>
+                        <h1 className="text-white  text-center">
+                          {actor.name}
+                        </h1>
 
-                      <h1 className="text-white text-center">As</h1>
-                      <h1 className="text-red-700 text-center">
-                        "{actor.character}"
-                      </h1>
-                    </div>
-                  </Link>
-                )
-            )}
-          </Slider>
+                        <h1 className="text-white text-center">As</h1>
+                        <h1 className="text-red-700 text-center">
+                          "{actor.character}"
+                        </h1>
+                      </div>
+                    </Link>
+                  )
+              )}
+            </Slider>
+          </div>
 
           {infoSimilarMovies?.length ? (
             <PureMovieList movList={infoSimilarMovies} title="Similar Movies" />
