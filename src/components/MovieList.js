@@ -11,12 +11,20 @@ const MovieList = ({ movList, title }) => {
   useEffect(() => {
     Aos.init();
   }, []);
+
+  var movies = 6;
+  if (movList?.length === 5) movies = 5;
+  else if (movList?.length === 4) movies = 4;
+  else if (movList?.length === 3) movies = 3;
+  else if (movList?.length === 2) movies = 2;
+  else if (movList?.length === 1) movies = 1;
+
   var settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 3,
+    slidesToShow: movies,
+    slidesToScroll: movies / 2,
     initialSlide: 0,
     responsive: [
       {

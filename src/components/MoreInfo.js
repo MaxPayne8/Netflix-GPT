@@ -23,13 +23,27 @@ const MoreInfo = () => {
   useEffect(() => {
     Aos.init();
   }, []);
+  const actors = useSelector((store) => store.movie?.actors);
+  var count = 0;
+
+  for (var i = 0; i < actors?.length; i++) {
+    if (actors[i]?.profile_path) count++;
+  }
+
+  var movies = 6;
+  if (count === 5) movies = 5;
+  else if (count === 4) movies = 4;
+  else if (count === 3) movies = 3;
+  else if (count === 2) movies = 2;
+  else if (count === 1) movies = 1;
+  console.log(count);
 
   var settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 3,
+    slidesToShow: movies,
+    slidesToScroll: movies / 2,
     initialSlide: 0,
     responsive: [
       {
@@ -125,7 +139,7 @@ const MoreInfo = () => {
   const info = useSelector((store) => store.movie?.moreInfo);
   const infoSimilarMovies = useSelector((store) => store.movie.similarMovies);
   const review = useSelector((store) => store.movie?.review);
-  const actors = useSelector((store) => store.movie?.actors);
+
   console.log(review);
   console.log(info);
   console.log(infoSimilarMovies);
