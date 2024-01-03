@@ -10,7 +10,7 @@ import {
 } from "../utils/moviesSlice";
 
 import MovieCard from "./MovieCard";
-import useGetTrailer from "../hooks/useTvTrailer";
+
 import useTvTrailer from "../hooks/useTvTrailer";
 import PureTvList from "./PureTvList";
 import Spinner from "./Spinner";

@@ -1,19 +1,15 @@
-import React, { useRef } from "react";
-
 import MovieCard from "./MovieCard";
 import { Link } from "react-router-dom";
-import { useIsVisible } from "../hooks/useIsVisible";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const PureTvList = ({ movList, title }) => {
-  const ref3 = useRef();
-  const isVisible3 = useIsVisible(ref3);
+  useEffect(() => {
+    Aos.init();
+  });
   return (
-    <div
-      ref={ref3}
-      className={`transition-opacity ease-in duration-700 ${
-        isVisible3 ? "opacity-100" : "opacity-0"
-      }`}
-    >
+    <div className="my-4" data-aos="fade-down">
       <h1 className="text-white ml-3 text-3xl">{title}</h1>
       <div className="flex  overflow-x-scroll no-scrollbar ">
         {movList?.map((mov) => (

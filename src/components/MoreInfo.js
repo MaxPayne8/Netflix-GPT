@@ -9,8 +9,6 @@ import {
   addSimilarMovies,
 } from "../utils/moviesSlice";
 
-//checkingGitPushTo
-
 import MovieCard from "./MovieCard";
 import useGetTrailer from "../hooks/useGetTrailer";
 import PureMovieList from "./PureMovieList";
