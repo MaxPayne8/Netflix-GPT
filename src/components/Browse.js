@@ -127,14 +127,9 @@ const Browse = () => {
           >
             <input
               ref={searchTxt}
-              placeholder="Search Database.."
-              className="border-2 p-2 mx-2 rounded-lg border-black w-56"
+              placeholder="Search Movies,TV Shows, Actors.."
+              className="border-2 p-2  rounded-lg  border-black  w-80 animate-pulse"
             ></input>
-            {/* <Link to="/browse/results"> */}
-            <button className="bg-black hover:bg-red-600 text-white p-2 rounded-lg ">
-              Search
-            </button>
-            {/* </Link> */}
           </form>
           <MainContainer />
           {showSecCont ? (
