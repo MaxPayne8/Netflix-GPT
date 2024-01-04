@@ -20,10 +20,10 @@ const useTvTrailer = (movId) => {
     const dataa = json.results;
     const trailerVid = dataa?.filter((vid) => vid?.type === "Trailer");
 
-    console.log(dataa);
-    console.log(trailerVid);
+    //console.log(dataa);
+    //console.log(trailerVid);
     const finalTrailer = trailerVid[0] || trailerVid[1];
-    console.log(finalTrailer);
+    //console.log(finalTrailer);
     dispatch(addTrailer(finalTrailer));
   };
   useEffect(() => {

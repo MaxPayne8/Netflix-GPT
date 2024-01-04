@@ -32,7 +32,7 @@ const GptSearchPage = () => {
     window.scrollTo(0, 0);
   });
   const currLang = useSelector((store) => store.language.lang);
-  console.log(currLang);
+  //console.log(currLang);
 
   const searchTxt = useRef(null);
 
@@ -44,7 +44,7 @@ const GptSearchPage = () => {
       API_TMDB_OPTIONS
     );
     const json = await data.json();
-    console.log(json);
+    //console.log(json);
 
     return json.results;
   };
@@ -68,12 +68,12 @@ const GptSearchPage = () => {
     }
 
     const gptResults = chatCompletion.choices;
-    console.log(finalSearchQuery);
-    console.log(gptResults);
+    //console.log(finalSearchQuery);
+    //console.log(gptResults);
     const finalMov = gptResults?.[0]?.message?.content;
     const finalMovArray = finalMov.split(",");
-    console.log(finalMov);
-    console.log(finalMovArray);
+    //console.log(finalMov);
+    //console.log(finalMovArray);
     const promiseArray = finalMovArray?.map((mov) => tmdbResults(mov));
     const tmdbMovies = await Promise.all(promiseArray);
     // const mainTmdbMovies = tmdbMovies.map((list) => list[0]);
@@ -83,8 +83,8 @@ const GptSearchPage = () => {
     if (tmdbMovies.length) setShowInfo(true);
     if (tmdbMovies.length) setShowMovies(true);
 
-    console.log(tmdbMovies);
-    console.log(mainTmdbMovies);
+    //console.log(tmdbMovies);
+    //console.log(mainTmdbMovies);
     dispatch(
       addGptMovies({
         gptMovies: finalMovArray,
@@ -95,8 +95,8 @@ const GptSearchPage = () => {
 
   const gptMov = useSelector((store) => store.gptMovies.gMovies);
   const tmdbMov = useSelector((store) => store.gptMovies.tmdbMov);
-  console.log(gptMov);
-  console.log(tmdbMov);
+  //console.log(gptMov);
+  //console.log(tmdbMov);
   return (
     <div className="bg-black" data-aos="zoom-out" data-aos-delay="100">
       <div className="relative">

@@ -52,7 +52,7 @@ const Login = () => {
           setSignedUp(true);
           const user = userCredential.user;
 
-          console.log(user);
+          //console.log(user);
 
           updateProfile(user, {
             displayName: name.current.value,
@@ -99,7 +99,7 @@ const Login = () => {
         })
         .catch((error) => {
           const errorCode = error.code;
-          console.log(errorCode);
+          //console.log(errorCode);
 
           if (errorCode === "auth/invalid-login-credentials")
             setErrorMsg(
