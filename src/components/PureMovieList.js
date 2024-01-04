@@ -12,25 +12,42 @@ const PureMovieList = ({ movList, title }) => {
     Aos.init();
   }, []);
 
+  var movies = 6,
+    movTab = 4,
+    movMob = 2;
+  if (movList?.length === 5) movies = 5;
+  else if (movList?.length === 4) movies = 4;
+  else if (movList?.length === 3) {
+    movies = 3;
+    movTab = 3;
+  } else if (movList?.length === 2) {
+    movies = 2;
+    movTab = 2;
+  } else if (movList?.length === 1) {
+    movies = 1;
+    movTab = 1;
+    movMob = 1;
+  }
+
   var settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 3,
+    slidesToShow: movies,
+    slidesToScroll: movies / 2,
     initialSlide: 0,
     responsive: [
       {
         breakpoint: 900,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
+          slidesToShow: movTab,
+          slidesToScroll: movTab / 2,
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToShow: movMob,
+          slidesToScroll: movMob / 2,
         },
       },
     ],
