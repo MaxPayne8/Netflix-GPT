@@ -24,22 +24,31 @@ const MoreInfo = () => {
     Aos.init();
   }, []);
   const actors = useSelector((store) => store.movie?.actors);
-  var count = 0;
+  var count = 0,
+    movTab = 4,
+    movMob = 2;
 
   for (var i = 0; i < actors?.length; i++) {
-    if (actors[i]?.profile_path) count++;
+    if (actors[i]?.profile_path) count += 1;
   }
 
   var movies = 6;
   if (count === 5) movies = 5;
   else if (count === 4) movies = 4;
-  else if (count === 3) movies = 3;
-  else if (count === 2) movies = 2;
-  else if (count === 1) movies = 1;
+  else if (count === 3) {
+    movies = 3;
+    movTab = 3;
+  } else if (count === 2) {
+    movies = 2;
+    movTab = 2;
+  } else if (count === 1) {
+    movies = 1;
+    movTab = 1;
+    movMob = 1;
+  }
   console.log(count);
 
   var settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: movies,
@@ -49,16 +58,15 @@ const MoreInfo = () => {
       {
         breakpoint: 900,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToShow: movTab,
+          slidesToScroll: movTab / 2,
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToShow: movMob,
+          slidesToScroll: movMob / 2,
         },
       },
     ],
@@ -200,45 +208,43 @@ const MoreInfo = () => {
 
           <div>
             <ul className="text-gray-300 ">
-              <div className=" md:flex justify-between">
-                <li
-                  className="md:ml-[70px] p-1 text-red-600  mt-8 md:mt-10"
-                  data-aos="zoom-in"
-                >
-                  Official Poster
-                </li>
-                <li
-                  className="   md:mr-[350px] text-red-600 p-1 mt-96 md:mt-10"
-                  data-aos="zoom-in"
-                >
-                  Official Trailer
-                </li>
-              </div>
-              <div className=" md:flex">
+              <li
+                className=" p-1 text-red-600  mt-8 md:mt-10 text-center"
+                data-aos="zoom-in"
+              >
+                Official Poster
+              </li>
+              <div className="flex justify-center">
                 <li>
                   <img
-                    className="p-2 top-60  md:top-0 absolute md:relative ml-0 md:ml-2 border-4 border-red-700"
+                    className="p-2  border-4 border-red-700"
                     data-aos="zoom-in"
                     src={ImgCDN + poster_path}
                     alt="movie-poster"
                   />
                 </li>
-
-                <li>
-                  <iframe
-                    className=" mt-2   md:mt-0 md:ml-[350px] w-[100%] md:w-[600px] border-4 border-red-700  aspect-video "
-                    data-aos="zoom-in"
-                    src={
-                      "https://www.youtube.com/embed/" +
-                      trailerInfo?.key +
-                      "?autoplay=1&mute=1"
-                    }
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen
-                  ></iframe>
-                </li>
               </div>
+
+              <li
+                className="    text-red-600 text-center p-1  "
+                data-aos="zoom-in"
+              >
+                Official Trailer
+              </li>
+              <li>
+                <iframe
+                  className="  w-[100%]  border-4 border-red-700  aspect-video "
+                  data-aos="zoom-in"
+                  src={
+                    "https://www.youtube.com/embed/" +
+                    trailerInfo?.key +
+                    "?autoplay=1&mute=1"
+                  }
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </li>
 
               <li className="p-2 " data-aos="fade-down">
                 <span className="text-red-600">Title: </span>
@@ -324,7 +330,7 @@ const MoreInfo = () => {
             </ul>
           </div>
 
-          {actors?.length ? (
+          {count ? (
             <h1
               className="text-red-600 ml-3 mt-4 text-2xl text-center"
               data-aos="fade-down"
@@ -359,9 +365,11 @@ const MoreInfo = () => {
 
           {infoSimilarMovies?.length ? (
             <PureMovieList movList={infoSimilarMovies} title="Similar Movies" />
-          ) : null}
+          ) : (
+            <></>
+          )}
 
-          <div className="bg-red-800 text-white p-2 rounded-lg ">
+          <div className="bg-red-800 text-white p-2 rounded-lg animate-pulse ">
             <p className="text-center">
               ⬇Coudnt find anything interesting 😥Get recommendations according
               to your taste using our movie recommendation system powered by

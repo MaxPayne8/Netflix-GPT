@@ -13,7 +13,6 @@ const PureMovieList = ({ movList, title }) => {
   }, []);
 
   var settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 6,
@@ -25,7 +24,6 @@ const PureMovieList = ({ movList, title }) => {
         settings: {
           slidesToShow: 4,
           slidesToScroll: 2,
-          initialSlide: 2,
         },
       },
       {

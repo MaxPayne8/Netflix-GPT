@@ -154,11 +154,11 @@ const Browse = () => {
 
           {
             <div
-              className="bg-red-800 z-20 relative text-white p-2"
+              className="bg-red-800 z-20 relative text-white p-2 animate-pulse mx-2 rounded-lg"
               data-aos="zoom-in"
             >
               <button
-                className="bg-violet-700 mt-1 text-center p-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 block text-white  rounded-lg "
+                className="bg-violet-700 mt-1 text-center p-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 block text-white  rounded-lg  "
                 onClick={() => {
                   handleClick();
                 }}
@@ -171,7 +171,7 @@ const Browse = () => {
                 according to your taste using our AI recommendation system
                 powered by Chat-Gpt 3.5 turbo🚀⬇👇👇👇👇
                 <Link to="/browse/gptsearch">
-                  <button className="bg-violet-700 mt-1 text-center p-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 block text-white  rounded-lg w-56 ">
+                  <button className="bg-violet-700 mt-1 text-center p-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 block text-white  rounded-lg w-56  ">
                     Goto Gpt-Search
                   </button>
                 </Link>

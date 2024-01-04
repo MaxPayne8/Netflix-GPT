@@ -12,13 +12,7 @@ import PureTvList from "./PureTvList";
 import usePopularTv from "../hooks/usePopularTv";
 import useTopTv from "../hooks/useTopTv";
 
-import Aos from "aos";
-import "aos/dist/aos.css";
-
 const SecondaryContainer = () => {
-  useEffect(() => {
-    Aos.init();
-  }, []);
   useNowPlayingMovies();
   usePopularMovies();
   useTopRatedMovies();
@@ -43,7 +37,7 @@ const SecondaryContainer = () => {
   console.log(trending);
 
   return (
-    <div className=" w-full " data-aos="fade-down">
+    <div className=" w-full ">
       <div className="relative mt-[370px]  md:-mt-[200px] ">
         <MovieList movList={trending} title="Trending Movies and TV Shows" />
         <PureMovieList movList={nowPlaying} title="Now Playing Movies" />
