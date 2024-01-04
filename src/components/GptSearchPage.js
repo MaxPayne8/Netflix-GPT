@@ -14,6 +14,7 @@ import GptMovieSuggestions from "./GptMovieSuggestions";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
+import Typewriter from "typewriter-effect";
 
 const GptSearchPage = () => {
   useEffect(() => {
@@ -98,7 +99,7 @@ const GptSearchPage = () => {
   //console.log(gptMov);
   //console.log(tmdbMov);
   return (
-    <div className="bg-black" data-aos="zoom-out" data-aos-delay="100">
+    <div className="bg-black" data-aos="zoom-in" data-aos-delay="100">
       <div className="relative">
         <Link to="/browse">
           <div className="absolute left-0 bg-gradient-to-b from-black z-20 top-0 ">
@@ -137,7 +138,22 @@ const GptSearchPage = () => {
         </select>
 
         <div className="absolute z-20  top-52 md:top-36 text-white text-sm md:text-base border-2 border-white bg-violet-800 p-4 rounded-2xl mx-auto ml-0 mr-0">
-          <p>{langConst[currLang].aboutGpt}</p>
+          <Typewriter
+            options={{
+              autoStart: true,
+              loop: true,
+
+              delay: 50,
+              deleteSpeed: 5,
+              strings: [
+                langConst["english"].aboutGpt,
+                langConst["hindi"].aboutGpt,
+                langConst["kannada"].aboutGpt,
+                langConst["french"].aboutGpt,
+                langConst["spanish"].aboutGpt,
+              ],
+            }}
+          />
         </div>
 
         <form
@@ -145,7 +161,7 @@ const GptSearchPage = () => {
           onSubmit={(e) => e.preventDefault()}
         >
           <input
-            className=" w-[355px] md:w-[400px] p-2 h-9 mt-6 text-sm md:text-base rounded-lg font-semibold"
+            className=" w-[355px] md:w-[400px] p-2 h-9 mt-6 text-sm md:text-base rounded-lg font-semibold animate-pulse"
             placeholder={langConst[currLang].gptPlaceholder}
             ref={searchTxt}
           ></input>

@@ -13,6 +13,7 @@ import Header from "./Header";
 import Spinner from "./Spinner";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import Typewriter from "typewriter-effect";
 
 const Browse = () => {
   useEffect(() => {
@@ -48,7 +49,7 @@ const Browse = () => {
   const [showSecCont, setShowSecCont] = useState(true);
   const [spinner, setSpinner] = useState(true);
 
-  const searchTxt = useRef(null);
+  const searchTxt = useRef("");
 
   const tmdbResults = async (movie) => {
     const data = await fetch(
@@ -69,8 +70,8 @@ const Browse = () => {
 
   const handleChange = (e) => {
     tmdbResults(searchTxt.current.value);
-    // e.preventDefault();
     setShowSecCont(false);
+    if (!searchTxt.current.value) setShowSecCont(true);
   };
 
   const handleClick = () => {
@@ -103,10 +104,19 @@ const Browse = () => {
           />
           <div className="flex">
             <h1 className=" p-2 top-48 md:top-3 md:right-[325px] z-10  bg-gradient-to-b from-black  absolute font-semibold text-white ">
-              <span className="text-red-800 font-bold text-xl bg:gradient-black from r">
-                {user?.displayName?.split(" ")[0]}
-              </span>
-              , try our all new Movies and TvShows suggestion AI!!
+              <Typewriter
+                options={{
+                  autoStart: true,
+                  loop: true,
+                  delay: 50,
+                  deleteSpeed: 10,
+                  strings: [
+                    user?.displayName?.split(" ")[0] +
+                      ", try our all new Movies and TvShows suggestion AI !!",
+                    "Have a nice day🌻",
+                  ],
+                }}
+              />
             </h1>
             <Link to="/browse/gptsearch">
               <button className="bg-violet-700 z-10 font-semibold hover:bg-violet-600 hover:border-2 text-white absolute md:right-[100px] top-[255px] right-0 md:ml-0 md:top-4 rounded-lg p-2 animate-bounce">
@@ -123,12 +133,12 @@ const Browse = () => {
           <form
             onSubmit={(e) => e.preventDefault()}
             onChange={() => handleChange()}
-            className=" rounded-lg p-2 absolute z-20   md:right-20 top-[500px] sm:top-[550px]  md:top-56"
+            className=" rounded-lg   absolute z-20 ml-4  md:right-20 top-[500px] sm:top-[550px]  md:top-56"
           >
             <input
               ref={searchTxt}
               placeholder="Search Movies,TV Shows, Actors.."
-              className="border-2 p-2  rounded-lg  border-black  w-80 animate-pulse"
+              className="border-2 p-1  md:p-2  rounded-lg  border-white font-semibold w-80 animate-pulse bg-blue-700 text-slate-200"
             ></input>
           </form>
           <MainContainer />
