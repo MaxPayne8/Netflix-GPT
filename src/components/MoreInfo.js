@@ -181,11 +181,11 @@ const MoreInfo = () => {
 
   //
   return (
-    <div className="bg-black overflow-x-hidden" data-aos="zoom-in">
+    <div className="bg-black  overflow-x-hidden " data-aos="zoom-in">
       {spinner ? (
         <Spinner />
       ) : (
-        <div className="z-10   w-full bg-black  p-6 ">
+        <div className="z-10    bg-black  p-6 ">
           <Link to="/browse">
             <div className="absolute left-0 bg-gradient-to-b from-black z-20 top-0 ">
               <img
@@ -338,7 +338,7 @@ const MoreInfo = () => {
               Cast
             </h1>
           ) : null}
-          <div className="w-[85%] md:w-[90%] mx-auto" data-aos="fade-down">
+          <div className="w-full md:w-[90%] mx-auto" data-aos="fade-down">
             <Slider {...settings}>
               {actors?.map(
                 (actor) =>

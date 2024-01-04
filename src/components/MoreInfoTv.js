@@ -181,7 +181,7 @@ const MoreInfoTv = () => {
 
   //
   return (
-    <div className="bg-black overflow-x-hidden" data-aos="zoom-in">
+    <div className="bg-black overflow-x-hidden w-full" data-aos="zoom-in">
       {spinner ? (
         <Spinner />
       ) : (
@@ -348,8 +348,8 @@ const MoreInfoTv = () => {
                 Cast
               </h1>
             ) : null}
-            <div className="w-[85%] md:w-[90%] mx-auto" data-aos="fade-down">
-              <Slider {...settings}>
+            <div data-aos="fade-down">
+              <Slider {...settings} className="w-full md:w-[90%] mx-auto">
                 {actors?.map(
                   (actor) =>
                     actor.profile_path &&
