@@ -17,8 +17,10 @@ import ActorDetails from "./components/ActorDetails";
 function App() {
   return (
     <Provider store={appStore}>
-      <Header />
-      <Outlet />
+      <div className="font-signature">
+        <Header />
+        <Outlet />
+      </div>
     </Provider>
   );
 }

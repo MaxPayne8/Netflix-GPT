@@ -57,7 +57,7 @@ const MovieList = ({ movList, title }) => {
   };
 
   return (
-    <div className="my-4" data-aos="zoom-in">
+    <div className="my-4 " data-aos="zoom-in">
       <h1 className="text-white text-center  text-base md:text-3xl">{title}</h1>
       <Slider {...settings} className="w-[85%] sm:w-[90%] mx-auto">
         {newMovList?.map((mov) => (

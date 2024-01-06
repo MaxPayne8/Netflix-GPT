@@ -9,6 +9,7 @@ module.exports = {
       lg: "800px",
     },
     extend: {},
+    fontFamily: { signature: ["Raleway"] },
   },
   plugins: [],
 };

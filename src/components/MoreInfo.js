@@ -168,7 +168,7 @@ const MoreInfo = () => {
 
   //
   return (
-    <div className="bg-black  overflow-x-hidden " data-aos="zoom-in">
+    <div className="bg-black  overflow-x-hidden signature " data-aos="zoom-in">
       {spinner ? (
         <Spinner />
       ) : (

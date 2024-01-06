@@ -76,7 +76,6 @@ const Browse = () => {
   const handleClick = () => {
     setShowSecCont(true);
     searchTxt.current.value = "";
-    // document.documentElement.scrollTop = 0;
   };
 
   return (
