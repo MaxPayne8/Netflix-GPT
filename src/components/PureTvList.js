@@ -56,7 +56,7 @@ const PureTvList = ({ movList, title }) => {
   return (
     <div className="my-4" data-aos="zoom-in">
       <h1 className="text-white text-center  text-base md:text-3xl">{title}</h1>
-      <Slider {...settings} className="w-[100%] sm:w-[90%] mx-auto">
+      <Slider {...settings} className="w-[85%] sm:w-[90%] mx-auto">
         {newMovList?.map((mov) => (
           <Link to={"/browse/moreinfoTv/" + mov?.id}>
             <MovieCard
