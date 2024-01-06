@@ -151,6 +151,7 @@ const Browse = () => {
                   posterId={movie.poster_path || movie.profile_path}
                   id={movie.id}
                   media={movie.media_type}
+                  title={movie.original_title || movie.name}
                   // profilePic={movie.profile_path}
                 />
               ))}
