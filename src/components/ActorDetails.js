@@ -24,14 +24,13 @@ const ActorDetails = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const { actorId } = useParams();
-  console.log(actorId);
+
   const getActor = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/person/" + actorId + "?language=en-US",
       API_TMDB_OPTIONS
     );
     const json = await data?.json();
-    console.log(json);
 
     dispatch(addActorDetails(json));
   };
@@ -43,7 +42,6 @@ const ActorDetails = () => {
       API_TMDB_OPTIONS
     );
     const json = await data?.json();
-    console.log(json);
 
     dispatch(addActorMovies(json.cast));
   };
@@ -55,7 +53,6 @@ const ActorDetails = () => {
       API_TMDB_OPTIONS
     );
     const json = await data?.json();
-    console.log(json);
 
     dispatch(addActorTv(json.cast));
   };
@@ -63,9 +60,7 @@ const ActorDetails = () => {
   const details = useSelector((store) => store.movie?.actorDetails);
   const actorMov = useSelector((store) => store.movie?.actorMovies);
   const actorTv = useSelector((store) => store.movie?.actorTv);
-  console.log(details);
-  console.log(actorMov);
-  console.log(actorTv);
+
   useEffect(() => {
     getActor();
     getActorMovies();

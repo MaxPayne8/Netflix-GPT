@@ -17,7 +17,6 @@ const MovieTitle = ({ title, overview, id }) => {
 
   const newOverview = overview.substring(0, 130);
 
-  console.log(finalMov);
   return (
     <div
       data-aos="zoom-in"

@@ -61,13 +61,11 @@ const Browse = () => {
     );
     const json = await data.json();
     const json1 = json.results;
-    console.log(json1);
 
     dispatch(addMovie(json1));
   };
 
   const data = useSelector((store) => store.movie.movies);
-  console.log(data);
 
   const handleChange = (e) => {
     tmdbResults(searchTxt.current.value);

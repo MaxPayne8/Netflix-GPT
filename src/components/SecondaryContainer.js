@@ -30,12 +30,6 @@ const SecondaryContainer = () => {
   const popularTv = useSelector((store) => store.movie.popularTv);
   const topTv = useSelector((store) => store.movie.topRatedTv);
 
-  console.log(popular);
-  console.log(nowPlaying);
-  console.log(topRated);
-  console.log(upcoming);
-  console.log(trending);
-
   return (
     <div className=" w-full ">
       <div className="relative mt-[370px]  md:-mt-[200px] ">

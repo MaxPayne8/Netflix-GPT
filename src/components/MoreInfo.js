@@ -46,7 +46,6 @@ const MoreInfo = () => {
     movTab = 1;
     movMob = 1;
   }
-  console.log(count);
 
   var settings = {
     infinite: true,
@@ -76,8 +75,6 @@ const MoreInfo = () => {
   const dispatch = useDispatch();
   const { movId } = useParams();
 
-  console.log(movId);
-
   useGetTrailer(movId);
 
   const getActors = async () => {
@@ -86,7 +83,6 @@ const MoreInfo = () => {
       API_TMDB_OPTIONS
     );
     const json = await data.json();
-    console.log(json);
 
     dispatch(addActors(json.cast));
   };
@@ -99,7 +95,7 @@ const MoreInfo = () => {
       API_TMDB_OPTIONS
     );
     const json = await data.json();
-    console.log(json);
+
     const result = await json?.results;
     dispatch(addReview(result));
   };
@@ -112,8 +108,6 @@ const MoreInfo = () => {
 
     const json = await data.json();
     dispatch(addMoreInfo(json));
-
-    console.log(json);
   };
 
   const getSimilarMovies = async () => {
@@ -148,17 +142,10 @@ const MoreInfo = () => {
   const infoSimilarMovies = useSelector((store) => store.movie.similarMovies);
   const review = useSelector((store) => store.movie?.review);
 
-  console.log(review);
-  console.log(info);
-  console.log(infoSimilarMovies);
-  console.log(trailerInfo);
-  console.log(actors);
-
   const actorsName = actors?.map((actor) => actor?.name).join(" , ");
 
   const actorImages = actors?.map((actor) => actor?.profile_path);
-  console.log(actorsName);
-  console.log(actorImages);
+
   if (!info) return;
   // if (!review) return null;
 

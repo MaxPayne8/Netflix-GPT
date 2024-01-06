@@ -23,7 +23,7 @@ import Slider from "react-slick";
 const MoreInfoTv = () => {
   const dispatch = useDispatch();
   const { movId } = useParams();
-  console.log(movId);
+
   useTvTrailer(movId);
   useEffect(() => {
     Aos.init();
@@ -51,7 +51,6 @@ const MoreInfoTv = () => {
     movTab = 1;
     movMob = 1;
   }
-  console.log(count);
 
   var settings = {
     infinite: true,
@@ -83,7 +82,6 @@ const MoreInfoTv = () => {
       API_TMDB_OPTIONS
     );
     const json = await data?.json();
-    console.log(json);
 
     dispatch(addActors(json?.cast));
   };
@@ -96,7 +94,7 @@ const MoreInfoTv = () => {
       API_TMDB_OPTIONS
     );
     const json = await data.json();
-    console.log(json);
+
     const result = await json?.results;
     dispatch(addReview(result));
   };
@@ -109,8 +107,6 @@ const MoreInfoTv = () => {
 
     const json = await data.json();
     dispatch(addMoreInfo(json));
-
-    console.log(json);
   };
 
   const getSimilarMovies = async () => {
@@ -144,19 +140,12 @@ const MoreInfoTv = () => {
   const infoSimilarMovies = useSelector((store) => store.movie?.similarMovies);
   const review = useSelector((store) => store.movie?.review);
 
-  console.log(review);
-  console.log(info);
-  console.log(infoSimilarMovies);
-  console.log(trailerInfo);
-  console.log(actors);
-
   const [spinner, setSpinner] = useState(true);
 
   const actorsName = actors?.map((actor) => actor?.name).join(" , ");
 
   const actorImages = actors?.map((actor) => actor?.profile_path);
-  console.log(actorsName);
-  console.log(actorImages);
+
   if (!info) return;
   // if (!review) return null;
 

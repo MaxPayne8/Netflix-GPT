@@ -9,7 +9,6 @@ const MainContainer = () => {
   const randomIndex = Math.trunc(Math.random() * 20);
   const trailermovie = movies[randomIndex];
 
-  console.log(trailermovie);
   const { id, title, overview } = trailermovie;
 
   return (
