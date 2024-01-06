@@ -15,6 +15,8 @@ import GptMovieSuggestions from "./GptMovieSuggestions";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Typewriter from "typewriter-effect";
+import gptBgDesk from "../utils/images/gptbgdesktop.png";
+import gptBgMob from "../utils/images/gptmobile1.png";
 
 const GptSearchPage = () => {
   useEffect(() => {
@@ -33,7 +35,7 @@ const GptSearchPage = () => {
     window.scrollTo(0, 0);
   });
   const currLang = useSelector((store) => store.language.lang);
-  //console.log(currLang);
+  console.log(currLang);
 
   const searchTxt = useRef(null);
 
@@ -45,7 +47,7 @@ const GptSearchPage = () => {
       API_TMDB_OPTIONS
     );
     const json = await data.json();
-    //console.log(json);
+    console.log(json);
 
     return json.results;
   };
@@ -69,12 +71,12 @@ const GptSearchPage = () => {
     }
 
     const gptResults = chatCompletion.choices;
-    //console.log(finalSearchQuery);
-    //console.log(gptResults);
+    console.log(finalSearchQuery);
+    console.log(gptResults);
     const finalMov = gptResults?.[0]?.message?.content;
     const finalMovArray = finalMov.split(",");
-    //console.log(finalMov);
-    //console.log(finalMovArray);
+    console.log(finalMov);
+    console.log(finalMovArray);
     const promiseArray = finalMovArray?.map((mov) => tmdbResults(mov));
     const tmdbMovies = await Promise.all(promiseArray);
     // const mainTmdbMovies = tmdbMovies.map((list) => list[0]);
@@ -84,8 +86,8 @@ const GptSearchPage = () => {
     if (tmdbMovies.length) setShowInfo(true);
     if (tmdbMovies.length) setShowMovies(true);
 
-    //console.log(tmdbMovies);
-    //console.log(mainTmdbMovies);
+    console.log(tmdbMovies);
+    console.log(mainTmdbMovies);
     dispatch(
       addGptMovies({
         gptMovies: finalMovArray,
@@ -96,8 +98,8 @@ const GptSearchPage = () => {
 
   const gptMov = useSelector((store) => store.gptMovies.gMovies);
   const tmdbMov = useSelector((store) => store.gptMovies.tmdbMov);
-  //console.log(gptMov);
-  //console.log(tmdbMov);
+  console.log(gptMov);
+  console.log(tmdbMov);
   return (
     <div className="bg-black" data-aos="zoom-in" data-aos-delay="100">
       <div className="relative">
@@ -112,12 +114,12 @@ const GptSearchPage = () => {
         </Link>
         <img
           className="h-[1000px] w-screen lg:h-0  lg:w-0 "
-          src="https://cdn.wallpapersafari.com/38/56/l4yXvN.jpg"
+          src={gptBgMob}
           alt="gpt-background"
         ></img>
         <img
           className="h-0  lg:w-screen lg:h-[1050px]"
-          src="https://xmple.com/wallpaper/black-sunburst-burst-shadow-red-rays-3840x2160-c2-000000-ff0000-k2-50-50-l3-26-0-18-a2-6-225-f-23.svg"
+          src={gptBgDesk}
           alt="gpt-background"
         ></img>
 
@@ -146,7 +148,8 @@ const GptSearchPage = () => {
               delay: 50,
               deleteSpeed: 5,
               strings: [
-                langConst["english"].aboutGpt,
+                langConst[currLang].aboutGpt,
+
                 langConst["hindi"].aboutGpt,
                 langConst["kannada"].aboutGpt,
                 langConst["french"].aboutGpt,

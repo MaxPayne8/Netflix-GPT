@@ -5,7 +5,7 @@ import MovieCard from "./MovieCard";
 
 const Results = () => {
   const data = useSelector((store) => store?.movie?.movies);
-  //console.log(data);
+  console.log(data);
   return (
     <div className="absolute w-full top-[650px] md:top-[400px] px-6  bg-black ">
       {data?.map((movie) => (

@@ -12,18 +12,20 @@ const MovieList = ({ movList, title }) => {
     Aos.init();
   }, []);
 
+  const newMovList = movList?.filter((mov) => mov?.poster_path);
+
   var movies = 6,
     movTab = 4,
     movMob = 2;
-  if (movList?.length === 5) movies = 5;
-  else if (movList?.length === 4) movies = 4;
-  else if (movList?.length === 3) {
+  if (newMovList?.length === 5) movies = 5;
+  else if (newMovList?.length === 4) movies = 4;
+  else if (newMovList?.length === 3) {
     movies = 3;
     movTab = 3;
-  } else if (movList?.length === 2) {
+  } else if (newMovList?.length === 2) {
     movies = 2;
     movTab = 2;
-  } else if (movList?.length === 1) {
+  } else if (newMovList?.length === 1) {
     movies = 1;
     movTab = 1;
     movMob = 1;
@@ -57,14 +59,20 @@ const MovieList = ({ movList, title }) => {
     <div className="my-4" data-aos="zoom-in">
       <h1 className="text-white text-center  text-base md:text-3xl">{title}</h1>
       <Slider {...settings} className="w-[85%] sm:w-[90%] mx-auto">
-        {movList?.map((mov) =>
+        {newMovList?.map((mov) =>
           mov?.media_type === "movie" ? (
             <Link to={"/browse/moreinfo/" + mov?.id}>
-              <MovieCard posterId={mov?.poster_path} />
+              <MovieCard
+                posterId={mov?.poster_path}
+                title={mov.original_title}
+              />
             </Link>
           ) : (
             <Link to={"/browse/moreinfotv/" + mov?.id}>
-              <MovieCard posterId={mov?.poster_path} />
+              <MovieCard
+                posterId={mov?.poster_path}
+                title={mov.original_title || mov.name}
+              />
             </Link>
           )
         )}

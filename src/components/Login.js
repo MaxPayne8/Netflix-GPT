@@ -11,6 +11,8 @@ import "aos/dist/aos.css";
 import { addUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
 import { NetflixLogo, UserLogo } from "../utils/constants";
+import loginbgmob from "../utils/images/loginmobile.avif";
+import loginbgdesk from "../utils/images/logindesktop.jpg";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -52,7 +54,7 @@ const Login = () => {
           setSignedUp(true);
           const user = userCredential.user;
 
-          //console.log(user);
+          console.log(user);
 
           updateProfile(user, {
             displayName: name.current.value,
@@ -99,7 +101,7 @@ const Login = () => {
         })
         .catch((error) => {
           const errorCode = error.code;
-          //console.log(errorCode);
+          console.log(errorCode);
 
           if (errorCode === "auth/invalid-login-credentials")
             setErrorMsg(
@@ -119,19 +121,19 @@ const Login = () => {
         />
       </div>
       <img
-        className="h-screen w-full md:hidden "
-        src="https://gumlet.assettype.com/bloombergquint/2023-02/8bb7387f-335f-4338-88de-1be92538cecf/Netflix_Series.jpg"
+        className="h-screen w-full sm:hidden "
+        src={loginbgmob}
         alt="movies-collage"
       ></img>
 
       <img
-        className="h-0 w-0 md:w-full md:h-screen"
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/a73c4363-1dcd-4719-b3b1-3725418fd91d/fe1147dd-78be-44aa-a0e5-2d2994305a13/IN-en-20231016-popsignuptwoweeks-perspective_alpha_website_medium.jpg"
+        className="h-0 w-0 sm:w-full sm:h-screen"
+        src={loginbgdesk}
         alt="movies-collage"
       ></img>
 
       <form
-        className="absolute bottom-36 w-full md:bottom-24 right-0 left-0 m-auto lg:w-1/3  bg bg-black  opacity-90 rounded-lg p-4 hover:cursor-pointer"
+        className="absolute bottom-36 w-full md:bottom-24 right-0 left-0 m-auto sm:w-2/3 lg:w-1/3  bg bg-black  opacity-80 rounded-lg p-4 hover:cursor-pointer"
         onSubmit={(e) => e.preventDefault()}
         data-aos="zoom-in"
         data-aos-delay="100"

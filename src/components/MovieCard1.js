@@ -24,7 +24,7 @@ const MovieCard1 = ({ posterId, id, media }) => {
     return (
       <Link to={"/browse/actor/" + id}>
         <div className="w-36 hover:border-4 mx-auto border-red-700 ">
-          <img className="p-2   " src={ImgCDN + posterId} alt="movie-poster" />
+          <img className="p-2 " src={ImgCDN + posterId} alt="movie-poster" />
         </div>
       </Link>
     );
