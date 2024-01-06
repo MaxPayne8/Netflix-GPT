@@ -14,6 +14,7 @@ import Spinner from "./Spinner";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Typewriter from "typewriter-effect";
+import { Link as Link1 } from "react-scroll";
 
 const Browse = () => {
   useEffect(() => {
@@ -77,7 +78,7 @@ const Browse = () => {
   const handleClick = () => {
     setShowSecCont(true);
     searchTxt.current.value = "";
-    document.documentElement.scrollTop = 0;
+    // document.documentElement.scrollTop = 0;
   };
 
   return (
@@ -90,6 +91,7 @@ const Browse = () => {
           <div
             onClick={() => handleClick()}
             className="absolute bg-gradient-to-b from-black z-20 top-0 hover:cursor-pointer "
+            name="netflix-logo"
           >
             <img
               className="w-32 lg:w-56"
@@ -152,7 +154,7 @@ const Browse = () => {
                   id={movie.id}
                   media={movie.media_type}
                   title={movie.original_title || movie.name}
-                  // profilePic={movie.profile_path}
+                  rating={movie.vote_average || movie.popularity}
                 />
               ))}
             </div>
@@ -163,14 +165,16 @@ const Browse = () => {
               className="bg-red-800 z-20 relative text-white p-2 animate-pulse mx-2 rounded-lg"
               data-aos="zoom-in"
             >
-              <button
-                className="bg-violet-700 mt-1 text-center p-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 block text-white  rounded-lg  "
-                onClick={() => {
-                  handleClick();
-                }}
-              >
-                Back to Browse
-              </button>
+              <Link1 to={"netflix-logo"} smooth={true} duration={500}>
+                <button
+                  className="bg-violet-700 mt-1 text-center p-2 items-center mx-auto z-10 font-semibold hover:bg-violet-600 block text-white  rounded-lg  "
+                  onClick={() => {
+                    handleClick();
+                  }}
+                >
+                  Back to Browse
+                </button>
+              </Link1>
 
               <p className="text-center">
                 👇👇👇👇⬇Coudnt find anything interesting 😥Get recommendations

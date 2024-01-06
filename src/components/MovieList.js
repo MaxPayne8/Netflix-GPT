@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import MovieCard1 from "./MovieCard1";
 
 const MovieList = ({ movList, title }) => {
   useEffect(() => {
@@ -59,26 +60,34 @@ const MovieList = ({ movList, title }) => {
     <div className="my-4" data-aos="zoom-in">
       <h1 className="text-white text-center  text-base md:text-3xl">{title}</h1>
       <Slider {...settings} className="w-[85%] sm:w-[90%] mx-auto">
-        {newMovList?.map((mov) =>
-          mov?.media_type === "movie" ? (
-            <Link to={"/browse/moreinfo/" + mov?.id}>
-              <MovieCard
-                posterId={mov?.poster_path}
-                title={mov.original_title}
-              />
-            </Link>
-          ) : (
-            <Link to={"/browse/moreinfotv/" + mov?.id}>
-              <MovieCard
-                posterId={mov?.poster_path}
-                title={mov.original_title || mov.name}
-              />
-            </Link>
-          )
-        )}
+        {newMovList?.map((mov) => (
+          <MovieCard1
+            media={mov.media_type}
+            posterId={mov?.poster_path}
+            title={mov.original_title || mov.name}
+            id={mov.id}
+            rating={mov.vote_average || mov.popularity}
+          />
+        ))}
       </Slider>
     </div>
   );
 };
 
 export default MovieList;
+
+// mov?.media_type === "movie" ? (
+//   <Link to={"/browse/moreinfo/" + mov?.id}>
+//     <MovieCard
+//       posterId={mov?.poster_path}
+//       title={mov.original_title}
+//     />
+//   </Link>
+// ) : (
+//   <Link to={"/browse/moreinfotv/" + mov?.id}>
+//     <MovieCard
+//       posterId={mov?.poster_path}
+//       title={mov.original_title || mov.name}
+//     />
+//   </Link>
+// )

@@ -62,6 +62,7 @@ const PureTvList = ({ movList, title }) => {
             <MovieCard
               posterId={mov?.poster_path}
               title={mov.original_title || mov.name}
+              rating={mov.vote_average}
             />
           </Link>
         ))}

@@ -356,7 +356,11 @@ const MoreInfoTv = () => {
                     actor.character.length && (
                       <Link to={"/browse/actor/" + actor.id}>
                         <div className="m-2    ">
-                          <MovieCard posterId={actor.profile_path} />
+                          <MovieCard
+                            posterId={actor.profile_path}
+                            rating={actor.popularity}
+                            title={actor.name}
+                          />
 
                           <h1 className="text-white  text-center">
                             {actor.name}
