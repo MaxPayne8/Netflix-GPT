@@ -11,7 +11,6 @@ import GptSearchPage from "./components/GptSearchPage";
 
 import MoreInfoTv from "./components/MoreInfoTv";
 
-import Results from "./components/Results";
 import ActorDetails from "./components/ActorDetails";
 
 function App() {
@@ -52,10 +51,6 @@ export const route = createBrowserRouter([
         element: <MoreInfoTv />,
       },
 
-      {
-        path: "/browse/results",
-        element: <Results />,
-      },
       {
         path: "/browse/actor/:actorId",
         element: <ActorDetails />,
