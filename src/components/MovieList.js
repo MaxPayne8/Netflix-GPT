@@ -14,6 +14,7 @@ const MovieList = ({ movList, title }) => {
   }, []);
 
   const newMovList = movList?.filter((mov) => mov?.poster_path);
+  console.log(newMovList);
 
   var movies = 6,
     movTab = 4,

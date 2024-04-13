@@ -128,7 +128,7 @@ const MoreInfoTv = () => {
     getActors();
     setTimeout(() => {
       setSpinner(false);
-    }, 300);
+    }, 500);
   }, [movId]);
 
   useLayoutEffect(() => {

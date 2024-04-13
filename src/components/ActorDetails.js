@@ -67,7 +67,7 @@ const ActorDetails = () => {
     getActorTv();
     setTimeout(() => {
       setSpinner(false);
-    }, 300);
+    }, 500);
   }, []);
   useLayoutEffect(() => {
     window.scrollTo(0, 0);

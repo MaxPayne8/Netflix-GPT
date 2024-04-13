@@ -31,7 +31,7 @@ const Browse = () => {
     disableBackButton();
     setTimeout(() => {
       setSpinner(false);
-    }, 100);
+    }, 500);
   }, []);
 
   const dispatch = useDispatch();
